@@ -1,0 +1,5 @@
+# Connection strings and credentials
+SQLEXP_Connection.txt
+
+# Backup files
+*.bak
