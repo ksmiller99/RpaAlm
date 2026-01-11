@@ -1,2 +1,2 @@
-cd "C:\My Drive\Claude\ALM"
+cd "C:\Claude\ALM"
 claude.exe
