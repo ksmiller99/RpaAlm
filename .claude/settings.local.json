@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(taskkill:*)",
+      "Bash(dotnet run)",
+      "Bash(ls:*)",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(dotnet add:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(Select-String \"Directory\")",
+      "Bash(Measure-Object -Line)",
+      "Bash(Select-Object -ExpandProperty Lines)",
+      "Bash(dotnet list:*)",
+      "WebSearch",
+      "Bash(git checkout:*)"
+    ]
+  }
+}
