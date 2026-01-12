@@ -12,6 +12,11 @@ GO
 -- =============================================
 
 -- Insert JjedsHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertJjedsHelper
     @WWID NVARCHAR(9),
     @CommonName NVARCHAR(255) = NULL,
@@ -34,6 +39,11 @@ END
 GO
 
 -- Update JjedsHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateJjedsHelper
     @WWID NVARCHAR(9),
     @CommonName NVARCHAR(255) = NULL,
@@ -60,6 +70,11 @@ END
 GO
 
 -- Delete JjedsHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteJjedsHelper
     @WWID NVARCHAR(9)
 AS
@@ -76,6 +91,11 @@ END
 GO
 
 -- Get All JjedsHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllJjedsHelper
 AS
 BEGIN
@@ -87,6 +107,11 @@ END
 GO
 
 -- Get JjedsHelper By WWID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDJjedsHelper
     @WWID NVARCHAR(9)
 AS
@@ -103,6 +128,11 @@ GO
 -- =============================================
 
 -- Insert CmdbHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertCmdbHelper
     @AppID NVARCHAR(50),
     @Name NVARCHAR(255) = NULL,
@@ -123,6 +153,11 @@ END
 GO
 
 -- Update CmdbHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateCmdbHelper
     @AppID NVARCHAR(50),
     @Name NVARCHAR(255) = NULL,
@@ -145,6 +180,11 @@ END
 GO
 
 -- Delete CmdbHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteCmdbHelper
     @AppID NVARCHAR(50)
 AS
@@ -161,6 +201,11 @@ END
 GO
 
 -- Get All CmdbHelper
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllCmdbHelper
 AS
 BEGIN
@@ -172,6 +217,11 @@ END
 GO
 
 -- Get CmdbHelper By AppID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDCmdbHelper
     @AppID NVARCHAR(50)
 AS

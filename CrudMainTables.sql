@@ -11,6 +11,11 @@ GO
 -- =============================================
 
 -- Insert Automation
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertAutomation
     @Name NVARCHAR(255) = NULL,
     @SegmentID INT = NULL,
@@ -46,6 +51,11 @@ END
 GO
 
 -- Update Automation
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateAutomation
     @ID INT,
     @Name NVARCHAR(255) = NULL,
@@ -88,6 +98,11 @@ END
 GO
 
 -- Delete Automation
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteAutomation
     @ID INT
 AS
@@ -104,6 +119,11 @@ END
 GO
 
 -- Get All Automation
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllAutomation
 AS
 BEGIN
@@ -117,6 +137,11 @@ END
 GO
 
 -- Get Automation By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDAutomation
     @ID INT
 AS
@@ -135,6 +160,11 @@ GO
 -- =============================================
 
 -- Insert SlaMaster
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertSlaMaster
     @AutomationID INT = NULL,
     @ComplexityID INT = NULL,
@@ -163,6 +193,11 @@ END
 GO
 
 -- Update SlaMaster
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateSlaMaster
     @ID INT,
     @AutomationID INT = NULL,
@@ -195,6 +230,11 @@ END
 GO
 
 -- Delete SlaMaster
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteSlaMaster
     @ID INT
 AS
@@ -211,6 +251,11 @@ END
 GO
 
 -- Get All SlaMaster
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllSlaMaster
 AS
 BEGIN
@@ -223,6 +268,11 @@ END
 GO
 
 -- Get SlaMaster By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDSlaMaster
     @ID INT
 AS
@@ -240,6 +290,11 @@ GO
 -- =============================================
 
 -- Insert SlaItem
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertSlaItem
     @SlaMasterID INT = NULL,
     @SlaItemTypeID INT = NULL,
@@ -262,6 +317,11 @@ END
 GO
 
 -- Update SlaItem
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateSlaItem
     @ID INT,
     @SlaMasterID INT = NULL,
@@ -286,6 +346,11 @@ END
 GO
 
 -- Delete SlaItem
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteSlaItem
     @ID INT
 AS
@@ -302,6 +367,11 @@ END
 GO
 
 -- Get All SlaItem
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllSlaItem
 AS
 BEGIN
@@ -313,6 +383,11 @@ END
 GO
 
 -- Get SlaItem By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDSlaItem
     @ID INT
 AS
@@ -329,6 +404,11 @@ GO
 -- =============================================
 
 -- Insert EnhancementUserStory
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertEnhancementUserStory
     @EnhancementID INT = NULL,
     @JiraIssue NVARCHAR(50) = NULL,
@@ -356,6 +436,11 @@ END
 GO
 
 -- Update EnhancementUserStory
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateEnhancementUserStory
     @ID INT,
     @EnhancementID INT = NULL,
@@ -386,6 +471,11 @@ END
 GO
 
 -- Delete EnhancementUserStory
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteEnhancementUserStory
     @ID INT
 AS
@@ -402,6 +492,11 @@ END
 GO
 
 -- Get All EnhancementUserStory
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllEnhancementUserStory
 AS
 BEGIN
@@ -414,6 +509,11 @@ END
 GO
 
 -- Get EnhancementUserStory By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDEnhancementUserStory
     @ID INT
 AS
@@ -431,6 +531,11 @@ GO
 -- =============================================
 
 -- Insert AutomationLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertAutomationLogEntry
     @AutomationID INT = NULL,
     @CreatedWWID NVARCHAR(9) = NULL,
@@ -454,6 +559,11 @@ END
 GO
 
 -- Update AutomationLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateAutomationLogEntry
     @ID INT,
     @AutomationID INT = NULL,
@@ -480,6 +590,11 @@ END
 GO
 
 -- Delete AutomationLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteAutomationLogEntry
     @ID INT
 AS
@@ -496,6 +611,11 @@ END
 GO
 
 -- Get All AutomationLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllAutomationLogEntry
 AS
 BEGIN
@@ -507,6 +627,11 @@ END
 GO
 
 -- Get AutomationLogEntry By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDAutomationLogEntry
     @ID INT
 AS
@@ -523,6 +648,11 @@ GO
 -- =============================================
 
 -- Insert SlaLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertSlaLogEntry
     @SlaMasterID INT = NULL,
     @CreatedWWID NVARCHAR(9) = NULL,
@@ -546,6 +676,11 @@ END
 GO
 
 -- Update SlaLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateSlaLogEntry
     @ID INT,
     @SlaMasterID INT = NULL,
@@ -572,6 +707,11 @@ END
 GO
 
 -- Delete SlaLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteSlaLogEntry
     @ID INT
 AS
@@ -588,6 +728,11 @@ END
 GO
 
 -- Get All SlaLogEntry
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllSlaLogEntry
 AS
 BEGIN
@@ -599,6 +744,11 @@ END
 GO
 
 -- Get SlaLogEntry By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDSlaLogEntry
     @ID INT
 AS
@@ -615,6 +765,11 @@ GO
 -- =============================================
 
 -- Insert VirtualIdentity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertVirtualIdentity
     @AccountName NVARCHAR(255) = NULL,
     @HostName NVARCHAR(255) = NULL,
@@ -644,6 +799,11 @@ END
 GO
 
 -- Update VirtualIdentity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateVirtualIdentity
     @ID INT,
     @AccountName NVARCHAR(255) = NULL,
@@ -678,6 +838,11 @@ END
 GO
 
 -- Delete VirtualIdentity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteVirtualIdentity
     @ID INT
 AS
@@ -694,6 +859,11 @@ END
 GO
 
 -- Get All VirtualIdentity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllVirtualIdentity
 AS
 BEGIN
@@ -706,6 +876,11 @@ END
 GO
 
 -- Get VirtualIdentity By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDVirtualIdentity
     @ID INT
 AS
@@ -723,6 +898,11 @@ GO
 -- =============================================
 
 -- Insert AutomationEnvironment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertAutomationEnvironment
     @AutomationID INT = NULL,
     @AppID NVARCHAR(50) = NULL,
@@ -745,6 +925,11 @@ END
 GO
 
 -- Update AutomationEnvironment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateAutomationEnvironment
     @ID INT,
     @AutomationID INT = NULL,
@@ -769,6 +954,11 @@ END
 GO
 
 -- Delete AutomationEnvironment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteAutomationEnvironment
     @ID INT
 AS
@@ -785,6 +975,11 @@ END
 GO
 
 -- Get All AutomationEnvironment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllAutomationEnvironment
 AS
 BEGIN
@@ -796,6 +991,11 @@ END
 GO
 
 -- Get AutomationEnvironment By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDAutomationEnvironment
     @ID INT
 AS

@@ -11,6 +11,11 @@ GO
 -- =============================================
 
 -- Insert ViAssignments
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertViAssignments
     @VirtualIdentityID INT = NULL,
     @AutomationEnvironmentID INT = NULL,
@@ -37,6 +42,11 @@ END
 GO
 
 -- Update ViAssignments
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateViAssignments
     @ID INT,
     @VirtualIdentityID INT = NULL,
@@ -65,6 +75,11 @@ END
 GO
 
 -- Delete ViAssignments
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteViAssignments
     @ID INT
 AS
@@ -81,6 +96,11 @@ END
 GO
 
 -- Get All ViAssignments
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllViAssignments
 AS
 BEGIN
@@ -93,6 +113,11 @@ END
 GO
 
 -- Get ViAssignments By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDViAssignments
     @ID INT
 AS

@@ -11,6 +11,11 @@ GO
 -- =============================================
 
 -- Insert SlaItemType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertSlaItemType
     @Name NVARCHAR(255) = NULL,
     @Description NVARCHAR(MAX) = NULL,
@@ -34,6 +39,11 @@ END
 GO
 
 -- Update SlaItemType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateSlaItemType
     @ID INT,
     @Name NVARCHAR(255) = NULL,
@@ -60,6 +70,11 @@ END
 GO
 
 -- Delete SlaItemType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteSlaItemType
     @ID INT
 AS
@@ -76,6 +91,11 @@ END
 GO
 
 -- Get All SlaItemType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllSlaItemType
 AS
 BEGIN
@@ -87,6 +107,11 @@ END
 GO
 
 -- Get SlaItemType By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDSlaItemType
     @ID INT
 AS
@@ -103,6 +128,11 @@ GO
 -- =============================================
 
 -- Insert Enhancement
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertEnhancement
     @Scope NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -123,6 +153,11 @@ END
 GO
 
 -- Update Enhancement
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateEnhancement
     @ID INT,
     @Scope NVARCHAR(255) = NULL
@@ -143,6 +178,11 @@ END
 GO
 
 -- Delete Enhancement
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteEnhancement
     @ID INT
 AS
@@ -159,6 +199,11 @@ END
 GO
 
 -- Get All Enhancement
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllEnhancement
 AS
 BEGIN
@@ -170,6 +215,11 @@ END
 GO
 
 -- Get Enhancement By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDEnhancement
     @ID INT
 AS
@@ -186,6 +236,11 @@ GO
 -- =============================================
 
 -- Insert Complexity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertComplexity
     @Code NVARCHAR(50) = NULL,
     @Description NVARCHAR(255) = NULL,
@@ -207,6 +262,11 @@ END
 GO
 
 -- Update Complexity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateComplexity
     @ID INT,
     @Code NVARCHAR(50) = NULL,
@@ -229,6 +289,11 @@ END
 GO
 
 -- Delete Complexity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteComplexity
     @ID INT
 AS
@@ -245,6 +310,11 @@ END
 GO
 
 -- Get All Complexity
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllComplexity
 AS
 BEGIN
@@ -256,6 +326,11 @@ END
 GO
 
 -- Get Complexity By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDComplexity
     @ID INT
 AS
@@ -272,6 +347,11 @@ GO
 -- =============================================
 
 -- Insert Medal
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertMedal
     @Name NVARCHAR(255) = NULL,
     @Description NVARCHAR(MAX) = NULL,
@@ -293,6 +373,11 @@ END
 GO
 
 -- Update Medal
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateMedal
     @ID INT,
     @Name NVARCHAR(255) = NULL,
@@ -315,6 +400,11 @@ END
 GO
 
 -- Delete Medal
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteMedal
     @ID INT
 AS
@@ -331,6 +421,11 @@ END
 GO
 
 -- Get All Medal
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllMedal
 AS
 BEGIN
@@ -342,6 +437,11 @@ END
 GO
 
 -- Get Medal By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDMedal
     @ID INT
 AS
@@ -358,6 +458,11 @@ GO
 -- =============================================
 
 -- Insert Function
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertFunction
     @Code NVARCHAR(50) = NULL,
     @Description NVARCHAR(255) = NULL,
@@ -379,6 +484,11 @@ END
 GO
 
 -- Update Function
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateFunction
     @ID INT,
     @Code NVARCHAR(50) = NULL,
@@ -401,6 +511,11 @@ END
 GO
 
 -- Delete Function
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteFunction
     @ID INT
 AS
@@ -417,6 +532,11 @@ END
 GO
 
 -- Get All Function
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllFunction
 AS
 BEGIN
@@ -428,6 +548,11 @@ END
 GO
 
 -- Get Function By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDFunction
     @ID INT
 AS
@@ -444,6 +569,11 @@ GO
 -- =============================================
 
 -- Insert Region
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertRegion
     @Code NVARCHAR(50) = NULL,
     @Description NVARCHAR(255) = NULL,
@@ -465,6 +595,11 @@ END
 GO
 
 -- Update Region
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateRegion
     @ID INT,
     @Code NVARCHAR(50) = NULL,
@@ -487,6 +622,11 @@ END
 GO
 
 -- Delete Region
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteRegion
     @ID INT
 AS
@@ -503,6 +643,11 @@ END
 GO
 
 -- Get All Region
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllRegion
 AS
 BEGIN
@@ -514,6 +659,11 @@ END
 GO
 
 -- Get Region By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDRegion
     @ID INT
 AS
@@ -530,6 +680,11 @@ GO
 -- =============================================
 
 -- Insert Segment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertSegment
     @Code NVARCHAR(50) = NULL,
     @Description NVARCHAR(255) = NULL,
@@ -551,6 +706,11 @@ END
 GO
 
 -- Update Segment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateSegment
     @ID INT,
     @Code NVARCHAR(50) = NULL,
@@ -573,6 +733,11 @@ END
 GO
 
 -- Delete Segment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteSegment
     @ID INT
 AS
@@ -589,6 +754,11 @@ END
 GO
 
 -- Get All Segment
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllSegment
 AS
 BEGIN
@@ -600,6 +770,11 @@ END
 GO
 
 -- Get Segment By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDSegment
     @ID INT
 AS
@@ -616,6 +791,11 @@ GO
 -- =============================================
 
 -- Insert Status
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertStatus
     @Code NVARCHAR(50) = NULL,
     @Description NVARCHAR(255) = NULL,
@@ -637,6 +817,11 @@ END
 GO
 
 -- Update Status
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateStatus
     @ID INT,
     @Code NVARCHAR(50) = NULL,
@@ -659,6 +844,11 @@ END
 GO
 
 -- Delete Status
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteStatus
     @ID INT
 AS
@@ -675,6 +865,11 @@ END
 GO
 
 -- Get All Status
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllStatus
 AS
 BEGIN
@@ -686,6 +881,11 @@ END
 GO
 
 -- Get Status By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDStatus
     @ID INT
 AS
@@ -702,6 +902,11 @@ GO
 -- =============================================
 
 -- Insert AutomationEnvironmentType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertAutomationEnvironmentType
     @Code NVARCHAR(50) = NULL,
     @Description NVARCHAR(255) = NULL,
@@ -723,6 +928,11 @@ END
 GO
 
 -- Update AutomationEnvironmentType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateAutomationEnvironmentType
     @ID INT,
     @Code NVARCHAR(50) = NULL,
@@ -745,6 +955,11 @@ END
 GO
 
 -- Delete AutomationEnvironmentType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteAutomationEnvironmentType
     @ID INT
 AS
@@ -761,6 +976,11 @@ END
 GO
 
 -- Get All AutomationEnvironmentType
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllAutomationEnvironmentType
 AS
 BEGIN
@@ -772,6 +992,11 @@ END
 GO
 
 -- Get AutomationEnvironmentType By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDAutomationEnvironmentType
     @ID INT
 AS
@@ -788,6 +1013,11 @@ GO
 -- =============================================
 
 -- Insert ADDomain
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertADDomain
     @Domain NVARCHAR(255) = NULL,
     @Description NVARCHAR(255) = NULL,
@@ -809,6 +1039,11 @@ END
 GO
 
 -- Update ADDomain
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateADDomain
     @ID INT,
     @Domain NVARCHAR(255) = NULL,
@@ -831,6 +1066,11 @@ END
 GO
 
 -- Delete ADDomain
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteADDomain
     @ID INT
 AS
@@ -847,6 +1087,11 @@ END
 GO
 
 -- Get All ADDomain
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllADDomain
 AS
 BEGIN
@@ -858,6 +1103,11 @@ END
 GO
 
 -- Get ADDomain By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDADDomain
     @ID INT
 AS
@@ -874,6 +1124,11 @@ GO
 -- =============================================
 
 -- Insert StoryPointCost
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_InsertStoryPointCost
     @Points INT = NULL,
     @MaxHours INT = NULL,
@@ -898,6 +1153,11 @@ END
 GO
 
 -- Update StoryPointCost
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_UpdateStoryPointCost
     @ID INT,
     @Points INT = NULL,
@@ -926,6 +1186,11 @@ END
 GO
 
 -- Delete StoryPointCost
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_DeleteStoryPointCost
     @ID INT
 AS
@@ -942,6 +1207,11 @@ END
 GO
 
 -- Get All StoryPointCost
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetAllStoryPointCost
 AS
 BEGIN
@@ -953,6 +1223,11 @@ END
 GO
 
 -- Get StoryPointCost By ID
+SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+
 CREATE OR ALTER PROCEDURE sp_GetByIDStoryPointCost
     @ID INT
 AS
