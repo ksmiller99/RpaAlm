@@ -3,3 +3,9 @@ SQLEXP_Connection.txt
 
 # Backup files
 *.bak
+
+# Visual Studio temporary files
+.vs/
+
+# Claude temporary directories
+tmpclaude-*/
