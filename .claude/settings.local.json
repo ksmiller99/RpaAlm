@@ -19,8 +19,7 @@
       "Bash(dotnet clean:*)",
       "Bash(dotnet restore:*)",
       "Bash(timeout /t 15 cmd /c \"dotnet run 2>&1\")",
-      "Bash(curl:*)",
-      "Bash(git branch:*)"
+      "Bash(curl:*)"
     ]
   }
 }
