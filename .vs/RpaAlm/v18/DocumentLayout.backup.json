@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\repos\\RpaAlm\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\interfaces\\irpastatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\interfaces\\irpastatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\implementations\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,20 +15,12 @@
       "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\jjedshelperservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\implementations\\cmdbhelperservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\cmdbhelperservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\implementations\\regionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\regionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\interfaces\\iregionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\interfaces\\iregionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\interfaces\\irpastatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\interfaces\\irpastatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\controllers\\rpastatuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -103,6 +99,19 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwBIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-15T16:19:23.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IRpaStatusService.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "RelativeToolTip": "RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T15:56:39.776Z",
               "EditorCaption": ""
             },
             {
@@ -120,7 +129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "JjedsHelperService.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\JjedsHelperService.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Implementations\\JjedsHelperService.cs",
@@ -133,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BaseService.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\BaseService.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Implementations\\BaseService.cs",
@@ -146,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "RpaStatusRepository.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\RpaStatusRepository.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Data\\Repositories\\RpaStatusRepository.cs",
@@ -159,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "RpaStatusController.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Controllers\\RpaStatusController.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Controllers\\RpaStatusController.cs",
@@ -172,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\appsettings.json",
               "RelativeDocumentMoniker": "RpaAlmApi\\appsettings.json",
@@ -184,7 +193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "RpaAlmApi.http",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\RpaAlmApi.http",
               "RelativeDocumentMoniker": "RpaAlmApi\\RpaAlmApi.http",
@@ -196,7 +205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\appsettings.Development.json",
               "RelativeDocumentMoniker": "RpaAlmApi\\appsettings.Development.json",
@@ -208,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "DbConnectionFactory.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\DbContext\\DbConnectionFactory.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Data\\DbContext\\DbConnectionFactory.cs",
@@ -220,7 +229,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "RpaStatus.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Domain\\RpaStatus.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Domain\\RpaStatus.cs",
@@ -232,7 +241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "IDbConnectionFactory.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Common\\Interfaces\\IDbConnectionFactory.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Common\\Interfaces\\IDbConnectionFactory.cs",
@@ -244,7 +253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "ADDomainRepository.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\ADDomainRepository.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Data\\Repositories\\ADDomainRepository.cs",
@@ -256,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 18,
               "Title": "AutomationUpdateRequest.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Requests\\AutomationUpdateRequest.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Requests\\AutomationUpdateRequest.cs",
@@ -268,7 +277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "AutomationRepository.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\AutomationRepository.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Data\\Repositories\\AutomationRepository.cs",
@@ -280,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 17,
               "Title": "AutomationDto.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\DTOs\\AutomationDto.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Models\\DTOs\\AutomationDto.cs",
@@ -292,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "AutomationCreateRequest.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Requests\\AutomationCreateRequest.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Requests\\AutomationCreateRequest.cs",
@@ -304,7 +313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "Automation.cs",
               "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Domain\\Automation.cs",
               "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Domain\\Automation.cs",
@@ -313,74 +322,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-14T15:09:34.332Z"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "e8020b8c-089b-45c2-a612-7354e4cfdaa7",
-        "Display": 1,
-        "X": 594,
-        "Y": 203,
-        "Width": 1374,
-        "Height": 730,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IRpaStatusService.cs",
-              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
-              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
-              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
-              "RelativeToolTip": "RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T15:56:39.776Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "5b157543-3a0c-4ff1-8700-a4490a7fbaab",
-        "Display": 1,
-        "X": 492,
-        "Y": 276,
-        "Width": 1374,
-        "Height": 730,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CmdbHelperService.cs",
-              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
-              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
-              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
-              "RelativeToolTip": "RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAwwGsAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-14T20:08:18.895Z",
-              "EditorCaption": ""
             }
           ]
         }
