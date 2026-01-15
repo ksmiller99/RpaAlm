@@ -1,14 +1,86 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Claude\\ALM\\",
+  "WorkspaceRootPath": "C:\\repos\\RpaAlm\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\claude\\alm\\rpaalmapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\implementations\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\claude\\alm\\rpaalmapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\implementations\\jjedshelperservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\jjedshelperservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\implementations\\cmdbhelperservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\cmdbhelperservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\implementations\\regionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\implementations\\regionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\interfaces\\iregionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\interfaces\\iregionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\services\\interfaces\\irpastatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\services\\interfaces\\irpastatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\controllers\\rpastatuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\controllers\\rpastatuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\data\\repositories\\rpastatusrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\data\\repositories\\rpastatusrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\data\\dbcontext\\dbconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\data\\dbcontext\\dbconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\models\\domain\\rpastatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\models\\domain\\rpastatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\common\\interfaces\\idbconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\common\\interfaces\\idbconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\rpaalmapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\rpaalmapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\data\\repositories\\addomainrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\data\\repositories\\addomainrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\data\\repositories\\automationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\data\\repositories\\automationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\models\\domain\\automation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\models\\domain\\automation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\models\\requests\\automationcreaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\models\\requests\\automationcreaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\models\\dtos\\automationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\models\\dtos\\automationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|c:\\repos\\rpaalm\\rpaalmapi\\models\\requests\\automationupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F886612-B81F-4C89-A75B-B543E2C56AA0}|RpaAlmApi\\RpaAlmApi.csproj|solutionrelative:rpaalmapi\\models\\requests\\automationupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +90,296 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Claude\\ALM\\RpaAlmApi\\Program.cs",
-              "RelativeDocumentMoniker": "RpaAlmApi\\Program.cs",
-              "ToolTip": "C:\\Claude\\ALM\\RpaAlmApi\\Program.cs",
-              "RelativeToolTip": "RpaAlmApi\\Program.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAkwGcAAAA6AAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "RegionService.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\RegionService.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Implementations\\RegionService.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\RegionService.cs",
+              "RelativeToolTip": "RpaAlmApi\\Services\\Implementations\\RegionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T00:26:06.872Z",
+              "WhenOpened": "2026-01-15T16:19:23.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRegionService.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRegionService.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Interfaces\\IRegionService.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRegionService.cs",
+              "RelativeToolTip": "RpaAlmApi\\Services\\Interfaces\\IRegionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T16:35:12.729Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Claude\\ALM\\RpaAlmApi\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "RpaAlmApi\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Claude\\ALM\\RpaAlmApi\\Properties\\launchSettings.json",
-              "RelativeToolTip": "RpaAlmApi\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACIAAAAUAAAAAAAAAA==",
+              "Title": "JjedsHelperService.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\JjedsHelperService.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Implementations\\JjedsHelperService.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\JjedsHelperService.cs",
+              "RelativeToolTip": "RpaAlmApi\\Services\\Implementations\\JjedsHelperService.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAAAGsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T14:56:54.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaseService.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\BaseService.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Implementations\\BaseService.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\BaseService.cs",
+              "RelativeToolTip": "RpaAlmApi\\Services\\Implementations\\BaseService.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T20:07:33.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RpaStatusRepository.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\RpaStatusRepository.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Data\\Repositories\\RpaStatusRepository.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\RpaStatusRepository.cs",
+              "RelativeToolTip": "RpaAlmApi\\Data\\Repositories\\RpaStatusRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T18:05:29.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RpaStatusController.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Controllers\\RpaStatusController.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Controllers\\RpaStatusController.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Controllers\\RpaStatusController.cs",
+              "RelativeToolTip": "RpaAlmApi\\Controllers\\RpaStatusController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCMAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T16:43:51.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\appsettings.json",
+              "RelativeDocumentMoniker": "RpaAlmApi\\appsettings.json",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\appsettings.json",
+              "RelativeToolTip": "RpaAlmApi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-13T00:24:37.84Z",
+              "WhenOpened": "2026-01-14T15:24:11.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RpaAlmApi.http",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\RpaAlmApi.http",
+              "RelativeDocumentMoniker": "RpaAlmApi\\RpaAlmApi.http",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\RpaAlmApi.http",
+              "RelativeToolTip": "RpaAlmApi\\RpaAlmApi.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-01-14T15:20:15.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "RpaAlmApi\\appsettings.Development.json",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\appsettings.Development.json",
+              "RelativeToolTip": "RpaAlmApi\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-14T15:20:08.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DbConnectionFactory.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\DbContext\\DbConnectionFactory.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Data\\DbContext\\DbConnectionFactory.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\DbContext\\DbConnectionFactory.cs",
+              "RelativeToolTip": "RpaAlmApi\\Data\\DbContext\\DbConnectionFactory.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA0wBQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:18:32.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RpaStatus.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Domain\\RpaStatus.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Domain\\RpaStatus.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Domain\\RpaStatus.cs",
+              "RelativeToolTip": "RpaAlmApi\\Models\\Domain\\RpaStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T18:06:42.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IDbConnectionFactory.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Common\\Interfaces\\IDbConnectionFactory.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Common\\Interfaces\\IDbConnectionFactory.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Common\\Interfaces\\IDbConnectionFactory.cs",
+              "RelativeToolTip": "RpaAlmApi\\Common\\Interfaces\\IDbConnectionFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:18:18.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ADDomainRepository.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\ADDomainRepository.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Data\\Repositories\\ADDomainRepository.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\ADDomainRepository.cs",
+              "RelativeToolTip": "RpaAlmApi\\Data\\Repositories\\ADDomainRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:17:56.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AutomationUpdateRequest.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Requests\\AutomationUpdateRequest.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Requests\\AutomationUpdateRequest.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Requests\\AutomationUpdateRequest.cs",
+              "RelativeToolTip": "RpaAlmApi\\Models\\Requests\\AutomationUpdateRequest.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAuwB8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:10:03.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AutomationRepository.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\AutomationRepository.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Data\\Repositories\\AutomationRepository.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Data\\Repositories\\AutomationRepository.cs",
+              "RelativeToolTip": "RpaAlmApi\\Data\\Repositories\\AutomationRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:09:52.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AutomationDto.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\DTOs\\AutomationDto.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Models\\DTOs\\AutomationDto.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\DTOs\\AutomationDto.cs",
+              "RelativeToolTip": "RpaAlmApi\\Models\\DTOs\\AutomationDto.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAuwA4AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:09:50.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AutomationCreateRequest.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Requests\\AutomationCreateRequest.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Requests\\AutomationCreateRequest.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Requests\\AutomationCreateRequest.cs",
+              "RelativeToolTip": "RpaAlmApi\\Models\\Requests\\AutomationCreateRequest.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAuwB8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:09:46.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Automation.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Domain\\Automation.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Models\\Domain\\Automation.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Models\\Domain\\Automation.cs",
+              "RelativeToolTip": "RpaAlmApi\\Models\\Domain\\Automation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T15:09:34.332Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "e8020b8c-089b-45c2-a612-7354e4cfdaa7",
+        "Display": 1,
+        "X": 594,
+        "Y": 203,
+        "Width": 1374,
+        "Height": 730,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IRpaStatusService.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "RelativeToolTip": "RpaAlmApi\\Services\\Interfaces\\IRpaStatusService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T15:56:39.776Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "5b157543-3a0c-4ff1-8700-a4490a7fbaab",
+        "Display": 1,
+        "X": 492,
+        "Y": 276,
+        "Width": 1374,
+        "Height": 730,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CmdbHelperService.cs",
+              "DocumentMoniker": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
+              "RelativeDocumentMoniker": "RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
+              "ToolTip": "C:\\repos\\RpaAlm\\RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
+              "RelativeToolTip": "RpaAlmApi\\Services\\Implementations\\CmdbHelperService.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAwwGsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T20:08:18.895Z",
               "EditorCaption": ""
             }
           ]

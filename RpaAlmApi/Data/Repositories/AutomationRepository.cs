@@ -25,8 +25,8 @@ public class AutomationRepository : BaseRepository<Automation>, IAutomationRepos
             BtoWWID = GetNullableString(reader, "BtoWWID"),
             BoWWID = GetNullableString(reader, "BoWWID"),
             FcWWID = GetNullableString(reader, "FcWWID"),
-            BuildZcode = GetNullableString(reader, "BuildZcode"),
-            BuildCostCenter = GetNullableString(reader, "BuildCostCenter"),
+            Zcode = GetNullableString(reader, "Zcode"),
+            CostCenter = GetNullableString(reader, "CostCenter"),
             SseWWID = GetNullableString(reader, "SseWWID"),
             LseWWID = GetNullableString(reader, "LseWWID")
         };
@@ -42,8 +42,8 @@ public class AutomationRepository : BaseRepository<Automation>, IAutomationRepos
         command.Parameters.AddWithValue("@BtoWWID", GetValueOrDBNull(entity.BtoWWID));
         command.Parameters.AddWithValue("@BoWWID", GetValueOrDBNull(entity.BoWWID));
         command.Parameters.AddWithValue("@FcWWID", GetValueOrDBNull(entity.FcWWID));
-        command.Parameters.AddWithValue("@BuildZcode", GetValueOrDBNull(entity.BuildZcode));
-        command.Parameters.AddWithValue("@BuildCostCenter", GetValueOrDBNull(entity.BuildCostCenter));
+        command.Parameters.AddWithValue("@Zcode", GetValueOrDBNull(entity.Zcode));
+        command.Parameters.AddWithValue("@CostCenter", GetValueOrDBNull(entity.CostCenter));
         command.Parameters.AddWithValue("@SseWWID", GetValueOrDBNull(entity.SseWWID));
         command.Parameters.AddWithValue("@LseWWID", GetValueOrDBNull(entity.LseWWID));
     }
@@ -59,8 +59,8 @@ public class AutomationRepository : BaseRepository<Automation>, IAutomationRepos
         command.Parameters.AddWithValue("@BtoWWID", GetValueOrDBNull(entity.BtoWWID));
         command.Parameters.AddWithValue("@BoWWID", GetValueOrDBNull(entity.BoWWID));
         command.Parameters.AddWithValue("@FcWWID", GetValueOrDBNull(entity.FcWWID));
-        command.Parameters.AddWithValue("@BuildZcode", GetValueOrDBNull(entity.BuildZcode));
-        command.Parameters.AddWithValue("@BuildCostCenter", GetValueOrDBNull(entity.BuildCostCenter));
+        command.Parameters.AddWithValue("@Zcode", GetValueOrDBNull(entity.Zcode));
+        command.Parameters.AddWithValue("@CostCenter", GetValueOrDBNull(entity.CostCenter));
         command.Parameters.AddWithValue("@SseWWID", GetValueOrDBNull(entity.SseWWID));
         command.Parameters.AddWithValue("@LseWWID", GetValueOrDBNull(entity.LseWWID));
     }

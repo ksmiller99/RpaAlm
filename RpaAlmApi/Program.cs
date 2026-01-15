@@ -45,7 +45,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
 
 // Register Repositories
-builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+builder.Services.AddScoped<IRpaStatusRepository, RpaStatusRepository>();
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<IFunctionRepository, FunctionRepository>();
 builder.Services.AddScoped<IComplexityRepository, ComplexityRepository>();
@@ -69,7 +69,7 @@ builder.Services.AddScoped<ISlaLogEntryRepository, SlaLogEntryRepository>();
 builder.Services.AddScoped<IViAssignmentsRepository, ViAssignmentsRepository>();
 
 // Register Services
-builder.Services.AddScoped<IStatusService, StatusService>();
+builder.Services.AddScoped<IRpaStatusService, RpaStatusService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddScoped<IFunctionService, FunctionService>();
 builder.Services.AddScoped<IComplexityService, ComplexityService>();

@@ -83,7 +83,8 @@ public abstract class BaseService<TEntity, TDto, TCreateRequest, TUpdateRequest>
             entity.Id = id;
 
             var rowsAffected = await _repository.UpdateAsync(entity);
-            return rowsAffected > 0;
+            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            return rowsAffected == 1;
         }
         catch (Exception ex)
         {
@@ -103,7 +104,8 @@ public abstract class BaseService<TEntity, TDto, TCreateRequest, TUpdateRequest>
             }
 
             var rowsAffected = await _repository.DeleteAsync(id);
-            return rowsAffected > 0;
+            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            return rowsAffected == 1;
         }
         catch (Exception ex)
         {

@@ -82,7 +82,8 @@ public class CmdbHelperService : ICmdbHelperService
             entity.Id = appId;
 
             var rowsAffected = await _repository.UpdateAsync(entity);
-            return rowsAffected > 0;
+            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            return rowsAffected == 1;
         }
         catch (Exception ex)
         {
@@ -102,7 +103,8 @@ public class CmdbHelperService : ICmdbHelperService
             }
 
             var rowsAffected = await _repository.DeleteAsync(appId);
-            return rowsAffected > 0;
+            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            return rowsAffected == 1;
         }
         catch (Exception ex)
         {

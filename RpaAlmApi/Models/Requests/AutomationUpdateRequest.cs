@@ -26,10 +26,10 @@ public class AutomationUpdateRequest
     public string? FcWWID { get; set; }
 
     [StringLength(10)]
-    public string? BuildZcode { get; set; }
+    public string? Zcode { get; set; }
 
     [StringLength(10)]
-    public string? BuildCostCenter { get; set; }
+    public string? CostCenter { get; set; }
 
     [StringLength(9, ErrorMessage = "SseWWID must be 9 characters")]
     public string? SseWWID { get; set; }
