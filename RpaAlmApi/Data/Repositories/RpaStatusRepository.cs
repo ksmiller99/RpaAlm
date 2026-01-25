@@ -6,18 +6,18 @@ using RpaAlmApi.Models.Domain;
 namespace RpaAlmApi.Data.Repositories;
 
 /// <summary>
-/// Repository for Status entity
+/// Repository for RpaStatus entity
 /// </summary>
-public class StatusRepository : BaseRepository<Status>, IStatusRepository
+public class RpaStatusRepository : BaseRepository<RpaStatus>, IRpaStatusRepository
 {
-    public StatusRepository(IDbConnectionFactory connectionFactory)
-        : base(connectionFactory, "Status")
+    public RpaStatusRepository(IDbConnectionFactory connectionFactory)
+        : base(connectionFactory, "RpaStatus")
     {
     }
 
-    protected override Status MapFromReader(SqlDataReader reader)
+    protected override RpaStatus MapFromReader(SqlDataReader reader)
     {
-        return new Status
+        return new RpaStatus
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),
@@ -25,13 +25,13 @@ public class StatusRepository : BaseRepository<Status>, IStatusRepository
         };
     }
 
-    protected override void AddInsertParameters(SqlCommand command, Status entity)
+    protected override void AddInsertParameters(SqlCommand command, RpaStatus entity)
     {
         command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
         command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
     }
 
-    protected override void AddUpdateParameters(SqlCommand command, Status entity)
+    protected override void AddUpdateParameters(SqlCommand command, RpaStatus entity)
     {
         command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
         command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));

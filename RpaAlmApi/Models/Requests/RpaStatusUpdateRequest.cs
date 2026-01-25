@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 namespace RpaAlmApi.Models.Requests;
 
 /// <summary>
-/// Request model for updating an existing Status
+/// Request model for updating an existing RpaStatus
 /// </summary>
-public class StatusUpdateRequest
+public class RpaStatusUpdateRequest
 {
     [Required(ErrorMessage = "Code is required")]
     [StringLength(50, ErrorMessage = "Code cannot exceed 50 characters")]

@@ -4,8 +4,8 @@ using RpaAlmApi.Models.Domain;
 namespace RpaAlmApi.Data.Interfaces;
 
 /// <summary>
-/// Repository interface for Status entity
+/// Repository interface for RpaStatus entity
 /// </summary>
-public interface IStatusRepository : IRepository<Status>
+public interface IRpaStatusRepository : IRepository<RpaStatus>
 {
 }

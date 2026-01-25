@@ -15,9 +15,9 @@ public class Automation : IEntity
     public int? StatusID { get; set; }
     public string? BtoWWID { get; set; } // Business Technical Owner
     public string? BoWWID { get; set; }  // Business Owner
-    public string? FcWWID { get; set; }  // Functional Champion
-    public string? BuildZcode { get; set; }
-    public string? BuildCostCenter { get; set; }
+    public string? FcWWID { get; set; }  // Finance Contact
+    public string? Zcode { get; set; }   // For chargebacks   
+    public string? CostCenter { get; set; }  // For Chargebacks
     public string? SseWWID { get; set; } // Senior Service Engineer
     public string? LseWWID { get; set; } // Lead Service Engineer
 }

@@ -7,19 +7,19 @@ using RpaAlmApi.Services.Interfaces;
 namespace RpaAlmApi.Controllers;
 
 /// <summary>
-/// API Controller for Status management
+/// API Controller for RpaStatus management
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
-public class StatusController : ControllerBase
+public class RpaStatusController : ControllerBase
 {
-    private readonly IStatusService _statusService;
-    private readonly ILogger<StatusController> _logger;
+    private readonly IRpaStatusService _rpaStatusService;
+    private readonly ILogger<RpaStatusController> _logger;
 
-    public StatusController(IStatusService statusService, ILogger<StatusController> logger)
+    public RpaStatusController(IRpaStatusService rpaStatusService, ILogger<RpaStatusController> logger)
     {
-        _statusService = statusService;
+        _rpaStatusService = rpaStatusService;
         _logger = logger;
     }
 
@@ -28,18 +28,18 @@ public class StatusController : ControllerBase
     /// </summary>
     /// <returns>List of all statuses</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(ApiResponse<IEnumerable<StatusDto>>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<ApiResponse<IEnumerable<StatusDto>>>> GetAll()
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<RpaStatusDto>>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ApiResponse<IEnumerable<RpaStatusDto>>>> GetAll()
     {
         try
         {
-            var statuses = await _statusService.GetAllAsync();
-            return Ok(ApiResponse<IEnumerable<StatusDto>>.SuccessResponse(statuses));
+            var statuses = await _rpaStatusService.GetAllAsync();
+            return Ok(ApiResponse<IEnumerable<RpaStatusDto>>.SuccessResponse(statuses));
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error retrieving all statuses");
-            return StatusCode(500, ApiResponse<IEnumerable<StatusDto>>.ErrorResponse(
+            return StatusCode(500, ApiResponse<IEnumerable<RpaStatusDto>>.ErrorResponse(
                 "An error occurred while retrieving statuses",
                 new List<string> { ex.Message }
             ));
@@ -49,30 +49,30 @@ public class StatusController : ControllerBase
     /// <summary>
     /// Get status by ID
     /// </summary>
-    /// <param name="id">Status ID</param>
-    /// <returns>Status details</returns>
+    /// <param name="id">RpaStatus ID</param>
+    /// <returns>RpaStatus details</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ApiResponse<StatusDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<StatusDto>), StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<ApiResponse<StatusDto>>> GetById(int id)
+    [ProducesResponseType(typeof(ApiResponse<RpaStatusDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<RpaStatusDto>), StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<ApiResponse<RpaStatusDto>>> GetById(int id)
     {
         try
         {
-            var status = await _statusService.GetByIdAsync(id);
+            var status = await _rpaStatusService.GetByIdAsync(id);
 
             if (status == null)
             {
-                return NotFound(ApiResponse<StatusDto>.ErrorResponse(
-                    $"Status with ID {id} not found"
+                return NotFound(ApiResponse<RpaStatusDto>.ErrorResponse(
+                    $"RpaStatus with ID {id} not found"
                 ));
             }
 
-            return Ok(ApiResponse<StatusDto>.SuccessResponse(status));
+            return Ok(ApiResponse<RpaStatusDto>.SuccessResponse(status));
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error retrieving status with ID {Id}", id);
-            return StatusCode(500, ApiResponse<StatusDto>.ErrorResponse(
+            return StatusCode(500, ApiResponse<RpaStatusDto>.ErrorResponse(
                 "An error occurred while retrieving the status",
                 new List<string> { ex.Message }
             ));
@@ -82,16 +82,16 @@ public class StatusController : ControllerBase
     /// <summary>
     /// Create a new status
     /// </summary>
-    /// <param name="request">Status creation request</param>
+    /// <param name="request">RpaStatus creation request</param>
     /// <returns>Created status</returns>
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResponse<StatusDto>), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ApiResponse<StatusDto>), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ApiResponse<StatusDto>>> Create([FromBody] StatusCreateRequest request)
+    [ProducesResponseType(typeof(ApiResponse<RpaStatusDto>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<RpaStatusDto>), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ApiResponse<RpaStatusDto>>> Create([FromBody] RpaStatusCreateRequest request)
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ApiResponse<StatusDto>.ErrorResponse(
+            return BadRequest(ApiResponse<RpaStatusDto>.ErrorResponse(
                 "Validation failed",
                 ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList()
             ));
@@ -99,17 +99,17 @@ public class StatusController : ControllerBase
 
         try
         {
-            var status = await _statusService.CreateAsync(request);
+            var status = await _rpaStatusService.CreateAsync(request);
             return CreatedAtAction(
                 nameof(GetById),
                 new { id = status.Id },
-                ApiResponse<StatusDto>.SuccessResponse(status, "Status created successfully")
+                ApiResponse<RpaStatusDto>.SuccessResponse(status, "RpaStatus created successfully")
             );
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating status");
-            return StatusCode(500, ApiResponse<StatusDto>.ErrorResponse(
+            return StatusCode(500, ApiResponse<RpaStatusDto>.ErrorResponse(
                 "An error occurred while creating the status",
                 new List<string> { ex.Message }
             ));
@@ -119,14 +119,14 @@ public class StatusController : ControllerBase
     /// <summary>
     /// Update an existing status
     /// </summary>
-    /// <param name="id">Status ID</param>
-    /// <param name="request">Status update request</param>
+    /// <param name="id">RpaStatus ID</param>
+    /// <param name="request">RpaStatus update request</param>
     /// <returns>Success status</returns>
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] StatusUpdateRequest request)
+    public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] RpaStatusUpdateRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -138,16 +138,16 @@ public class StatusController : ControllerBase
 
         try
         {
-            var success = await _statusService.UpdateAsync(id, request);
+            var success = await _rpaStatusService.UpdateAsync(id, request);
 
             if (!success)
             {
                 return NotFound(ApiResponse<bool>.ErrorResponse(
-                    $"Status with ID {id} not found"
+                    $"RpaStatus with ID {id} not found"
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, "Status updated successfully"));
+            return Ok(ApiResponse<bool>.SuccessResponse(true, "RpaStatus updated successfully"));
         }
         catch (Exception ex)
         {
@@ -162,7 +162,7 @@ public class StatusController : ControllerBase
     /// <summary>
     /// Delete a status
     /// </summary>
-    /// <param name="id">Status ID</param>
+    /// <param name="id">RpaStatus ID</param>
     /// <returns>Success status</returns>
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
@@ -171,16 +171,16 @@ public class StatusController : ControllerBase
     {
         try
         {
-            var success = await _statusService.DeleteAsync(id);
+            var success = await _rpaStatusService.DeleteAsync(id);
 
             if (!success)
             {
                 return NotFound(ApiResponse<bool>.ErrorResponse(
-                    $"Status with ID {id} not found"
+                    $"RpaStatus with ID {id} not found"
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, "Status deleted successfully"));
+            return Ok(ApiResponse<bool>.SuccessResponse(true, "RpaStatus deleted successfully"));
         }
         catch (Exception ex)
         {

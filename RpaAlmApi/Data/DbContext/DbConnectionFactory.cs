@@ -12,8 +12,8 @@ public class DbConnectionFactory : IDbConnectionFactory
 
     public DbConnectionFactory(IConfiguration configuration)
     {
-        _connectionString = configuration.GetConnectionString("RpaDataDev")
-            ?? throw new InvalidOperationException("Connection string 'RpaDataDev' not found");
+        _connectionString = configuration.GetConnectionString("RpaAlmDev")
+            ?? throw new InvalidOperationException("Connection string 'RpaAlmDev' not found");
     }
 
     public SqlConnection CreateConnection()

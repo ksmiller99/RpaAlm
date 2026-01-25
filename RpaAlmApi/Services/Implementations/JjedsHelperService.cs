@@ -82,7 +82,8 @@ public class JjedsHelperService : IJjedsHelperService
             entity.Id = wwid;
 
             var rowsAffected = await _repository.UpdateAsync(entity);
-            return rowsAffected > 0;
+            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            return rowsAffected == 1;
         }
         catch (Exception ex)
         {
@@ -102,7 +103,8 @@ public class JjedsHelperService : IJjedsHelperService
             }
 
             var rowsAffected = await _repository.DeleteAsync(wwid);
-            return rowsAffected > 0;
+            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            return rowsAffected == 1;
         }
         catch (Exception ex)
         {

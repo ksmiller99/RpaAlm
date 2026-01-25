@@ -11,8 +11,8 @@ public class AutomationDto
     public string? BtoWWID { get; set; }
     public string? BoWWID { get; set; }
     public string? FcWWID { get; set; }
-    public string? BuildZcode { get; set; }
-    public string? BuildCostCenter { get; set; }
+    public string? Zcode { get; set; }
+    public string? CostCenter { get; set; }
     public string? SseWWID { get; set; }
     public string? LseWWID { get; set; }
 }
