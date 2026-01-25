@@ -8,16 +8,16 @@ using RpaAlmApi.Services.Interfaces;
 namespace RpaAlmApi.Services.Implementations;
 
 /// <summary>
-/// Service implementation for Status business logic
+/// Service implementation for RpaStatus business logic
 /// </summary>
 public class StatusService : IStatusService
 {
-    private readonly IStatusRepository _repository;
+    private readonly IRpaStatusRepository _repository;
     private readonly IMapper _mapper;
     private readonly ILogger<StatusService> _logger;
 
     public StatusService(
-        IStatusRepository repository,
+        IRpaStatusRepository repository,
         IMapper mapper,
         ILogger<StatusService> logger)
     {
@@ -26,12 +26,12 @@ public class StatusService : IStatusService
         _logger = logger;
     }
 
-    public async Task<IEnumerable<StatusDto>> GetAllAsync()
+    public async Task<IEnumerable<RpaStatusDto>> GetAllAsync()
     {
         try
         {
             var statuses = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<StatusDto>>(statuses);
+            return _mapper.Map<IEnumerable<RpaStatusDto>>(statuses);
         }
         catch (Exception ex)
         {
@@ -40,12 +40,12 @@ public class StatusService : IStatusService
         }
     }
 
-    public async Task<StatusDto?> GetByIdAsync(int id)
+    public async Task<RpaStatusDto?> GetByIdAsync(int id)
     {
         try
         {
             var status = await _repository.GetByIdAsync(id);
-            return status == null ? null : _mapper.Map<StatusDto>(status);
+            return status == null ? null : _mapper.Map<RpaStatusDto>(status);
         }
         catch (Exception ex)
         {
@@ -54,15 +54,15 @@ public class StatusService : IStatusService
         }
     }
 
-    public async Task<StatusDto> CreateAsync(StatusCreateRequest request)
+    public async Task<RpaStatusDto> CreateAsync(RpaStatusCreateRequest request)
     {
         try
         {
-            var status = _mapper.Map<Status>(request);
+            var status = _mapper.Map<RpaStatus>(request);
             var newId = await _repository.CreateAsync(status);
 
             status.Id = newId;
-            return _mapper.Map<StatusDto>(status);
+            return _mapper.Map<RpaStatusDto>(status);
         }
         catch (Exception ex)
         {
@@ -71,7 +71,7 @@ public class StatusService : IStatusService
         }
     }
 
-    public async Task<bool> UpdateAsync(int id, StatusUpdateRequest request)
+    public async Task<bool> UpdateAsync(int id, RpaStatusUpdateRequest request)
     {
         try
         {
@@ -81,7 +81,7 @@ public class StatusService : IStatusService
                 return false;
             }
 
-            var status = _mapper.Map<Status>(request);
+            var status = _mapper.Map<RpaStatus>(request);
             status.Id = id;
 
             var rowsAffected = await _repository.UpdateAsync(status);

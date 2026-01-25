@@ -12,10 +12,10 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        // Status mappings
-        CreateMap<Status, StatusDto>();
-        CreateMap<StatusCreateRequest, Status>();
-        CreateMap<StatusUpdateRequest, Status>();
+        // RpaStatus mappings
+        CreateMap<RpaStatus, RpaStatusDto>();
+        CreateMap<RpaStatusCreateRequest, RpaStatus>();
+        CreateMap<RpaStatusUpdateRequest, RpaStatus>();
 
         // Region mappings
         CreateMap<Region, RegionDto>();

@@ -4,13 +4,13 @@ using RpaAlmApi.Models.Requests;
 namespace RpaAlmApi.Services.Interfaces;
 
 /// <summary>
-/// Service interface for Status business logic
+/// Service interface for RpaStatus business logic
 /// </summary>
 public interface IStatusService
 {
-    Task<IEnumerable<StatusDto>> GetAllAsync();
-    Task<StatusDto?> GetByIdAsync(int id);
-    Task<StatusDto> CreateAsync(StatusCreateRequest request);
-    Task<bool> UpdateAsync(int id, StatusUpdateRequest request);
+    Task<IEnumerable<RpaStatusDto>> GetAllAsync();
+    Task<RpaStatusDto?> GetByIdAsync(int id);
+    Task<RpaStatusDto> CreateAsync(RpaStatusCreateRequest request);
+    Task<bool> UpdateAsync(int id, RpaStatusUpdateRequest request);
     Task<bool> DeleteAsync(int id);
 }
