@@ -77,3 +77,4 @@ $RECYCLE.BIN/
 
 # Claude Code temp files
 tmpclaude-*-cwd
+/.vs
