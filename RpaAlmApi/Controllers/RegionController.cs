@@ -56,7 +56,7 @@ public class RegionController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Region with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Region updated successfully"));
+        return Ok(ApiResponse<RegionDto?>.SuccessResponse(null, "Region updated successfully")); //data should be null
     }
 
     [HttpDelete("{id}")]
@@ -66,6 +66,6 @@ public class RegionController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Region with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Region deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Region deleted successfully"));
     }
 }

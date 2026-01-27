@@ -56,7 +56,7 @@ public class ComplexityController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Complexity with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Complexity updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Complexity updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -66,6 +66,6 @@ public class ComplexityController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Complexity with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Complexity deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Complexity deleted successfully"));
     }
 }

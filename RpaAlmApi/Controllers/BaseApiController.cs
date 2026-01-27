@@ -124,7 +124,7 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, $"{entityName} updated successfully"));
+            return Ok(ApiResponse<bool?>.SuccessResponse(null, $"{entityName} updated successfully"));
         }
         catch (Exception ex)
         {
@@ -152,7 +152,7 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, $"{entityName} deleted successfully"));
+            return Ok(ApiResponse<bool?>.SuccessResponse(null, $"{entityName} deleted successfully"));
         }
         catch (Exception ex)
         {

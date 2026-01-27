@@ -47,7 +47,7 @@ public class ADDomainController : ControllerBase
         var success = await _service.UpdateAsync(id, request);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"ADDomain with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "ADDomain updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "ADDomain updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -56,6 +56,6 @@ public class ADDomainController : ControllerBase
         var success = await _service.DeleteAsync(id);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"ADDomain with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "ADDomain deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "ADDomain deleted successfully"));
     }
 }

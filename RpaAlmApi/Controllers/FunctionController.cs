@@ -56,7 +56,7 @@ public class FunctionController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Function with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Function updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Function updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -66,6 +66,6 @@ public class FunctionController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Function with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Function deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Function deleted successfully"));
     }
 }

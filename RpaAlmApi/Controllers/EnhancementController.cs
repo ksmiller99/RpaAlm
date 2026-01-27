@@ -47,7 +47,7 @@ public class EnhancementController : ControllerBase
         var success = await _service.UpdateAsync(id, request);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Enhancement with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Enhancement updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Enhancement updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -56,6 +56,6 @@ public class EnhancementController : ControllerBase
         var success = await _service.DeleteAsync(id);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Enhancement with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Enhancement deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Enhancement deleted successfully"));
     }
 }

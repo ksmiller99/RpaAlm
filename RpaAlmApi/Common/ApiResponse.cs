@@ -10,9 +10,9 @@ public class ApiResponse<T>
     public string? Message { get; set; }
     public List<string>? Errors { get; set; }
 
-    public static ApiResponse<T> SuccessResponse(T data, string? message = null)
+    public static ApiResponse<T?> SuccessResponse(T? data, string? message = null)
     {
-        return new ApiResponse<T>
+        return new ApiResponse<T?>
         {
             Success = true,
             Data = data,

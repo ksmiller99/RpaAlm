@@ -47,7 +47,7 @@ public class AutomationEnvironmentTypeController : ControllerBase
         var success = await _service.UpdateAsync(id, request);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"AutomationEnvironmentType with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "AutomationEnvironmentType updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "AutomationEnvironmentType updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -56,6 +56,6 @@ public class AutomationEnvironmentTypeController : ControllerBase
         var success = await _service.DeleteAsync(id);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"AutomationEnvironmentType with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "AutomationEnvironmentType deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "AutomationEnvironmentType deleted successfully"));
     }
 }

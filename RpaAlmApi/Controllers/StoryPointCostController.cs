@@ -47,7 +47,7 @@ public class StoryPointCostController : ControllerBase
         var success = await _service.UpdateAsync(id, request);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"StoryPointCost with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "StoryPointCost updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "StoryPointCost updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -56,6 +56,6 @@ public class StoryPointCostController : ControllerBase
         var success = await _service.DeleteAsync(id);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"StoryPointCost with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "StoryPointCost deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "StoryPointCost deleted successfully"));
     }
 }

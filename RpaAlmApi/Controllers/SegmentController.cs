@@ -56,7 +56,7 @@ public class SegmentController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Segment with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Segment updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Segment updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -66,6 +66,6 @@ public class SegmentController : ControllerBase
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Segment with ID {id} not found"));
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Segment deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Segment deleted successfully"));
     }
 }

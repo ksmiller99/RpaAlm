@@ -147,7 +147,7 @@ public class RpaStatusController : ControllerBase
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, "RpaStatus updated successfully"));
+            return Ok(ApiResponse<bool?>.SuccessResponse(null, "RpaStatus updated successfully"));
         }
         catch (Exception ex)
         {
@@ -180,7 +180,7 @@ public class RpaStatusController : ControllerBase
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, "RpaStatus deleted successfully"));
+            return Ok(ApiResponse<bool?>.SuccessResponse(null, "RpaStatus deleted successfully"));
         }
         catch (Exception ex)
         {

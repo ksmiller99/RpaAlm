@@ -47,7 +47,7 @@ public class MedalController : ControllerBase
         var success = await _service.UpdateAsync(id, request);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Medal with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Medal updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Medal updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -56,6 +56,6 @@ public class MedalController : ControllerBase
         var success = await _service.DeleteAsync(id);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"Medal with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Medal deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Medal deleted successfully"));
     }
 }

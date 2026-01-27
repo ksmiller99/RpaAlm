@@ -47,7 +47,7 @@ public class SlaItemTypeController : ControllerBase
         var success = await _service.UpdateAsync(id, request);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"SlaItemType with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "SlaItemType updated successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "SlaItemType updated successfully"));
     }
 
     [HttpDelete("{id}")]
@@ -56,6 +56,6 @@ public class SlaItemTypeController : ControllerBase
         var success = await _service.DeleteAsync(id);
         if (!success)
             return NotFound(ApiResponse<bool>.ErrorResponse($"SlaItemType with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "SlaItemType deleted successfully"));
+        return Ok(ApiResponse<bool?>.SuccessResponse(null, "SlaItemType deleted successfully"));
     }
 }
