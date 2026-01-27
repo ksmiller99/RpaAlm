@@ -14,7 +14,7 @@ public class ComplexityRepository : BaseRepository<Complexity>, IComplexityRepos
 
     protected override Complexity MapFromReader(SqlDataReader reader)
     {
-        return new Complexity
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),

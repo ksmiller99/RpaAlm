@@ -14,7 +14,7 @@ public class ViAssignmentsRepository : BaseRepository<ViAssignments>, IViAssignm
 
     protected override ViAssignments MapFromReader(SqlDataReader reader)
     {
-        return new ViAssignments
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             VirtualIdentityID = GetNullableInt(reader, "VirtualIdentityID"),

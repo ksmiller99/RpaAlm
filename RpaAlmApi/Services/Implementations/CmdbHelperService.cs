@@ -32,7 +32,7 @@ public class CmdbHelperService : ICmdbHelperService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving all CmdbHelper records");
+            _logger.LogError(ex, $"Error retrieving all CmdbHelper records");
             throw;
         }
     }
@@ -46,7 +46,7 @@ public class CmdbHelperService : ICmdbHelperService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving CmdbHelper with AppID {AppId}", appId);
+            _logger.LogError(ex, $"Error retrieving CmdbHelper with AppID {appId}" );
             throw;
         }
     }
@@ -82,12 +82,12 @@ public class CmdbHelperService : ICmdbHelperService
             entity.Id = appId;
 
             var rowsAffected = await _repository.UpdateAsync(entity);
-            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            if (rowsAffected == -1) throw new($"NOCOUNT is set to TRUE in stored procedure.");
             return rowsAffected == 1;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating CmdbHelper with AppID {AppId}", appId);
+            _logger.LogError(ex, $"Error updating CmdbHelper with AppID {appId}" );
             throw;
         }
     }
@@ -103,12 +103,12 @@ public class CmdbHelperService : ICmdbHelperService
             }
 
             var rowsAffected = await _repository.DeleteAsync(appId);
-            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            if (rowsAffected == -1) throw new($"NOCOUNT is set to TRUE in stored procedure.");
             return rowsAffected == 1;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting CmdbHelper with AppID {AppId}", appId);
+            _logger.LogError(ex,$"Error deleting CmdbHelper with AppID {appId}" );
             throw;
         }
     }

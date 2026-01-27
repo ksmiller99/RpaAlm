@@ -10,10 +10,12 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class ComplexityController : ControllerBase
 {
-    private readonly IComplexityService _service;
     private readonly ILogger<ComplexityController> _logger;
+    private readonly IComplexityService _service;
 
-    public ComplexityController(IComplexityService service, ILogger<ComplexityController> logger)
+    public ComplexityController(
+        IComplexityService service,
+        ILogger<ComplexityController> logger)
     {
         _service = service;
         _logger = logger;
@@ -22,50 +24,169 @@ public class ComplexityController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<ApiResponse<IEnumerable<ComplexityDto>>>> GetAll()
     {
-        var complexities = await _service.GetAllAsync();
-        return Ok(ApiResponse<IEnumerable<ComplexityDto>>.SuccessResponse(complexities));
+        try
+        {
+            var result = await _service.GetAllAsync();
+            return Ok(new ApiResponse<IEnumerable<ComplexityDto>>
+            {
+                Success = true,
+                Data = result
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving all Complexity records");
+            return StatusCode(500, new ApiResponse<IEnumerable<ComplexityDto>>
+            {
+                Success = false,
+                Message = "An error occurred while retrieving records",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<ApiResponse<ComplexityDto>>> GetById(int id)
     {
-        var complexity = await _service.GetByIdAsync(id);
-        if (complexity == null)
-            return NotFound(ApiResponse<ComplexityDto>.ErrorResponse($"Complexity with ID {id} not found"));
-        return Ok(ApiResponse<ComplexityDto>.SuccessResponse(complexity));
+        try
+        {
+            var result = await _service.GetByIdAsync(id);
+            if (result == null)
+                return NotFound(new ApiResponse<ComplexityDto>
+                {
+                    Success = false,
+                    Message = $"Complexity with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<ComplexityDto>
+            {
+                Success = true,
+                Data = result
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error retrieving Complexity with ID {id}");
+            return StatusCode(500, new ApiResponse<ComplexityDto>
+            {
+                Success = false,
+                Message = "An error occurred while retrieving the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpPost]
     public async Task<ActionResult<ApiResponse<ComplexityDto>>> Create([FromBody] ComplexityCreateRequest request)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ApiResponse<ComplexityDto>.ErrorResponse("Validation failed"));
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<ComplexityDto>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
 
-        var complexity = await _service.CreateAsync(request);
-        return CreatedAtAction(nameof(GetById), new { id = complexity.Id },
-            ApiResponse<ComplexityDto>.SuccessResponse(complexity, "Complexity created successfully"));
+            var result = await _service.CreateAsync(request);
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = result.Id },
+                new ApiResponse<ComplexityDto>
+                {
+                    Success = true,
+                    Data = result,
+                    Message = "Complexity created successfully"
+                });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating Complexity");
+            return StatusCode(500, new ApiResponse<ComplexityDto>
+            {
+                Success = false,
+                Message = "An error occurred while creating the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpPut("{id}")]
     public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] ComplexityUpdateRequest request)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ApiResponse<bool>.ErrorResponse("Validation failed"));
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
 
-        var success = await _service.UpdateAsync(id, request);
-        if (!success)
-            return NotFound(ApiResponse<bool>.ErrorResponse($"Complexity with ID {id} not found"));
+            var result = await _service.UpdateAsync(id, request);
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"Complexity with ID {id} not found"
+                });
 
-        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Complexity updated successfully"));
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = "Complexity updated successfully"
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error updating Complexity with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = "An error occurred while updating the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<ApiResponse<bool>>> Delete(int id)
     {
-        var success = await _service.DeleteAsync(id);
-        if (!success)
-            return NotFound(ApiResponse<bool>.ErrorResponse($"Complexity with ID {id} not found"));
+        try
+        {
+            var result = await _service.DeleteAsync(id);
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"Complexity with ID {id} not found"
+                });
 
-        return Ok(ApiResponse<bool?>.SuccessResponse(null, "Complexity deleted successfully"));
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = $"Complexity with ID {id} deleted successfully"
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error deleting Complexity with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = $"An error occurred while deleting the Complexity record with ID {id}",
+                Errors = [ex.Message]
+            });
+        }
     }
 }

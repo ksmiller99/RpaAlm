@@ -32,7 +32,7 @@ public class JjedsHelperService : IJjedsHelperService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving all JjedsHelper records");
+            _logger.LogError(ex, $"Error retrieving all JjedsHelper records");
             throw;
         }
     }
@@ -46,7 +46,7 @@ public class JjedsHelperService : IJjedsHelperService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving JjedsHelper with WWID {Wwid}", wwid);
+            _logger.LogError(ex, $"Error retrieving JjedsHelper with WWID {wwid}");
             throw;
         }
     }
@@ -63,7 +63,7 @@ public class JjedsHelperService : IJjedsHelperService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error creating JjedsHelper with WWID {Wwid}", request.Wwid);
+            _logger.LogError(ex, $"Error creating JjedsHelper with WWID {request.Wwid}");
             throw;
         }
     }
@@ -82,12 +82,12 @@ public class JjedsHelperService : IJjedsHelperService
             entity.Id = wwid;
 
             var rowsAffected = await _repository.UpdateAsync(entity);
-            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            if (rowsAffected == -1) throw new($"NOCOUNT is set to TRUE in stored procedure.");
             return rowsAffected == 1;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating JjedsHelper with WWID {Wwid}", wwid);
+            _logger.LogError(ex, $"Error updating JjedsHelper with WWID {wwid}");
             throw;
         }
     }
@@ -103,12 +103,12 @@ public class JjedsHelperService : IJjedsHelperService
             }
 
             var rowsAffected = await _repository.DeleteAsync(wwid);
-            if (rowsAffected == -1) throw new Exception($"NOCOUNT is set to TRUE in stored procedure.");
+            if (rowsAffected == -1) throw new($"NOCOUNT is set to TRUE in stored procedure.");
             return rowsAffected == 1;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting JjedsHelper with WWID {Wwid}", wwid);
+            _logger.LogError(ex,$"Error deleting JjedsHelper with WWID {wwid}");
             throw;
         }
     }

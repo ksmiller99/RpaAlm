@@ -14,7 +14,7 @@ public class CmdbHelperRepository : BaseRepositoryStringKey<CmdbHelper>, ICmdbHe
 
     protected override CmdbHelper MapFromReader(SqlDataReader reader)
     {
-        return new CmdbHelper
+        return new()
         {
             Id = reader.GetString(reader.GetOrdinal("AppID")),
             Name = GetNullableString(reader, "Name"),

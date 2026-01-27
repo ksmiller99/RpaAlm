@@ -14,7 +14,7 @@ public class AutomationRepository : BaseRepository<Automation>, IAutomationRepos
 
     protected override Automation MapFromReader(SqlDataReader reader)
     {
-        return new Automation
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Name = GetNullableString(reader, "Name"),

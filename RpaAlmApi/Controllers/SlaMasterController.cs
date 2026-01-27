@@ -10,8 +10,8 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class SlaMasterController : ControllerBase
 {
-    private readonly ISlaMasterService _service;
     private readonly ILogger<SlaMasterController> _logger;
+    private readonly ISlaMasterService _service;
 
     public SlaMasterController(
         ISlaMasterService service,
@@ -40,7 +40,7 @@ public class SlaMasterController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while retrieving records",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -52,13 +52,11 @@ public class SlaMasterController : ControllerBase
         {
             var result = await _service.GetByIdAsync(id);
             if (result == null)
-            {
                 return NotFound(new ApiResponse<SlaMasterDto>
                 {
                     Success = false,
                     Message = $"SlaMaster with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<SlaMasterDto>
             {
@@ -68,12 +66,12 @@ public class SlaMasterController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving SlaMaster with ID {Id}", id);
+            _logger.LogError(ex, $"Error retrieving SlaMaster with ID {id}");
             return StatusCode(500, new ApiResponse<SlaMasterDto>
             {
                 Success = false,
                 Message = "An error occurred while retrieving the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -84,7 +82,6 @@ public class SlaMasterController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<SlaMasterDto>
                 {
                     Success = false,
@@ -94,7 +91,6 @@ public class SlaMasterController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.CreateAsync(request);
             return CreatedAtAction(
@@ -114,7 +110,7 @@ public class SlaMasterController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while creating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -125,7 +121,6 @@ public class SlaMasterController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<bool>
                 {
                     Success = false,
@@ -135,17 +130,14 @@ public class SlaMasterController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.UpdateAsync(id, request);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"SlaMaster with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<bool>
             {
@@ -156,12 +148,12 @@ public class SlaMasterController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating SlaMaster with ID {Id}", id);
+            _logger.LogError(ex, $"Error updating SlaMaster with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while updating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -173,13 +165,11 @@ public class SlaMasterController : ControllerBase
         {
             var result = await _service.DeleteAsync(id);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"SlaMaster with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<bool>
             {
@@ -190,12 +180,12 @@ public class SlaMasterController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting SlaMaster with ID {Id}", id);
+            _logger.LogError(ex, $"Error deleting SlaMaster with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while deleting the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }

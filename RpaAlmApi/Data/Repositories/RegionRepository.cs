@@ -14,7 +14,7 @@ public class RegionRepository : BaseRepository<Region>, IRegionRepository
 
     protected override Region MapFromReader(SqlDataReader reader)
     {
-        return new Region
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),

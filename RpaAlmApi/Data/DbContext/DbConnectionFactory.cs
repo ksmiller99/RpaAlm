@@ -18,6 +18,6 @@ public class DbConnectionFactory : IDbConnectionFactory
 
     public SqlConnection CreateConnection()
     {
-        return new SqlConnection(_connectionString);
+        return new(_connectionString);
     }
 }

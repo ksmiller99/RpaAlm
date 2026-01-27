@@ -14,7 +14,7 @@ public class EnhancementUserStoryRepository : BaseRepository<EnhancementUserStor
 
     protected override EnhancementUserStory MapFromReader(SqlDataReader reader)
     {
-        return new EnhancementUserStory
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             EnhancementID = GetNullableInt(reader, "EnhancementID"),

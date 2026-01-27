@@ -14,7 +14,7 @@ public class EnhancementRepository : BaseRepository<Enhancement>, IEnhancementRe
 
     protected override Enhancement MapFromReader(SqlDataReader reader)
     {
-        return new Enhancement
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Scope = GetNullableString(reader, "Scope")

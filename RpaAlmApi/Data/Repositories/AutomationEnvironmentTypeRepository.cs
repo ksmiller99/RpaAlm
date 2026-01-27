@@ -14,7 +14,7 @@ public class AutomationEnvironmentTypeRepository : BaseRepository<AutomationEnvi
 
     protected override AutomationEnvironmentType MapFromReader(SqlDataReader reader)
     {
-        return new AutomationEnvironmentType
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),

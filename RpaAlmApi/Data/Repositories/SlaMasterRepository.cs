@@ -14,7 +14,7 @@ public class SlaMasterRepository : BaseRepository<SlaMaster>, ISlaMasterReposito
 
     protected override SlaMaster MapFromReader(SqlDataReader reader)
     {
-        return new SlaMaster
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             AutomationID = GetNullableInt(reader, "AutomationID"),

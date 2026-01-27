@@ -14,7 +14,7 @@ public class SlaItemTypeRepository : BaseRepository<SlaItemType>, ISlaItemTypeRe
 
     protected override SlaItemType MapFromReader(SqlDataReader reader)
     {
-        return new SlaItemType
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Name = GetNullableString(reader, "Name"),

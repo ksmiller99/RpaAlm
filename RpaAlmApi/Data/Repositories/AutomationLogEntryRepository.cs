@@ -14,7 +14,7 @@ public class AutomationLogEntryRepository : BaseRepository<AutomationLogEntry>, 
 
     protected override AutomationLogEntry MapFromReader(SqlDataReader reader)
     {
-        return new AutomationLogEntry
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             AutomationID = GetNullableInt(reader, "AutomationID"),

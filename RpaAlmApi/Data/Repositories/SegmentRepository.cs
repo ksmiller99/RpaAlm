@@ -14,7 +14,7 @@ public class SegmentRepository : BaseRepository<Segment>, ISegmentRepository
 
     protected override Segment MapFromReader(SqlDataReader reader)
     {
-        return new Segment
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),

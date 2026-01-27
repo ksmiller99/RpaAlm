@@ -7,15 +7,15 @@ using RpaAlmApi.Services.Interfaces;
 namespace RpaAlmApi.Controllers;
 
 /// <summary>
-/// API Controller for RpaStatus management
+///     API Controller for RpaStatus management
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
 public class RpaStatusController : ControllerBase
 {
-    private readonly IRpaStatusService _rpaStatusService;
     private readonly ILogger<RpaStatusController> _logger;
+    private readonly IRpaStatusService _rpaStatusService;
 
     public RpaStatusController(IRpaStatusService rpaStatusService, ILogger<RpaStatusController> logger)
     {
@@ -24,7 +24,7 @@ public class RpaStatusController : ControllerBase
     }
 
     /// <summary>
-    /// Get all statuses
+    ///     Get all statuses
     /// </summary>
     /// <returns>List of all statuses</returns>
     [HttpGet]
@@ -41,13 +41,13 @@ public class RpaStatusController : ControllerBase
             _logger.LogError(ex, "Error retrieving all statuses");
             return StatusCode(500, ApiResponse<IEnumerable<RpaStatusDto>>.ErrorResponse(
                 "An error occurred while retrieving statuses",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
 
     /// <summary>
-    /// Get status by ID
+    ///     Get status by ID
     /// </summary>
     /// <param name="id">RpaStatus ID</param>
     /// <returns>RpaStatus details</returns>
@@ -61,26 +61,24 @@ public class RpaStatusController : ControllerBase
             var status = await _rpaStatusService.GetByIdAsync(id);
 
             if (status == null)
-            {
                 return NotFound(ApiResponse<RpaStatusDto>.ErrorResponse(
                     $"RpaStatus with ID {id} not found"
                 ));
-            }
 
             return Ok(ApiResponse<RpaStatusDto>.SuccessResponse(status));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving status with ID {Id}", id);
+            _logger.LogError(ex, $"Error retrieving status with ID {id}");
             return StatusCode(500, ApiResponse<RpaStatusDto>.ErrorResponse(
                 "An error occurred while retrieving the status",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
 
     /// <summary>
-    /// Create a new status
+    ///     Create a new status
     /// </summary>
     /// <param name="request">RpaStatus creation request</param>
     /// <returns>Created status</returns>
@@ -90,12 +88,10 @@ public class RpaStatusController : ControllerBase
     public async Task<ActionResult<ApiResponse<RpaStatusDto>>> Create([FromBody] RpaStatusCreateRequest request)
     {
         if (!ModelState.IsValid)
-        {
             return BadRequest(ApiResponse<RpaStatusDto>.ErrorResponse(
                 "Validation failed",
                 ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList()
             ));
-        }
 
         try
         {
@@ -111,13 +107,13 @@ public class RpaStatusController : ControllerBase
             _logger.LogError(ex, "Error creating status");
             return StatusCode(500, ApiResponse<RpaStatusDto>.ErrorResponse(
                 "An error occurred while creating the status",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
 
     /// <summary>
-    /// Update an existing status
+    ///     Update an existing status
     /// </summary>
     /// <param name="id">RpaStatus ID</param>
     /// <param name="request">RpaStatus update request</param>
@@ -129,38 +125,34 @@ public class RpaStatusController : ControllerBase
     public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] RpaStatusUpdateRequest request)
     {
         if (!ModelState.IsValid)
-        {
             return BadRequest(ApiResponse<bool>.ErrorResponse(
                 "Validation failed",
                 ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList()
             ));
-        }
 
         try
         {
             var success = await _rpaStatusService.UpdateAsync(id, request);
 
             if (!success)
-            {
                 return NotFound(ApiResponse<bool>.ErrorResponse(
                     $"RpaStatus with ID {id} not found"
                 ));
-            }
 
             return Ok(ApiResponse<bool?>.SuccessResponse(null, "RpaStatus updated successfully"));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating status with ID {Id}", id);
+            _logger.LogError(ex, $"Error updating status with ID {id}");
             return StatusCode(500, ApiResponse<bool>.ErrorResponse(
                 "An error occurred while updating the status",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
 
     /// <summary>
-    /// Delete a status
+    ///     Delete a status
     /// </summary>
     /// <param name="id">RpaStatus ID</param>
     /// <returns>Success status</returns>
@@ -174,20 +166,18 @@ public class RpaStatusController : ControllerBase
             var success = await _rpaStatusService.DeleteAsync(id);
 
             if (!success)
-            {
                 return NotFound(ApiResponse<bool>.ErrorResponse(
                     $"RpaStatus with ID {id} not found"
                 ));
-            }
 
             return Ok(ApiResponse<bool?>.SuccessResponse(null, "RpaStatus deleted successfully"));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting status with ID {Id}", id);
+            _logger.LogError(ex, $"Error deleting status with ID {id}");
             return StatusCode(500, ApiResponse<bool>.ErrorResponse(
                 "An error occurred while deleting the status",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }

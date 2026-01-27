@@ -10,8 +10,8 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class JjedsHelperController : ControllerBase
 {
-    private readonly IJjedsHelperService _service;
     private readonly ILogger<JjedsHelperController> _logger;
+    private readonly IJjedsHelperService _service;
 
     public JjedsHelperController(
         IJjedsHelperService service,
@@ -40,7 +40,7 @@ public class JjedsHelperController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while retrieving records",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -52,13 +52,11 @@ public class JjedsHelperController : ControllerBase
         {
             var result = await _service.GetByWwidAsync(wwid);
             if (result == null)
-            {
                 return NotFound(new ApiResponse<JjedsHelperDto>
                 {
                     Success = false,
                     Message = $"JjedsHelper with WWID {wwid} not found"
                 });
-            }
 
             return Ok(new ApiResponse<JjedsHelperDto>
             {
@@ -68,12 +66,12 @@ public class JjedsHelperController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving JjedsHelper with WWID {Wwid}", wwid);
+            _logger.LogError(ex, $"Error retrieving JjedsHelper with WWID {wwid}");
             return StatusCode(500, new ApiResponse<JjedsHelperDto>
             {
                 Success = false,
                 Message = "An error occurred while retrieving the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -84,7 +82,6 @@ public class JjedsHelperController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<JjedsHelperDto>
                 {
                     Success = false,
@@ -94,7 +91,6 @@ public class JjedsHelperController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.CreateAsync(request);
             return CreatedAtAction(
@@ -114,7 +110,7 @@ public class JjedsHelperController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while creating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -125,7 +121,6 @@ public class JjedsHelperController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<bool>
                 {
                     Success = false,
@@ -135,17 +130,14 @@ public class JjedsHelperController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.UpdateAsync(wwid, request);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"JjedsHelper with WWID {wwid} not found"
                 });
-            }
 
             return Ok(new ApiResponse<bool>
             {
@@ -156,12 +148,12 @@ public class JjedsHelperController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating JjedsHelper with WWID {Wwid}", wwid);
+            _logger.LogError(ex, $"Error updating JjedsHelper with WWID {wwid}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while updating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -173,13 +165,11 @@ public class JjedsHelperController : ControllerBase
         {
             var result = await _service.DeleteAsync(wwid);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"JjedsHelper with WWID {wwid} not found"
                 });
-            }
 
             return Ok(new ApiResponse<bool>
             {
@@ -190,12 +180,12 @@ public class JjedsHelperController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting JjedsHelper with WWID {Wwid}", wwid);
+            _logger.LogError(ex, $"Error deleting JjedsHelper with WWID {wwid}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while deleting the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }

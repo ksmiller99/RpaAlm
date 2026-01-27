@@ -14,7 +14,7 @@ public class VirtualIdentityRepository : BaseRepository<VirtualIdentity>, IVirtu
 
     protected override VirtualIdentity MapFromReader(SqlDataReader reader)
     {
-        return new VirtualIdentity
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             AccountName = GetNullableString(reader, "AccountName"),

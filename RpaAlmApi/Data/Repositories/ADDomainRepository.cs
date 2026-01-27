@@ -14,7 +14,7 @@ public class ADDomainRepository : BaseRepository<ADDomain>, IADDomainRepository
 
     protected override ADDomain MapFromReader(SqlDataReader reader)
     {
-        return new ADDomain
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Domain = GetNullableString(reader, "Domain"),

@@ -14,7 +14,7 @@ public class StoryPointCostRepository : BaseRepository<StoryPointCost>, IStoryPo
 
     protected override StoryPointCost MapFromReader(SqlDataReader reader)
     {
-        return new StoryPointCost
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Points = GetNullableInt(reader, "Points"),

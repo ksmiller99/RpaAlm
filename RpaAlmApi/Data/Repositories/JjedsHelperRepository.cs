@@ -14,7 +14,7 @@ public class JjedsHelperRepository : BaseRepositoryStringKey<JjedsHelper>, IJjed
 
     protected override JjedsHelper MapFromReader(SqlDataReader reader)
     {
-        return new JjedsHelper
+        return new()
         {
             Id = reader.GetString(reader.GetOrdinal("WWID")),
             CommonName = GetNullableString(reader, "CommonName"),

@@ -14,7 +14,7 @@ public class SlaLogEntryRepository : BaseRepository<SlaLogEntry>, ISlaLogEntryRe
 
     protected override SlaLogEntry MapFromReader(SqlDataReader reader)
     {
-        return new SlaLogEntry
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             SlaMasterID = GetNullableInt(reader, "SlaMasterID"),

@@ -14,7 +14,7 @@ public class MedalRepository : BaseRepository<Medal>, IMedalRepository
 
     protected override Medal MapFromReader(SqlDataReader reader)
     {
-        return new Medal
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Name = GetNullableString(reader, "Name"),
