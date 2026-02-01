@@ -17,33 +17,33 @@ public class EnhancementUserStoryRepository : BaseRepository<EnhancementUserStor
         return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
-            EnhancementID = GetNullableInt(reader, "EnhancementID"),
+            EnhancementId = GetNullableInt(reader, "EnhancementID"),
             JiraIssue = GetNullableString(reader, "JiraIssue"),
             StoryPoints = GetNullableInt(reader, "StoryPoints"),
             JiraIssueLink = GetNullableString(reader, "JiraIssueLink"),
             JiraIssueSummary = GetNullableString(reader, "JiraIssueSummary"),
-            StoryPointCostID = GetNullableInt(reader, "StoryPointCostID")
+            StoryPointCostId = GetNullableInt(reader, "StoryPointCostID")
         };
     }
 
     protected override void AddInsertParameters(SqlCommand command, EnhancementUserStory entity)
     {
-        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDBNull(entity.EnhancementID));
-        command.Parameters.AddWithValue("@JiraIssue", GetValueOrDBNull(entity.JiraIssue));
-        command.Parameters.AddWithValue("@StoryPoints", GetValueOrDBNull(entity.StoryPoints));
-        command.Parameters.AddWithValue("@JiraIssueLink", GetValueOrDBNull(entity.JiraIssueLink));
-        command.Parameters.AddWithValue("@JiraIssueSummary", GetValueOrDBNull(entity.JiraIssueSummary));
-        command.Parameters.AddWithValue("@StoryPointCostID", GetValueOrDBNull(entity.StoryPointCostID));
+        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDbNull(entity.EnhancementId));
+        command.Parameters.AddWithValue("@JiraIssue", GetValueOrDbNull(entity.JiraIssue));
+        command.Parameters.AddWithValue("@StoryPoints", GetValueOrDbNull(entity.StoryPoints));
+        command.Parameters.AddWithValue("@JiraIssueLink", GetValueOrDbNull(entity.JiraIssueLink));
+        command.Parameters.AddWithValue("@JiraIssueSummary", GetValueOrDbNull(entity.JiraIssueSummary));
+        command.Parameters.AddWithValue("@StoryPointCostID", GetValueOrDbNull(entity.StoryPointCostId));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, EnhancementUserStory entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDBNull(entity.EnhancementID));
-        command.Parameters.AddWithValue("@JiraIssue", GetValueOrDBNull(entity.JiraIssue));
-        command.Parameters.AddWithValue("@StoryPoints", GetValueOrDBNull(entity.StoryPoints));
-        command.Parameters.AddWithValue("@JiraIssueLink", GetValueOrDBNull(entity.JiraIssueLink));
-        command.Parameters.AddWithValue("@JiraIssueSummary", GetValueOrDBNull(entity.JiraIssueSummary));
-        command.Parameters.AddWithValue("@StoryPointCostID", GetValueOrDBNull(entity.StoryPointCostID));
+        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDbNull(entity.EnhancementId));
+        command.Parameters.AddWithValue("@JiraIssue", GetValueOrDbNull(entity.JiraIssue));
+        command.Parameters.AddWithValue("@StoryPoints", GetValueOrDbNull(entity.StoryPoints));
+        command.Parameters.AddWithValue("@JiraIssueLink", GetValueOrDbNull(entity.JiraIssueLink));
+        command.Parameters.AddWithValue("@JiraIssueSummary", GetValueOrDbNull(entity.JiraIssueSummary));
+        command.Parameters.AddWithValue("@StoryPointCostID", GetValueOrDbNull(entity.StoryPointCostId));
     }
 }

@@ -4,11 +4,12 @@ namespace RpaAlmApi.Models.Domain;
 
 /// <summary>
 /// CmdbHelper domain model (CMDB application cache)
-/// Primary key: AppID (string)
+/// Primary key: ID (int)
 /// </summary>
-public class CmdbHelper : IEntity<string>
+public class CmdbHelper : IEntity
 {
-    public string Id { get; set; } = string.Empty; // AppID
+    public int Id { get; set; }
+    public string AppId { get; set; } = string.Empty;
     public string? Name { get; set; }
     public string? Zcode { get; set; }
 }

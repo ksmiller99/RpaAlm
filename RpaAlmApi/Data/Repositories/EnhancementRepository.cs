@@ -23,11 +23,11 @@ public class EnhancementRepository : BaseRepository<Enhancement>, IEnhancementRe
 
     protected override void AddInsertParameters(SqlCommand command, Enhancement entity)
     {
-        command.Parameters.AddWithValue("@Scope", GetValueOrDBNull(entity.Scope));
+        command.Parameters.AddWithValue("@Scope", GetValueOrDbNull(entity.Scope));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, Enhancement entity)
     {
-        command.Parameters.AddWithValue("@Scope", GetValueOrDBNull(entity.Scope));
+        command.Parameters.AddWithValue("@Scope", GetValueOrDbNull(entity.Scope));
     }
 }

@@ -8,8 +8,8 @@ namespace RpaAlmApi.Models.Domain;
 public class AutomationLogEntry : IEntity
 {
     public int Id { get; set; }
-    public int? AutomationID { get; set; }
-    public string? CreatedWWID { get; set; }
+    public int? AutomationId { get; set; }
+    public string? CreatedWwid { get; set; }
     public DateTime? CreatedDate { get; set; }
     public string? Comment { get; set; }
 }

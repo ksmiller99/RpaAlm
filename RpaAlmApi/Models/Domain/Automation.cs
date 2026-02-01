@@ -9,15 +9,15 @@ public class Automation : IEntity
 {
     public int Id { get; set; }
     public string? Name { get; set; }
-    public int? SegmentID { get; set; }
-    public int? RegionID { get; set; }
-    public int? FunctionID { get; set; }
-    public int? StatusID { get; set; }
-    public string? BtoWWID { get; set; } // Business Technical Owner
-    public string? BoWWID { get; set; }  // Business Owner
-    public string? FcWWID { get; set; }  // Finance Contact
+    public int? SegmentId { get; set; }
+    public int? RegionId { get; set; }
+    public int? FunctionId { get; set; }
+    public int? StatusId { get; set; }
+    public string? BtoWwid { get; set; } // Business Technical Owner
+    public string? BoWwid { get; set; }  // Business Owner
+    public string? FcWwid { get; set; }  // Finance Contact
     public string? Zcode { get; set; }   // For chargebacks   
     public string? CostCenter { get; set; }  // For Chargebacks
-    public string? SseWWID { get; set; } // Senior Service Engineer
-    public string? LseWWID { get; set; } // Lead Service Engineer
+    public string? SseWwid { get; set; } // Senior Service Engineer
+    public string? LseWwid { get; set; } // Lead Service Engineer
 }

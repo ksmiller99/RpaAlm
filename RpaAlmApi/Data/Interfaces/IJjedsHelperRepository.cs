@@ -1,12 +1,8 @@
+using RpaAlmApi.Common.Interfaces;
 using RpaAlmApi.Models.Domain;
 
 namespace RpaAlmApi.Data.Interfaces;
 
-public interface IJjedsHelperRepository
+public interface IJjedsHelperRepository: IRepository<JjedsHelper>
 {
-    Task<IEnumerable<JjedsHelper>> GetAllAsync();
-    Task<JjedsHelper?> GetByIdAsync(string wwid);
-    Task<int> CreateAsync(JjedsHelper entity);
-    Task<int> UpdateAsync(JjedsHelper entity);
-    Task<int> DeleteAsync(string wwid);
 }

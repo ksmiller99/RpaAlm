@@ -27,19 +27,19 @@ public class StoryPointCostRepository : BaseRepository<StoryPointCost>, IStoryPo
 
     protected override void AddInsertParameters(SqlCommand command, StoryPointCost entity)
     {
-        command.Parameters.AddWithValue("@Points", GetValueOrDBNull(entity.Points));
-        command.Parameters.AddWithValue("@MaxHours", GetValueOrDBNull(entity.MaxHours));
-        command.Parameters.AddWithValue("@TotalCost", GetValueOrDBNull(entity.TotalCost));
-        command.Parameters.AddWithValue("@JnJCostShare", GetValueOrDBNull(entity.JnJCostShare));
-        command.Parameters.AddWithValue("@EffectiveDate", GetValueOrDBNull(entity.EffectiveDate));
+        command.Parameters.AddWithValue("@Points", GetValueOrDbNull(entity.Points));
+        command.Parameters.AddWithValue("@MaxHours", GetValueOrDbNull(entity.MaxHours));
+        command.Parameters.AddWithValue("@TotalCost", GetValueOrDbNull(entity.TotalCost));
+        command.Parameters.AddWithValue("@JnJCostShare", GetValueOrDbNull(entity.JnJCostShare));
+        command.Parameters.AddWithValue("@EffectiveDate", GetValueOrDbNull(entity.EffectiveDate));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, StoryPointCost entity)
     {
-        command.Parameters.AddWithValue("@Points", GetValueOrDBNull(entity.Points));
-        command.Parameters.AddWithValue("@MaxHours", GetValueOrDBNull(entity.MaxHours));
-        command.Parameters.AddWithValue("@TotalCost", GetValueOrDBNull(entity.TotalCost));
-        command.Parameters.AddWithValue("@JnJCostShare", GetValueOrDBNull(entity.JnJCostShare));
-        command.Parameters.AddWithValue("@EffectiveDate", GetValueOrDBNull(entity.EffectiveDate));
+        command.Parameters.AddWithValue("@Points", GetValueOrDbNull(entity.Points));
+        command.Parameters.AddWithValue("@MaxHours", GetValueOrDbNull(entity.MaxHours));
+        command.Parameters.AddWithValue("@TotalCost", GetValueOrDbNull(entity.TotalCost));
+        command.Parameters.AddWithValue("@JnJCostShare", GetValueOrDbNull(entity.JnJCostShare));
+        command.Parameters.AddWithValue("@EffectiveDate", GetValueOrDbNull(entity.EffectiveDate));
     }
 }

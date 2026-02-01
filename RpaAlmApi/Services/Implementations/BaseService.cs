@@ -63,7 +63,7 @@ public abstract class BaseService<TEntity, TDto, TCreateRequest, TUpdateRequest>
         }
         catch (Exception ex)
         {
-            Logger.LogError(ex, "Error creating {EntityType}", typeof(TEntity).Name);
+            Logger.LogError(ex, $"Error creating {typeof(TEntity).Name}");
             throw;
         }
     }

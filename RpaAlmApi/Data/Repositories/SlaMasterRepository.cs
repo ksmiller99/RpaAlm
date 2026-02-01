@@ -17,9 +17,9 @@ public class SlaMasterRepository : BaseRepository<SlaMaster>, ISlaMasterReposito
         return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
-            AutomationID = GetNullableInt(reader, "AutomationID"),
-            ComplexityID = GetNullableInt(reader, "ComplexityID"),
-            MedalID = GetNullableInt(reader, "MedalID"),
+            AutomationId = GetNullableInt(reader, "AutomationID"),
+            ComplexityId = GetNullableInt(reader, "ComplexityID"),
+            MedalId = GetNullableInt(reader, "MedalID"),
             Zcode = GetNullableString(reader, "Zcode"),
             CostCenter = GetNullableString(reader, "CostCenter"),
             StartDate = GetNullableDateTime(reader, "StartDate"),
@@ -29,24 +29,24 @@ public class SlaMasterRepository : BaseRepository<SlaMaster>, ISlaMasterReposito
 
     protected override void AddInsertParameters(SqlCommand command, SlaMaster entity)
     {
-        command.Parameters.AddWithValue("@AutomationID", GetValueOrDBNull(entity.AutomationID));
-        command.Parameters.AddWithValue("@ComplexityID", GetValueOrDBNull(entity.ComplexityID));
-        command.Parameters.AddWithValue("@MedalID", GetValueOrDBNull(entity.MedalID));
-        command.Parameters.AddWithValue("@Zcode", GetValueOrDBNull(entity.Zcode));
-        command.Parameters.AddWithValue("@CostCenter", GetValueOrDBNull(entity.CostCenter));
-        command.Parameters.AddWithValue("@StartDate", GetValueOrDBNull(entity.StartDate));
-        command.Parameters.AddWithValue("@EndDate", GetValueOrDBNull(entity.EndDate));
+        command.Parameters.AddWithValue("@AutomationID", GetValueOrDbNull(entity.AutomationId));
+        command.Parameters.AddWithValue("@ComplexityID", GetValueOrDbNull(entity.ComplexityId));
+        command.Parameters.AddWithValue("@MedalID", GetValueOrDbNull(entity.MedalId));
+        command.Parameters.AddWithValue("@Zcode", GetValueOrDbNull(entity.Zcode));
+        command.Parameters.AddWithValue("@CostCenter", GetValueOrDbNull(entity.CostCenter));
+        command.Parameters.AddWithValue("@StartDate", GetValueOrDbNull(entity.StartDate));
+        command.Parameters.AddWithValue("@EndDate", GetValueOrDbNull(entity.EndDate));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, SlaMaster entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@AutomationID", GetValueOrDBNull(entity.AutomationID));
-        command.Parameters.AddWithValue("@ComplexityID", GetValueOrDBNull(entity.ComplexityID));
-        command.Parameters.AddWithValue("@MedalID", GetValueOrDBNull(entity.MedalID));
-        command.Parameters.AddWithValue("@Zcode", GetValueOrDBNull(entity.Zcode));
-        command.Parameters.AddWithValue("@CostCenter", GetValueOrDBNull(entity.CostCenter));
-        command.Parameters.AddWithValue("@StartDate", GetValueOrDBNull(entity.StartDate));
-        command.Parameters.AddWithValue("@EndDate", GetValueOrDBNull(entity.EndDate));
+        command.Parameters.AddWithValue("@AutomationID", GetValueOrDbNull(entity.AutomationId));
+        command.Parameters.AddWithValue("@ComplexityID", GetValueOrDbNull(entity.ComplexityId));
+        command.Parameters.AddWithValue("@MedalID", GetValueOrDbNull(entity.MedalId));
+        command.Parameters.AddWithValue("@Zcode", GetValueOrDbNull(entity.Zcode));
+        command.Parameters.AddWithValue("@CostCenter", GetValueOrDbNull(entity.CostCenter));
+        command.Parameters.AddWithValue("@StartDate", GetValueOrDbNull(entity.StartDate));
+        command.Parameters.AddWithValue("@EndDate", GetValueOrDbNull(entity.EndDate));
     }
 }

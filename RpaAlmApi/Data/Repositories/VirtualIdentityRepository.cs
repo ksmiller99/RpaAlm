@@ -19,9 +19,9 @@ public class VirtualIdentityRepository : BaseRepository<VirtualIdentity>, IVirtu
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             AccountName = GetNullableString(reader, "AccountName"),
             HostName = GetNullableString(reader, "HostName"),
-            WWID = GetNullableString(reader, "WWID"),
+            Wwid = GetNullableString(reader, "WWID"),
             IPv4 = GetNullableString(reader, "IPv4"),
-            ADDomainID = GetNullableInt(reader, "ADDomainID"),
+            ADDomainId = GetNullableInt(reader, "ADDomainID"),
             Email = GetNullableString(reader, "Email"),
             Created = GetNullableDateTime(reader, "Created"),
             Retired = GetNullableDateTime(reader, "Retired")
@@ -30,26 +30,26 @@ public class VirtualIdentityRepository : BaseRepository<VirtualIdentity>, IVirtu
 
     protected override void AddInsertParameters(SqlCommand command, VirtualIdentity entity)
     {
-        command.Parameters.AddWithValue("@AccountName", GetValueOrDBNull(entity.AccountName));
-        command.Parameters.AddWithValue("@HostName", GetValueOrDBNull(entity.HostName));
-        command.Parameters.AddWithValue("@WWID", GetValueOrDBNull(entity.WWID));
-        command.Parameters.AddWithValue("@IPv4", GetValueOrDBNull(entity.IPv4));
-        command.Parameters.AddWithValue("@ADDomainID", GetValueOrDBNull(entity.ADDomainID));
-        command.Parameters.AddWithValue("@Email", GetValueOrDBNull(entity.Email));
-        command.Parameters.AddWithValue("@Created", GetValueOrDBNull(entity.Created));
-        command.Parameters.AddWithValue("@Retired", GetValueOrDBNull(entity.Retired));
+        command.Parameters.AddWithValue("@AccountName", GetValueOrDbNull(entity.AccountName));
+        command.Parameters.AddWithValue("@HostName", GetValueOrDbNull(entity.HostName));
+        command.Parameters.AddWithValue("@WWID", GetValueOrDbNull(entity.Wwid));
+        command.Parameters.AddWithValue("@IPv4", GetValueOrDbNull(entity.IPv4));
+        command.Parameters.AddWithValue("@ADDomainID", GetValueOrDbNull(entity.ADDomainId));
+        command.Parameters.AddWithValue("@Email", GetValueOrDbNull(entity.Email));
+        command.Parameters.AddWithValue("@Created", GetValueOrDbNull(entity.Created));
+        command.Parameters.AddWithValue("@Retired", GetValueOrDbNull(entity.Retired));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, VirtualIdentity entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@AccountName", GetValueOrDBNull(entity.AccountName));
-        command.Parameters.AddWithValue("@HostName", GetValueOrDBNull(entity.HostName));
-        command.Parameters.AddWithValue("@WWID", GetValueOrDBNull(entity.WWID));
-        command.Parameters.AddWithValue("@IPv4", GetValueOrDBNull(entity.IPv4));
-        command.Parameters.AddWithValue("@ADDomainID", GetValueOrDBNull(entity.ADDomainID));
-        command.Parameters.AddWithValue("@Email", GetValueOrDBNull(entity.Email));
-        command.Parameters.AddWithValue("@Created", GetValueOrDBNull(entity.Created));
-        command.Parameters.AddWithValue("@Retired", GetValueOrDBNull(entity.Retired));
+        command.Parameters.AddWithValue("@AccountName", GetValueOrDbNull(entity.AccountName));
+        command.Parameters.AddWithValue("@HostName", GetValueOrDbNull(entity.HostName));
+        command.Parameters.AddWithValue("@WWID", GetValueOrDbNull(entity.Wwid));
+        command.Parameters.AddWithValue("@IPv4", GetValueOrDbNull(entity.IPv4));
+        command.Parameters.AddWithValue("@ADDomainID", GetValueOrDbNull(entity.ADDomainId));
+        command.Parameters.AddWithValue("@Email", GetValueOrDbNull(entity.Email));
+        command.Parameters.AddWithValue("@Created", GetValueOrDbNull(entity.Created));
+        command.Parameters.AddWithValue("@Retired", GetValueOrDbNull(entity.Retired));
     }
 }

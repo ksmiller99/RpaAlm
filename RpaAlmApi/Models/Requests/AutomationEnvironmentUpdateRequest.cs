@@ -4,10 +4,10 @@ namespace RpaAlmApi.Models.Requests;
 
 public class AutomationEnvironmentUpdateRequest
 {
-    public int? AutomationID { get; set; }
+    public int? AutomationId { get; set; }
 
     [StringLength(10)]
-    public string? AppID { get; set; }
+    public string? AppId { get; set; }
 
-    public int? EnvironmentTypeID { get; set; }
+    public int? EnvironmentTypeId { get; set; }
 }

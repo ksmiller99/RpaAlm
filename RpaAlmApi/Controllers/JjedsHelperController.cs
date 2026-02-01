@@ -46,16 +46,16 @@ public class JjedsHelperController : ControllerBase
     }
 
     [HttpGet("{wwid}")]
-    public async Task<ActionResult<ApiResponse<JjedsHelperDto>>> GetByWwid(string wwid)
+    public async Task<ActionResult<ApiResponse<JjedsHelperDto>>> GetByWwid(int id)
     {
         try
         {
-            var result = await _service.GetByWwidAsync(wwid);
+            var result = await _service.GetByIdAsync(id);
             if (result == null)
                 return NotFound(new ApiResponse<JjedsHelperDto>
                 {
                     Success = false,
-                    Message = $"JjedsHelper with WWID {wwid} not found"
+                    Message = $"JjedsHelper with ID {id} not found"
                 });
 
             return Ok(new ApiResponse<JjedsHelperDto>
@@ -66,7 +66,7 @@ public class JjedsHelperController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error retrieving JjedsHelper with WWID {wwid}");
+            _logger.LogError(ex, $"Error retrieving JjedsHelper with ID {id}");
             return StatusCode(500, new ApiResponse<JjedsHelperDto>
             {
                 Success = false,
@@ -116,7 +116,7 @@ public class JjedsHelperController : ControllerBase
     }
 
     [HttpPut("{wwid}")]
-    public async Task<ActionResult<ApiResponse<bool>>> Update(string wwid, [FromBody] JjedsHelperUpdateRequest request)
+    public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] JjedsHelperUpdateRequest request)
     {
         try
         {
@@ -131,12 +131,12 @@ public class JjedsHelperController : ControllerBase
                         .ToList()
                 });
 
-            var result = await _service.UpdateAsync(wwid, request);
+            var result = await _service.UpdateAsync(id, request);
             if (!result)
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
-                    Message = $"JjedsHelper with WWID {wwid} not found"
+                    Message = $"JjedsHelper with ID {id} not found"
                 });
 
             return Ok(new ApiResponse<bool>
@@ -148,7 +148,7 @@ public class JjedsHelperController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error updating JjedsHelper with WWID {wwid}");
+            _logger.LogError(ex, $"Error updating JjedsHelper with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
@@ -159,16 +159,16 @@ public class JjedsHelperController : ControllerBase
     }
 
     [HttpDelete("{wwid}")]
-    public async Task<ActionResult<ApiResponse<bool>>> Delete(string wwid)
+    public async Task<ActionResult<ApiResponse<bool>>> Delete(int id)
     {
         try
         {
-            var result = await _service.DeleteAsync(wwid);
+            var result = await _service.DeleteAsync(id);
             if (!result)
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
-                    Message = $"JjedsHelper with WWID {wwid} not found"
+                    Message = $"JjedsHelper with ID {id} not found"
                 });
 
             return Ok(new ApiResponse<bool>
@@ -180,7 +180,7 @@ public class JjedsHelperController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error deleting JjedsHelper with WWID {wwid}");
+            _logger.LogError(ex, $"Error deleting JjedsHelper with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,

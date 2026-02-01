@@ -17,8 +17,8 @@ public class SlaLogEntryRepository : BaseRepository<SlaLogEntry>, ISlaLogEntryRe
         return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
-            SlaMasterID = GetNullableInt(reader, "SlaMasterID"),
-            CreatedWWID = GetNullableString(reader, "CreatedWWID"),
+            SlaMasterId = GetNullableInt(reader, "SlaMasterID"),
+            CreatedWwid = GetNullableString(reader, "CreatedWWID"),
             CreatedDate = GetNullableDateTime(reader, "CreatedDate"),
             Comment = GetNullableString(reader, "Comment")
         };
@@ -26,18 +26,18 @@ public class SlaLogEntryRepository : BaseRepository<SlaLogEntry>, ISlaLogEntryRe
 
     protected override void AddInsertParameters(SqlCommand command, SlaLogEntry entity)
     {
-        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDBNull(entity.SlaMasterID));
-        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDBNull(entity.CreatedWWID));
-        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDBNull(entity.CreatedDate));
-        command.Parameters.AddWithValue("@Comment", GetValueOrDBNull(entity.Comment));
+        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDbNull(entity.SlaMasterId));
+        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDbNull(entity.CreatedWwid));
+        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDbNull(entity.CreatedDate));
+        command.Parameters.AddWithValue("@Comment", GetValueOrDbNull(entity.Comment));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, SlaLogEntry entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDBNull(entity.SlaMasterID));
-        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDBNull(entity.CreatedWWID));
-        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDBNull(entity.CreatedDate));
-        command.Parameters.AddWithValue("@Comment", GetValueOrDBNull(entity.Comment));
+        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDbNull(entity.SlaMasterId));
+        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDbNull(entity.CreatedWwid));
+        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDbNull(entity.CreatedDate));
+        command.Parameters.AddWithValue("@Comment", GetValueOrDbNull(entity.Comment));
     }
 }

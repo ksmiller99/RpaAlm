@@ -8,22 +8,22 @@ public class AutomationUpdateRequest
     [StringLength(255)]
     public string Name { get; set; } = string.Empty;
 
-    public int? SegmentID { get; set; }
+    public int? SegmentId { get; set; }
 
-    public int? RegionID { get; set; }
+    public int? RegionId { get; set; }
 
-    public int? FunctionID { get; set; }
+    public int? FunctionId { get; set; }
 
-    public int? StatusID { get; set; }
+    public int? StatusId { get; set; }
 
     [StringLength(9, ErrorMessage = "BtoWWID must be 9 characters")]
-    public string? BtoWWID { get; set; }
+    public string? BtoWwid { get; set; }
 
     [StringLength(9, ErrorMessage = "BoWWID must be 9 characters")]
-    public string? BoWWID { get; set; }
+    public string? BoWwid { get; set; }
 
     [StringLength(9, ErrorMessage = "FcWWID must be 9 characters")]
-    public string? FcWWID { get; set; }
+    public string? FcWwid { get; set; }
 
     [StringLength(10)]
     public string? Zcode { get; set; }
@@ -32,8 +32,8 @@ public class AutomationUpdateRequest
     public string? CostCenter { get; set; }
 
     [StringLength(9, ErrorMessage = "SseWWID must be 9 characters")]
-    public string? SseWWID { get; set; }
+    public string? SseWwid { get; set; }
 
     [StringLength(9, ErrorMessage = "LseWWID must be 9 characters")]
-    public string? LseWWID { get; set; }
+    public string? LseWwid { get; set; }
 }

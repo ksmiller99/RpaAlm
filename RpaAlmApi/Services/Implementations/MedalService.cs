@@ -9,7 +9,10 @@ namespace RpaAlmApi.Services.Implementations;
 
 public class MedalService : BaseService<Medal, MedalDto, MedalCreateRequest, MedalUpdateRequest>, IMedalService
 {
-    public MedalService(IMedalRepository repository, IMapper mapper, ILogger<MedalService> logger)
+    public MedalService(
+        IMedalRepository repository, 
+        IMapper mapper, 
+        ILogger<MedalService> logger)
         : base(repository, mapper, logger)
     {
     }

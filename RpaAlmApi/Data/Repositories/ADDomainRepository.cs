@@ -24,13 +24,13 @@ public class ADDomainRepository : BaseRepository<ADDomain>, IADDomainRepository
 
     protected override void AddInsertParameters(SqlCommand command, ADDomain entity)
     {
-        command.Parameters.AddWithValue("@Domain", GetValueOrDBNull(entity.Domain));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Domain", GetValueOrDbNull(entity.Domain));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, ADDomain entity)
     {
-        command.Parameters.AddWithValue("@Domain", GetValueOrDBNull(entity.Domain));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Domain", GetValueOrDbNull(entity.Domain));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 }

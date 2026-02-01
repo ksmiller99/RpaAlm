@@ -24,13 +24,13 @@ public class ComplexityRepository : BaseRepository<Complexity>, IComplexityRepos
 
     protected override void AddInsertParameters(SqlCommand command, Complexity entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, Complexity entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 }

@@ -17,8 +17,8 @@ public class AutomationLogEntryRepository : BaseRepository<AutomationLogEntry>, 
         return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
-            AutomationID = GetNullableInt(reader, "AutomationID"),
-            CreatedWWID = GetNullableString(reader, "CreatedWWID"),
+            AutomationId = GetNullableInt(reader, "AutomationID"),
+            CreatedWwid = GetNullableString(reader, "CreatedWWID"),
             CreatedDate = GetNullableDateTime(reader, "CreatedDate"),
             Comment = GetNullableString(reader, "Comment")
         };
@@ -26,18 +26,18 @@ public class AutomationLogEntryRepository : BaseRepository<AutomationLogEntry>, 
 
     protected override void AddInsertParameters(SqlCommand command, AutomationLogEntry entity)
     {
-        command.Parameters.AddWithValue("@AutomationID", GetValueOrDBNull(entity.AutomationID));
-        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDBNull(entity.CreatedWWID));
-        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDBNull(entity.CreatedDate));
-        command.Parameters.AddWithValue("@Comment", GetValueOrDBNull(entity.Comment));
+        command.Parameters.AddWithValue("@AutomationID", GetValueOrDbNull(entity.AutomationId));
+        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDbNull(entity.CreatedWwid));
+        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDbNull(entity.CreatedDate));
+        command.Parameters.AddWithValue("@Comment", GetValueOrDbNull(entity.Comment));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, AutomationLogEntry entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@AutomationID", GetValueOrDBNull(entity.AutomationID));
-        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDBNull(entity.CreatedWWID));
-        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDBNull(entity.CreatedDate));
-        command.Parameters.AddWithValue("@Comment", GetValueOrDBNull(entity.Comment));
+        command.Parameters.AddWithValue("@AutomationID", GetValueOrDbNull(entity.AutomationId));
+        command.Parameters.AddWithValue("@CreatedWWID", GetValueOrDbNull(entity.CreatedWwid));
+        command.Parameters.AddWithValue("@CreatedDate", GetValueOrDbNull(entity.CreatedDate));
+        command.Parameters.AddWithValue("@Comment", GetValueOrDbNull(entity.Comment));
     }
 }

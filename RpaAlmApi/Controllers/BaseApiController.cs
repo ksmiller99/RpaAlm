@@ -4,7 +4,7 @@ using RpaAlmApi.Common;
 namespace RpaAlmApi.Controllers;
 
 /// <summary>
-///     Base controller with common CRUD operations
+/// Base controller with common CRUD operations
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
@@ -12,13 +12,13 @@ namespace RpaAlmApi.Controllers;
 public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TService> : ControllerBase
     where TDto : class
 {
-    protected readonly ILogger _logger;
-    protected readonly TService _service;
+    protected readonly TService Service;
+    protected readonly ILogger Logger;
 
     protected BaseApiController(TService service, ILogger logger)
     {
-        _service = service;
-        _logger = logger;
+        Service = service;
+        Logger = logger;
     }
 
     protected async Task<ActionResult<ApiResponse<IEnumerable<TDto>>>> GetAllAsync(
@@ -31,7 +31,7 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving all items");
+            Logger.LogError(ex, $"Error retrieving all items");
             return StatusCode(500, ApiResponse<IEnumerable<TDto>>.ErrorResponse(
                 "An error occurred while retrieving items",
                 [ex.Message]
@@ -49,15 +49,17 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
             var item = await getByIdFunc(id);
 
             if (item == null)
+            {
                 return NotFound(ApiResponse<TDto>.ErrorResponse(
                     $"{entityName} with ID {id} not found"
                 ));
+            }
 
             return Ok(ApiResponse<TDto>.SuccessResponse(item));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error retrieving item with ID {id}");
+            Logger.LogError(ex, $"Error retrieving item with ID {id}");
             return StatusCode(500, ApiResponse<TDto>.ErrorResponse(
                 $"An error occurred while retrieving the {entityName}",
                 [ex.Message]
@@ -71,10 +73,12 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
         string entityName)
     {
         if (!ModelState.IsValid)
+        {
             return BadRequest(ApiResponse<TDto>.ErrorResponse(
                 "Validation failed",
                 ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList()
             ));
+        }
 
         try
         {
@@ -87,7 +91,7 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error creating {EntityName}", entityName);
+            Logger.LogError(ex, "Error creating {EntityName}", entityName);
             return StatusCode(500, ApiResponse<TDto>.ErrorResponse(
                 $"An error occurred while creating the {entityName}",
                 [ex.Message]
@@ -102,25 +106,29 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
         string entityName)
     {
         if (!ModelState.IsValid)
+        {
             return BadRequest(ApiResponse<bool>.ErrorResponse(
                 "Validation failed",
                 ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList()
             ));
+        }
 
         try
         {
             var success = await updateFunc(id, request);
 
             if (!success)
+            {
                 return NotFound(ApiResponse<bool>.ErrorResponse(
                     $"{entityName} with ID {id} not found"
                 ));
+            }
 
             return Ok(ApiResponse<bool?>.SuccessResponse(null, $"{entityName} updated successfully"));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error updating {entityName} with ID {id}");
+            Logger.LogError(ex, $"Error updating {entityName} with ID {id}");
             return StatusCode(500, ApiResponse<bool>.ErrorResponse(
                 $"An error occurred while updating the {entityName}",
                 [ex.Message]
@@ -138,15 +146,17 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
             var success = await deleteFunc(id);
 
             if (!success)
+            {
                 return NotFound(ApiResponse<bool>.ErrorResponse(
                     $"{entityName} with ID {id} not found"
                 ));
+            }
 
             return Ok(ApiResponse<bool?>.SuccessResponse(null, $"{entityName} deleted successfully"));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error deleting {entityName} with ID {id}");
+            Logger.LogError(ex,$"Error deleting {entityName} with ID {id}");
             return StatusCode(500, ApiResponse<bool>.ErrorResponse(
                 $"An error occurred while deleting the {entityName}",
                 [ex.Message]

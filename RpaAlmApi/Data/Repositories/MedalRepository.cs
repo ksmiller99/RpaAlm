@@ -24,13 +24,13 @@ public class MedalRepository : BaseRepository<Medal>, IMedalRepository
 
     protected override void AddInsertParameters(SqlCommand command, Medal entity)
     {
-        command.Parameters.AddWithValue("@Name", GetValueOrDBNull(entity.Name));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Name", GetValueOrDbNull(entity.Name));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, Medal entity)
     {
-        command.Parameters.AddWithValue("@Name", GetValueOrDBNull(entity.Name));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Name", GetValueOrDbNull(entity.Name));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 }
