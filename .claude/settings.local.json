@@ -26,7 +26,8 @@
       "Bash(cmd /c DeployCrudProcedures.bat)",
       "Bash(sqlcmd:*)",
       "Bash(powershell -Command:*)",
-      "Bash(sc query:*)"
+      "Bash(sc query:*)",
+      "Bash(del:*)"
     ]
   }
 }
