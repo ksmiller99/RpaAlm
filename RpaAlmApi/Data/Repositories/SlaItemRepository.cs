@@ -14,27 +14,27 @@ public class SlaItemRepository : BaseRepository<SlaItem>, ISlaItemRepository
 
     protected override SlaItem MapFromReader(SqlDataReader reader)
     {
-        return new SlaItem
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
-            SlaMasterID = GetNullableInt(reader, "SlaMasterID"),
-            SlaItemTypeID = GetNullableInt(reader, "SlaItemTypeID"),
-            EnhancementID = GetNullableInt(reader, "EnhancementID")
+            SlaMasterId = GetNullableInt(reader, "SlaMasterID"),
+            SlaItemTypeId = GetNullableInt(reader, "SlaItemTypeID"),
+            EnhancementId = GetNullableInt(reader, "EnhancementID")
         };
     }
 
     protected override void AddInsertParameters(SqlCommand command, SlaItem entity)
     {
-        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDBNull(entity.SlaMasterID));
-        command.Parameters.AddWithValue("@SlaItemTypeID", GetValueOrDBNull(entity.SlaItemTypeID));
-        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDBNull(entity.EnhancementID));
+        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDbNull(entity.SlaMasterId));
+        command.Parameters.AddWithValue("@SlaItemTypeID", GetValueOrDbNull(entity.SlaItemTypeId));
+        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDbNull(entity.EnhancementId));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, SlaItem entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDBNull(entity.SlaMasterID));
-        command.Parameters.AddWithValue("@SlaItemTypeID", GetValueOrDBNull(entity.SlaItemTypeID));
-        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDBNull(entity.EnhancementID));
+        command.Parameters.AddWithValue("@SlaMasterID", GetValueOrDbNull(entity.SlaMasterId));
+        command.Parameters.AddWithValue("@SlaItemTypeID", GetValueOrDbNull(entity.SlaItemTypeId));
+        command.Parameters.AddWithValue("@EnhancementID", GetValueOrDbNull(entity.EnhancementId));
     }
 }

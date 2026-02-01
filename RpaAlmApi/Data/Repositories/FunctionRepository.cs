@@ -14,7 +14,7 @@ public class FunctionRepository : BaseRepository<Function>, IFunctionRepository
 
     protected override Function MapFromReader(SqlDataReader reader)
     {
-        return new Function
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),
@@ -24,13 +24,13 @@ public class FunctionRepository : BaseRepository<Function>, IFunctionRepository
 
     protected override void AddInsertParameters(SqlCommand command, Function entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, Function entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 }

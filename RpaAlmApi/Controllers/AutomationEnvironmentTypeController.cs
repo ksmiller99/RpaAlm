@@ -10,52 +10,185 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class AutomationEnvironmentTypeController : ControllerBase
 {
+    private readonly ILogger<AutomationEnvironmentTypeController> _logger;
     private readonly IAutomationEnvironmentTypeService _service;
 
-    public AutomationEnvironmentTypeController(IAutomationEnvironmentTypeService service)
+    public AutomationEnvironmentTypeController(
+        IAutomationEnvironmentTypeService service,
+        ILogger<AutomationEnvironmentTypeController> logger)
     {
         _service = service;
+        _logger = logger;
     }
 
     [HttpGet]
     public async Task<ActionResult<ApiResponse<IEnumerable<AutomationEnvironmentTypeDto>>>> GetAll()
     {
-        var items = await _service.GetAllAsync();
-        return Ok(ApiResponse<IEnumerable<AutomationEnvironmentTypeDto>>.SuccessResponse(items));
+        try
+        {
+            var result = await _service.GetAllAsync();
+            return Ok(new ApiResponse<IEnumerable<AutomationEnvironmentTypeDto>>
+            {
+                Success = true,
+                Data = result
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving all AutomationEnvironmentType records");
+            return StatusCode(500, new ApiResponse<IEnumerable<AutomationEnvironmentTypeDto>>
+            {
+                Success = false,
+                Message = "An error occurred while retrieving records",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<ApiResponse<AutomationEnvironmentTypeDto>>> GetById(int id)
     {
-        var item = await _service.GetByIdAsync(id);
-        if (item == null)
-            return NotFound(ApiResponse<AutomationEnvironmentTypeDto>.ErrorResponse($"AutomationEnvironmentType with ID {id} not found"));
-        return Ok(ApiResponse<AutomationEnvironmentTypeDto>.SuccessResponse(item));
+        try
+        {
+            var result = await _service.GetByIdAsync(id);
+            if (result == null)
+                return NotFound(new ApiResponse<AutomationEnvironmentTypeDto>
+                {
+                    Success = false,
+                    Message = $"AutomationEnvironmentType with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<AutomationEnvironmentTypeDto>
+            {
+                Success = true,
+                Data = result
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error retrieving AutomationEnvironmentType with ID {id}");
+            return StatusCode(500, new ApiResponse<AutomationEnvironmentTypeDto>
+            {
+                Success = false,
+                Message = "An error occurred while retrieving the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpPost]
-    public async Task<ActionResult<ApiResponse<AutomationEnvironmentTypeDto>>> Create([FromBody] AutomationEnvironmentTypeCreateRequest request)
+    public async Task<ActionResult<ApiResponse<AutomationEnvironmentTypeDto>>> Create(
+        [FromBody] AutomationEnvironmentTypeCreateRequest request)
     {
-        var item = await _service.CreateAsync(request);
-        return CreatedAtAction(nameof(GetById), new { id = item.Id },
-            ApiResponse<AutomationEnvironmentTypeDto>.SuccessResponse(item, "AutomationEnvironmentType created successfully"));
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<AutomationEnvironmentTypeDto>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
+
+            var result = await _service.CreateAsync(request);
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = result.Id },
+                new ApiResponse<AutomationEnvironmentTypeDto>
+                {
+                    Success = true,
+                    Data = result,
+                    Message = "AutomationEnvironmentType created successfully"
+                });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating AutomationEnvironmentType");
+            return StatusCode(500, new ApiResponse<AutomationEnvironmentTypeDto>
+            {
+                Success = false,
+                Message = "An error occurred while creating the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] AutomationEnvironmentTypeUpdateRequest request)
+    public async Task<ActionResult<ApiResponse<bool>>> Update(int id,
+        [FromBody] AutomationEnvironmentTypeUpdateRequest request)
     {
-        var success = await _service.UpdateAsync(id, request);
-        if (!success)
-            return NotFound(ApiResponse<bool>.ErrorResponse($"AutomationEnvironmentType with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "AutomationEnvironmentType updated successfully"));
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
+
+            var result = await _service.UpdateAsync(id, request);
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"AutomationEnvironmentType with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = "AutomationEnvironmentType updated successfully"
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error updating AutomationEnvironmentType with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = "An error occurred while updating the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<ApiResponse<bool>>> Delete(int id)
     {
-        var success = await _service.DeleteAsync(id);
-        if (!success)
-            return NotFound(ApiResponse<bool>.ErrorResponse($"AutomationEnvironmentType with ID {id} not found"));
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "AutomationEnvironmentType deleted successfully"));
+        try
+        {
+            var result = await _service.DeleteAsync(id);
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"AutomationEnvironmentType with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = $"AutomationEnvironmentType with ID {id} deleted successfully"
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error deleting AutomationEnvironmentType with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = $"An error occurred while deleting the AutomationEnvironmentType record with ID {id}",
+                Errors = [ex.Message]
+            });
+        }
     }
 }

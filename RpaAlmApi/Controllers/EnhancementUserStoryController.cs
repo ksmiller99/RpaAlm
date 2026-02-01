@@ -10,8 +10,8 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class EnhancementUserStoryController : ControllerBase
 {
-    private readonly IEnhancementUserStoryService _service;
     private readonly ILogger<EnhancementUserStoryController> _logger;
+    private readonly IEnhancementUserStoryService _service;
 
     public EnhancementUserStoryController(
         IEnhancementUserStoryService service,
@@ -40,7 +40,7 @@ public class EnhancementUserStoryController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while retrieving records",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -52,13 +52,11 @@ public class EnhancementUserStoryController : ControllerBase
         {
             var result = await _service.GetByIdAsync(id);
             if (result == null)
-            {
                 return NotFound(new ApiResponse<EnhancementUserStoryDto>
                 {
                     Success = false,
                     Message = $"EnhancementUserStory with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<EnhancementUserStoryDto>
             {
@@ -68,23 +66,23 @@ public class EnhancementUserStoryController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving EnhancementUserStory with ID {Id}", id);
+            _logger.LogError(ex, $"Error retrieving EnhancementUserStory with ID {id}");
             return StatusCode(500, new ApiResponse<EnhancementUserStoryDto>
             {
                 Success = false,
                 Message = "An error occurred while retrieving the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
 
     [HttpPost]
-    public async Task<ActionResult<ApiResponse<EnhancementUserStoryDto>>> Create([FromBody] EnhancementUserStoryCreateRequest request)
+    public async Task<ActionResult<ApiResponse<EnhancementUserStoryDto>>> Create(
+        [FromBody] EnhancementUserStoryCreateRequest request)
     {
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<EnhancementUserStoryDto>
                 {
                     Success = false,
@@ -94,7 +92,6 @@ public class EnhancementUserStoryController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.CreateAsync(request);
             return CreatedAtAction(
@@ -114,18 +111,18 @@ public class EnhancementUserStoryController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while creating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] EnhancementUserStoryUpdateRequest request)
+    public async Task<ActionResult<ApiResponse<bool>>> Update(int id,
+        [FromBody] EnhancementUserStoryUpdateRequest request)
     {
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<bool>
                 {
                     Success = false,
@@ -135,33 +132,30 @@ public class EnhancementUserStoryController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.UpdateAsync(id, request);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"EnhancementUserStory with ID {id} not found"
                 });
-            }
 
-            return Ok(new ApiResponse<bool>
+            return Ok(new ApiResponse<bool?>
             {
                 Success = true,
-                Data = true,
+                Data = null,
                 Message = "EnhancementUserStory updated successfully"
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating EnhancementUserStory with ID {Id}", id);
+            _logger.LogError(ex, $"Error updating EnhancementUserStory with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while updating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -173,29 +167,27 @@ public class EnhancementUserStoryController : ControllerBase
         {
             var result = await _service.DeleteAsync(id);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"EnhancementUserStory with ID {id} not found"
                 });
-            }
 
-            return Ok(new ApiResponse<bool>
+            return Ok(new ApiResponse<bool?>
             {
                 Success = true,
-                Data = true,
+                Data = null,
                 Message = "EnhancementUserStory deleted successfully"
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting EnhancementUserStory with ID {Id}", id);
+            _logger.LogError(ex, $"Error deleting EnhancementUserStory with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while deleting the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }

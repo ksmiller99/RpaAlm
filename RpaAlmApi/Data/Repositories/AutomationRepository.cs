@@ -14,55 +14,55 @@ public class AutomationRepository : BaseRepository<Automation>, IAutomationRepos
 
     protected override Automation MapFromReader(SqlDataReader reader)
     {
-        return new Automation
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Name = GetNullableString(reader, "Name"),
-            SegmentID = GetNullableInt(reader, "SegmentID"),
-            RegionID = GetNullableInt(reader, "RegionID"),
-            FunctionID = GetNullableInt(reader, "FunctionID"),
-            StatusID = GetNullableInt(reader, "StatusID"),
-            BtoWWID = GetNullableString(reader, "BtoWWID"),
-            BoWWID = GetNullableString(reader, "BoWWID"),
-            FcWWID = GetNullableString(reader, "FcWWID"),
+            SegmentId = GetNullableInt(reader, "SegmentID"),
+            RegionId = GetNullableInt(reader, "RegionID"),
+            FunctionId = GetNullableInt(reader, "FunctionID"),
+            StatusId = GetNullableInt(reader, "StatusID"),
+            BtoWwid = GetNullableString(reader, "BtoWWID"),
+            BoWwid = GetNullableString(reader, "BoWWID"),
+            FcWwid = GetNullableString(reader, "FcWWID"),
             Zcode = GetNullableString(reader, "Zcode"),
             CostCenter = GetNullableString(reader, "CostCenter"),
-            SseWWID = GetNullableString(reader, "SseWWID"),
-            LseWWID = GetNullableString(reader, "LseWWID")
+            SseWwid = GetNullableString(reader, "SseWWID"),
+            LseWwid = GetNullableString(reader, "LseWWID")
         };
     }
 
     protected override void AddInsertParameters(SqlCommand command, Automation entity)
     {
-        command.Parameters.AddWithValue("@Name", GetValueOrDBNull(entity.Name));
-        command.Parameters.AddWithValue("@SegmentID", GetValueOrDBNull(entity.SegmentID));
-        command.Parameters.AddWithValue("@RegionID", GetValueOrDBNull(entity.RegionID));
-        command.Parameters.AddWithValue("@FunctionID", GetValueOrDBNull(entity.FunctionID));
-        command.Parameters.AddWithValue("@StatusID", GetValueOrDBNull(entity.StatusID));
-        command.Parameters.AddWithValue("@BtoWWID", GetValueOrDBNull(entity.BtoWWID));
-        command.Parameters.AddWithValue("@BoWWID", GetValueOrDBNull(entity.BoWWID));
-        command.Parameters.AddWithValue("@FcWWID", GetValueOrDBNull(entity.FcWWID));
-        command.Parameters.AddWithValue("@Zcode", GetValueOrDBNull(entity.Zcode));
-        command.Parameters.AddWithValue("@CostCenter", GetValueOrDBNull(entity.CostCenter));
-        command.Parameters.AddWithValue("@SseWWID", GetValueOrDBNull(entity.SseWWID));
-        command.Parameters.AddWithValue("@LseWWID", GetValueOrDBNull(entity.LseWWID));
+        command.Parameters.AddWithValue("@Name", GetValueOrDbNull(entity.Name));
+        command.Parameters.AddWithValue("@SegmentID", GetValueOrDbNull(entity.SegmentId));
+        command.Parameters.AddWithValue("@RegionID", GetValueOrDbNull(entity.RegionId));
+        command.Parameters.AddWithValue("@FunctionID", GetValueOrDbNull(entity.FunctionId));
+        command.Parameters.AddWithValue("@StatusID", GetValueOrDbNull(entity.StatusId));
+        command.Parameters.AddWithValue("@BtoWWID", GetValueOrDbNull(entity.BtoWwid));
+        command.Parameters.AddWithValue("@BoWWID", GetValueOrDbNull(entity.BoWwid));
+        command.Parameters.AddWithValue("@FcWWID", GetValueOrDbNull(entity.FcWwid));
+        command.Parameters.AddWithValue("@Zcode", GetValueOrDbNull(entity.Zcode));
+        command.Parameters.AddWithValue("@CostCenter", GetValueOrDbNull(entity.CostCenter));
+        command.Parameters.AddWithValue("@SseWWID", GetValueOrDbNull(entity.SseWwid));
+        command.Parameters.AddWithValue("@LseWWID", GetValueOrDbNull(entity.LseWwid));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, Automation entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@Name", GetValueOrDBNull(entity.Name));
-        command.Parameters.AddWithValue("@SegmentID", GetValueOrDBNull(entity.SegmentID));
-        command.Parameters.AddWithValue("@RegionID", GetValueOrDBNull(entity.RegionID));
-        command.Parameters.AddWithValue("@FunctionID", GetValueOrDBNull(entity.FunctionID));
-        command.Parameters.AddWithValue("@StatusID", GetValueOrDBNull(entity.StatusID));
-        command.Parameters.AddWithValue("@BtoWWID", GetValueOrDBNull(entity.BtoWWID));
-        command.Parameters.AddWithValue("@BoWWID", GetValueOrDBNull(entity.BoWWID));
-        command.Parameters.AddWithValue("@FcWWID", GetValueOrDBNull(entity.FcWWID));
-        command.Parameters.AddWithValue("@Zcode", GetValueOrDBNull(entity.Zcode));
-        command.Parameters.AddWithValue("@CostCenter", GetValueOrDBNull(entity.CostCenter));
-        command.Parameters.AddWithValue("@SseWWID", GetValueOrDBNull(entity.SseWWID));
-        command.Parameters.AddWithValue("@LseWWID", GetValueOrDBNull(entity.LseWWID));
+        command.Parameters.AddWithValue("@Name", GetValueOrDbNull(entity.Name));
+        command.Parameters.AddWithValue("@SegmentID", GetValueOrDbNull(entity.SegmentId));
+        command.Parameters.AddWithValue("@RegionID", GetValueOrDbNull(entity.RegionId));
+        command.Parameters.AddWithValue("@FunctionID", GetValueOrDbNull(entity.FunctionId));
+        command.Parameters.AddWithValue("@StatusID", GetValueOrDbNull(entity.StatusId));
+        command.Parameters.AddWithValue("@BtoWWID", GetValueOrDbNull(entity.BtoWwid));
+        command.Parameters.AddWithValue("@BoWWID", GetValueOrDbNull(entity.BoWwid));
+        command.Parameters.AddWithValue("@FcWWID", GetValueOrDbNull(entity.FcWwid));
+        command.Parameters.AddWithValue("@Zcode", GetValueOrDbNull(entity.Zcode));
+        command.Parameters.AddWithValue("@CostCenter", GetValueOrDbNull(entity.CostCenter));
+        command.Parameters.AddWithValue("@SseWWID", GetValueOrDbNull(entity.SseWwid));
+        command.Parameters.AddWithValue("@LseWWID", GetValueOrDbNull(entity.LseWwid));
     }
 }
 

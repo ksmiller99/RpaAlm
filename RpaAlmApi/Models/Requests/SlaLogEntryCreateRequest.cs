@@ -4,10 +4,10 @@ namespace RpaAlmApi.Models.Requests;
 
 public class SlaLogEntryCreateRequest
 {
-    public int? SlaMasterID { get; set; }
+    public int? SlaMasterId { get; set; }
 
     [StringLength(9)]
-    public string? CreatedWWID { get; set; }
+    public string? CreatedWwid { get; set; }
 
     public DateTime? CreatedDate { get; set; }
 

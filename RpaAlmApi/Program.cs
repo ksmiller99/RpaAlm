@@ -15,12 +15,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("v1", new()
     {
         Title = "RPA ALM API",
         Version = "v1",
         Description = "RESTful API for RPA Application Lifecycle Management system",
-        Contact = new OpenApiContact
+        Contact = new()
         {
             Name = "RPA ALM Team"
         }

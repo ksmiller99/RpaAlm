@@ -12,13 +12,13 @@ namespace RpaAlmApi.Controllers;
 public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TService> : ControllerBase
     where TDto : class
 {
-    protected readonly TService _service;
-    protected readonly ILogger _logger;
+    protected readonly TService Service;
+    protected readonly ILogger Logger;
 
     protected BaseApiController(TService service, ILogger logger)
     {
-        _service = service;
-        _logger = logger;
+        Service = service;
+        Logger = logger;
     }
 
     protected async Task<ActionResult<ApiResponse<IEnumerable<TDto>>>> GetAllAsync(
@@ -31,10 +31,10 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving all items");
+            Logger.LogError(ex, $"Error retrieving all items");
             return StatusCode(500, ApiResponse<IEnumerable<TDto>>.ErrorResponse(
                 "An error occurred while retrieving items",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
@@ -59,10 +59,10 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving item with ID {Id}", id);
+            Logger.LogError(ex, $"Error retrieving item with ID {id}");
             return StatusCode(500, ApiResponse<TDto>.ErrorResponse(
                 $"An error occurred while retrieving the {entityName}",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
@@ -91,10 +91,10 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error creating {EntityName}", entityName);
+            Logger.LogError(ex, "Error creating {EntityName}", entityName);
             return StatusCode(500, ApiResponse<TDto>.ErrorResponse(
                 $"An error occurred while creating the {entityName}",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
@@ -124,14 +124,14 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, $"{entityName} updated successfully"));
+            return Ok(ApiResponse<bool?>.SuccessResponse(null, $"{entityName} updated successfully"));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating {EntityName} with ID {Id}", entityName, id);
+            Logger.LogError(ex, $"Error updating {entityName} with ID {id}");
             return StatusCode(500, ApiResponse<bool>.ErrorResponse(
                 $"An error occurred while updating the {entityName}",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }
@@ -152,14 +152,14 @@ public abstract class BaseApiController<TDto, TCreateRequest, TUpdateRequest, TS
                 ));
             }
 
-            return Ok(ApiResponse<bool>.SuccessResponse(true, $"{entityName} deleted successfully"));
+            return Ok(ApiResponse<bool?>.SuccessResponse(null, $"{entityName} deleted successfully"));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting {EntityName} with ID {Id}", entityName, id);
+            Logger.LogError(ex,$"Error deleting {entityName} with ID {id}");
             return StatusCode(500, ApiResponse<bool>.ErrorResponse(
                 $"An error occurred while deleting the {entityName}",
-                new List<string> { ex.Message }
+                [ex.Message]
             ));
         }
     }

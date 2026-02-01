@@ -10,8 +10,8 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class AutomationController : ControllerBase
 {
-    private readonly IAutomationService _service;
     private readonly ILogger<AutomationController> _logger;
+    private readonly IAutomationService _service;
 
     public AutomationController(
         IAutomationService service,
@@ -40,7 +40,7 @@ public class AutomationController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while retrieving records",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -52,13 +52,11 @@ public class AutomationController : ControllerBase
         {
             var result = await _service.GetByIdAsync(id);
             if (result == null)
-            {
                 return NotFound(new ApiResponse<AutomationDto>
                 {
                     Success = false,
                     Message = $"Automation with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<AutomationDto>
             {
@@ -68,12 +66,12 @@ public class AutomationController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving Automation with ID {Id}", id);
+            _logger.LogError(ex, $"Error retrieving Automation with ID {id}");
             return StatusCode(500, new ApiResponse<AutomationDto>
             {
                 Success = false,
                 Message = "An error occurred while retrieving the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -84,7 +82,6 @@ public class AutomationController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<AutomationDto>
                 {
                     Success = false,
@@ -94,7 +91,6 @@ public class AutomationController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.CreateAsync(request);
             return CreatedAtAction(
@@ -114,7 +110,7 @@ public class AutomationController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while creating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -125,7 +121,6 @@ public class AutomationController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<bool>
                 {
                     Success = false,
@@ -135,33 +130,30 @@ public class AutomationController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.UpdateAsync(id, request);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"Automation with ID {id} not found"
                 });
-            }
 
-            return Ok(new ApiResponse<bool>
+            return Ok(new ApiResponse<bool?>
             {
                 Success = true,
-                Data = true,
+                Data = null,
                 Message = "Automation updated successfully"
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating Automation with ID {Id}", id);
+            _logger.LogError(ex, $"Error updating Automation with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while updating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -173,29 +165,27 @@ public class AutomationController : ControllerBase
         {
             var result = await _service.DeleteAsync(id);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"Automation with ID {id} not found"
                 });
-            }
 
-            return Ok(new ApiResponse<bool>
+            return Ok(new ApiResponse<bool?>
             {
                 Success = true,
-                Data = true,
-                Message = "Automation deleted successfully"
+                Data = null,
+                Message = $"Automation with ID {id} deleted successfully"
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting Automation with ID {Id}", id);
+            _logger.LogError(ex, $"Error deleting Automation with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
-                Message = "An error occurred while deleting the record",
-                Errors = new List<string> { ex.Message }
+                Message = $"An error occurred while deleting the Automation record with ID {id}",
+                Errors = [ex.Message]
             });
         }
     }

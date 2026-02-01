@@ -6,8 +6,8 @@ namespace RpaAlmApi.Services.Interfaces;
 public interface IJjedsHelperService
 {
     Task<IEnumerable<JjedsHelperDto>> GetAllAsync();
-    Task<JjedsHelperDto?> GetByWwidAsync(string wwid);
+    Task<JjedsHelperDto?> GetByIdAsync(int id);
     Task<JjedsHelperDto> CreateAsync(JjedsHelperCreateRequest request);
-    Task<bool> UpdateAsync(string wwid, JjedsHelperUpdateRequest request);
-    Task<bool> DeleteAsync(string wwid);
+    Task<bool> UpdateAsync(int id, JjedsHelperUpdateRequest request);
+    Task<bool> DeleteAsync(int id);
 }

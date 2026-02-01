@@ -6,9 +6,10 @@ namespace RpaAlmApi.Models.Domain;
 /// JjedsHelper domain model (Employee directory cache)
 /// Primary key: WWID (string)
 /// </summary>
-public class JjedsHelper : IEntity<string>
+public class JjedsHelper : IEntity
 {
-    public string Id { get; set; } = string.Empty; // WWID
+    public int Id { get; set; }
+    public string Wwid { get; set; } = string.Empty; 
     public string? CommonName { get; set; }
     public string? Email { get; set; }
     public DateTime? JjedsCreated { get; set; }

@@ -14,11 +14,11 @@ public class ViAssignmentsRepository : BaseRepository<ViAssignments>, IViAssignm
 
     protected override ViAssignments MapFromReader(SqlDataReader reader)
     {
-        return new ViAssignments
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
-            VirtualIdentityID = GetNullableInt(reader, "VirtualIdentityID"),
-            AutomationEnvironmentID = GetNullableInt(reader, "AutomationEnvironmentID"),
+            VirtualIdentityId = GetNullableInt(reader, "VirtualIdentityID"),
+            AutomationEnvironmentId = GetNullableInt(reader, "AutomationEnvironmentID"),
             Percentage = GetNullableInt(reader, "Percentage"),
             StartDate = GetNullableDateTime(reader, "StartDate"),
             EndDate = GetNullableDateTime(reader, "EndDate")
@@ -27,20 +27,20 @@ public class ViAssignmentsRepository : BaseRepository<ViAssignments>, IViAssignm
 
     protected override void AddInsertParameters(SqlCommand command, ViAssignments entity)
     {
-        command.Parameters.AddWithValue("@VirtualIdentityID", GetValueOrDBNull(entity.VirtualIdentityID));
-        command.Parameters.AddWithValue("@AutomationEnvironmentID", GetValueOrDBNull(entity.AutomationEnvironmentID));
-        command.Parameters.AddWithValue("@Percentage", GetValueOrDBNull(entity.Percentage));
-        command.Parameters.AddWithValue("@StartDate", GetValueOrDBNull(entity.StartDate));
-        command.Parameters.AddWithValue("@EndDate", GetValueOrDBNull(entity.EndDate));
+        command.Parameters.AddWithValue("@VirtualIdentityID", GetValueOrDbNull(entity.VirtualIdentityId));
+        command.Parameters.AddWithValue("@AutomationEnvironmentID", GetValueOrDbNull(entity.AutomationEnvironmentId));
+        command.Parameters.AddWithValue("@Percentage", GetValueOrDbNull(entity.Percentage));
+        command.Parameters.AddWithValue("@StartDate", GetValueOrDbNull(entity.StartDate));
+        command.Parameters.AddWithValue("@EndDate", GetValueOrDbNull(entity.EndDate));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, ViAssignments entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@VirtualIdentityID", GetValueOrDBNull(entity.VirtualIdentityID));
-        command.Parameters.AddWithValue("@AutomationEnvironmentID", GetValueOrDBNull(entity.AutomationEnvironmentID));
-        command.Parameters.AddWithValue("@Percentage", GetValueOrDBNull(entity.Percentage));
-        command.Parameters.AddWithValue("@StartDate", GetValueOrDBNull(entity.StartDate));
-        command.Parameters.AddWithValue("@EndDate", GetValueOrDBNull(entity.EndDate));
+        command.Parameters.AddWithValue("@VirtualIdentityID", GetValueOrDbNull(entity.VirtualIdentityId));
+        command.Parameters.AddWithValue("@AutomationEnvironmentID", GetValueOrDbNull(entity.AutomationEnvironmentId));
+        command.Parameters.AddWithValue("@Percentage", GetValueOrDbNull(entity.Percentage));
+        command.Parameters.AddWithValue("@StartDate", GetValueOrDbNull(entity.StartDate));
+        command.Parameters.AddWithValue("@EndDate", GetValueOrDbNull(entity.EndDate));
     }
 }

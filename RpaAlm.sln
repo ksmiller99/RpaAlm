@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpaAlmApi", "RpaAlmApi\RpaAlmApi.csproj", "{1F886612-B81F-4C89-A75B-B543E2C56AA0}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RpaAlmDatabase", "RpaAlmDatabase\RpaAlmDatabase.sqlproj", "{C625DC7B-710E-4815-8E77-3AB0ACC29A49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,29 @@ Global
 		{1F886612-B81F-4C89-A75B-B543E2C56AA0}.Release|x64.Build.0 = Release|Any CPU
 		{1F886612-B81F-4C89-A75B-B543E2C56AA0}.Release|x86.ActiveCfg = Release|Any CPU
 		{1F886612-B81F-4C89-A75B-B543E2C56AA0}.Release|x86.Build.0 = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|x64.Build.0 = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|x86.Build.0 = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|x64.ActiveCfg = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|x64.Build.0 = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|x64.Deploy.0 = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|x86.ActiveCfg = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|x86.Build.0 = Release|Any CPU
+		{C625DC7B-710E-4815-8E77-3AB0ACC29A49}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2AA9ED82-6C1C-4323-B16B-0CE613A20D58}
 	EndGlobalSection
 EndGlobal

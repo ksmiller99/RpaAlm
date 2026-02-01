@@ -14,7 +14,7 @@ public class SegmentRepository : BaseRepository<Segment>, ISegmentRepository
 
     protected override Segment MapFromReader(SqlDataReader reader)
     {
-        return new Segment
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),
@@ -24,13 +24,13 @@ public class SegmentRepository : BaseRepository<Segment>, ISegmentRepository
 
     protected override void AddInsertParameters(SqlCommand command, Segment entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, Segment entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 }

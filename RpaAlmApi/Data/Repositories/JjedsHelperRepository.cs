@@ -5,18 +5,19 @@ using RpaAlmApi.Models.Domain;
 
 namespace RpaAlmApi.Data.Repositories;
 
-public class JjedsHelperRepository : BaseRepositoryStringKey<JjedsHelper>, IJjedsHelperRepository
+public class JjedsHelperRepository : BaseRepository<JjedsHelper>, IJjedsHelperRepository
 {
     public JjedsHelperRepository(IDbConnectionFactory connectionFactory)
-        : base(connectionFactory, "JjedsHelper", "WWID")
+        : base(connectionFactory, "JjedsHelper")
     {
     }
 
     protected override JjedsHelper MapFromReader(SqlDataReader reader)
     {
-        return new JjedsHelper
+        return new()
         {
-            Id = reader.GetString(reader.GetOrdinal("WWID")),
+            Id = reader.GetInt32(reader.GetOrdinal("ID")),
+            Wwid = reader.GetString(reader.GetOrdinal("WWID")),
             CommonName = GetNullableString(reader, "CommonName"),
             Email = GetNullableString(reader, "Email"),
             JjedsCreated = GetNullableDateTime(reader, "JjedsCreated"),
@@ -26,17 +27,19 @@ public class JjedsHelperRepository : BaseRepositoryStringKey<JjedsHelper>, IJjed
 
     protected override void AddInsertParameters(SqlCommand command, JjedsHelper entity)
     {
-        command.Parameters.AddWithValue("@CommonName", GetValueOrDBNull(entity.CommonName));
-        command.Parameters.AddWithValue("@Email", GetValueOrDBNull(entity.Email));
-        command.Parameters.AddWithValue("@JjedsCreated", GetValueOrDBNull(entity.JjedsCreated));
-        command.Parameters.AddWithValue("@JjedsLastChanged", GetValueOrDBNull(entity.JjedsLastChanged));
+        command.Parameters.AddWithValue("@WWID", GetValueOrDbNull(entity.Wwid));
+        command.Parameters.AddWithValue("@CommonName", GetValueOrDbNull(entity.CommonName));
+        command.Parameters.AddWithValue("@Email", GetValueOrDbNull(entity.Email));
+        command.Parameters.AddWithValue("@JjedsCreated", GetValueOrDbNull(entity.JjedsCreated));
+        command.Parameters.AddWithValue("@JjedsLastChanged", GetValueOrDbNull(entity.JjedsLastChanged));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, JjedsHelper entity)
     {
-        command.Parameters.AddWithValue("@CommonName", GetValueOrDBNull(entity.CommonName));
-        command.Parameters.AddWithValue("@Email", GetValueOrDBNull(entity.Email));
-        command.Parameters.AddWithValue("@JjedsCreated", GetValueOrDBNull(entity.JjedsCreated));
-        command.Parameters.AddWithValue("@JjedsLastChanged", GetValueOrDBNull(entity.JjedsLastChanged));
+        command.Parameters.AddWithValue("@WWID", GetValueOrDbNull(entity.Wwid));
+        command.Parameters.AddWithValue("@CommonName", GetValueOrDbNull(entity.CommonName));
+        command.Parameters.AddWithValue("@Email", GetValueOrDbNull(entity.Email));
+        command.Parameters.AddWithValue("@JjedsCreated", GetValueOrDbNull(entity.JjedsCreated));
+        command.Parameters.AddWithValue("@JjedsLastChanged", GetValueOrDbNull(entity.JjedsLastChanged));
     }
 }

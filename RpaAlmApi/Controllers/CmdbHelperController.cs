@@ -10,8 +10,8 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class CmdbHelperController : ControllerBase
 {
-    private readonly ICmdbHelperService _service;
     private readonly ILogger<CmdbHelperController> _logger;
+    private readonly ICmdbHelperService _service;
 
     public CmdbHelperController(
         ICmdbHelperService service,
@@ -40,25 +40,23 @@ public class CmdbHelperController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while retrieving records",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
 
     [HttpGet("{appId}")]
-    public async Task<ActionResult<ApiResponse<CmdbHelperDto>>> GetByAppId(string appId)
+    public async Task<ActionResult<ApiResponse<CmdbHelperDto>>> GetByAppId(int id)
     {
         try
         {
-            var result = await _service.GetByAppIdAsync(appId);
+            var result = await _service.GetByIdAsync(id);
             if (result == null)
-            {
                 return NotFound(new ApiResponse<CmdbHelperDto>
                 {
                     Success = false,
-                    Message = $"CmdbHelper with AppID {appId} not found"
+                    Message = $"CmdbHelper with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<CmdbHelperDto>
             {
@@ -68,12 +66,12 @@ public class CmdbHelperController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving CmdbHelper with AppID {AppId}", appId);
+            _logger.LogError(ex, $"Error retrieving CmdbHelper with ID {id}");
             return StatusCode(500, new ApiResponse<CmdbHelperDto>
             {
                 Success = false,
                 Message = "An error occurred while retrieving the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -84,7 +82,6 @@ public class CmdbHelperController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<CmdbHelperDto>
                 {
                     Success = false,
@@ -94,7 +91,6 @@ public class CmdbHelperController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.CreateAsync(request);
             return CreatedAtAction(
@@ -114,18 +110,17 @@ public class CmdbHelperController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while creating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
 
     [HttpPut("{appId}")]
-    public async Task<ActionResult<ApiResponse<bool>>> Update(string appId, [FromBody] CmdbHelperUpdateRequest request)
+    public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] CmdbHelperUpdateRequest request)
     {
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<bool>
                 {
                     Success = false,
@@ -135,67 +130,62 @@ public class CmdbHelperController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
-            var result = await _service.UpdateAsync(appId, request);
+            var result = await _service.UpdateAsync(id, request);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
-                    Message = $"CmdbHelper with AppID {appId} not found"
+                    Message = $"CmdbHelper with ID {id} not found"
                 });
-            }
 
-            return Ok(new ApiResponse<bool>
+            return Ok(new ApiResponse<bool?>
             {
                 Success = true,
-                Data = true,
+                Data = null,
                 Message = "CmdbHelper updated successfully"
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating CmdbHelper with AppID {AppId}", appId);
+            _logger.LogError(ex, $"Error updating CmdbHelper with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while updating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
 
     [HttpDelete("{appId}")]
-    public async Task<ActionResult<ApiResponse<bool>>> Delete(string appId)
+    public async Task<ActionResult<ApiResponse<bool>>> Delete(int id)
     {
         try
         {
-            var result = await _service.DeleteAsync(appId);
+            var result = await _service.DeleteAsync(id);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
-                    Message = $"CmdbHelper with AppID {appId} not found"
+                    Message = $"CmdbHelper with ID {id} not found"
                 });
-            }
 
-            return Ok(new ApiResponse<bool>
+            return Ok(new ApiResponse<bool?>
             {
                 Success = true,
-                Data = true,
+                Data = null,
                 Message = "CmdbHelper deleted successfully"
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting CmdbHelper with AppID {AppId}", appId);
+            _logger.LogError(ex, $"Error deleting CmdbHelper with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while deleting the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }

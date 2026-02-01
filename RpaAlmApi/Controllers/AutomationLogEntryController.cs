@@ -10,10 +10,12 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class AutomationLogEntryController : ControllerBase
 {
-    private readonly IAutomationLogEntryService _service;
     private readonly ILogger<AutomationLogEntryController> _logger;
+    private readonly IAutomationLogEntryService _service;
 
-    public AutomationLogEntryController(IAutomationLogEntryService service, ILogger<AutomationLogEntryController> logger)
+    public AutomationLogEntryController(
+        IAutomationLogEntryService service,
+        ILogger<AutomationLogEntryController> logger)
     {
         _service = service;
         _logger = logger;
@@ -25,7 +27,11 @@ public class AutomationLogEntryController : ControllerBase
         try
         {
             var result = await _service.GetAllAsync();
-            return Ok(new ApiResponse<IEnumerable<AutomationLogEntryDto>> { Success = true, Data = result });
+            return Ok(new ApiResponse<IEnumerable<AutomationLogEntryDto>>
+            {
+                Success = true,
+                Data = result
+            });
         }
         catch (Exception ex)
         {
@@ -34,7 +40,7 @@ public class AutomationLogEntryController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while retrieving records",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -45,46 +51,112 @@ public class AutomationLogEntryController : ControllerBase
         try
         {
             var result = await _service.GetByIdAsync(id);
-            if (result == null) return NotFound(new ApiResponse<AutomationLogEntryDto> { Success = false, Message = $"AutomationLogEntry with ID {id} not found" });
-            return Ok(new ApiResponse<AutomationLogEntryDto> { Success = true, Data = result });
+            if (result == null)
+                return NotFound(new ApiResponse<AutomationLogEntryDto>
+                {
+                    Success = false,
+                    Message = $"AutomationLogEntry with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<AutomationLogEntryDto>
+            {
+                Success = true,
+                Data = result
+            });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving AutomationLogEntry with ID {Id}", id);
-            return StatusCode(500, new ApiResponse<AutomationLogEntryDto> { Success = false, Message = "An error occurred", Errors = new List<string> { ex.Message } });
+            _logger.LogError(ex, $"Error retrieving AutomationLogEntry with ID {id}");
+            return StatusCode(500, new ApiResponse<AutomationLogEntryDto>
+            {
+                Success = false,
+                Message = "An error occurred while retrieving the record",
+                Errors = [ex.Message]
+            });
         }
     }
 
     [HttpPost]
-    public async Task<ActionResult<ApiResponse<AutomationLogEntryDto>>> Create([FromBody] AutomationLogEntryCreateRequest request)
+    public async Task<ActionResult<ApiResponse<AutomationLogEntryDto>>> Create(
+        [FromBody] AutomationLogEntryCreateRequest request)
     {
         try
         {
-            if (!ModelState.IsValid) return BadRequest(new ApiResponse<AutomationLogEntryDto> { Success = false, Message = "Invalid request data" });
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<AutomationLogEntryDto>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
+
             var result = await _service.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id }, new ApiResponse<AutomationLogEntryDto> { Success = true, Data = result, Message = "Created successfully" });
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = result.Id },
+                new ApiResponse<AutomationLogEntryDto>
+                {
+                    Success = true,
+                    Data = result,
+                    Message = "AutomationLogEntry created successfully"
+                });
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating AutomationLogEntry");
-            return StatusCode(500, new ApiResponse<AutomationLogEntryDto> { Success = false, Message = "An error occurred", Errors = new List<string> { ex.Message } });
+            return StatusCode(500, new ApiResponse<AutomationLogEntryDto>
+            {
+                Success = false,
+                Message = "An error occurred while creating the record",
+                Errors = [ex.Message]
+            });
         }
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] AutomationLogEntryUpdateRequest request)
+    public async Task<ActionResult<ApiResponse<bool>>> Update(int id,
+        [FromBody] AutomationLogEntryUpdateRequest request)
     {
         try
         {
-            if (!ModelState.IsValid) return BadRequest(new ApiResponse<bool> { Success = false, Message = "Invalid request data" });
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
+
             var result = await _service.UpdateAsync(id, request);
-            if (!result) return NotFound(new ApiResponse<bool> { Success = false, Message = $"AutomationLogEntry with ID {id} not found" });
-            return Ok(new ApiResponse<bool> { Success = true, Data = true, Message = "Updated successfully" });
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"AutomationLogEntry with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = "AutomationLogEntry updated successfully"
+            });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating AutomationLogEntry with ID {Id}", id);
-            return StatusCode(500, new ApiResponse<bool> { Success = false, Message = "An error occurred", Errors = new List<string> { ex.Message } });
+            _logger.LogError(ex, $"Error updating AutomationLogEntry with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = "An error occurred while updating the record",
+                Errors = [ex.Message]
+            });
         }
     }
 
@@ -94,13 +166,29 @@ public class AutomationLogEntryController : ControllerBase
         try
         {
             var result = await _service.DeleteAsync(id);
-            if (!result) return NotFound(new ApiResponse<bool> { Success = false, Message = $"AutomationLogEntry with ID {id} not found" });
-            return Ok(new ApiResponse<bool> { Success = true, Data = true, Message = "Deleted successfully" });
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"AutomationLogEntry with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = $"AutomationLogEntry with ID {id} deleted successfully"
+            });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting AutomationLogEntry with ID {Id}", id);
-            return StatusCode(500, new ApiResponse<bool> { Success = false, Message = "An error occurred", Errors = new List<string> { ex.Message } });
+            _logger.LogError(ex, $"Error deleting AutomationLogEntry with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = $"An error occurred while deleting the AutomationLogEntry record with ID {id}",
+                Errors = [ex.Message]
+            });
         }
     }
 }

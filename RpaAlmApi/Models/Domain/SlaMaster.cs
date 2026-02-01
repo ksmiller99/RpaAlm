@@ -8,9 +8,9 @@ namespace RpaAlmApi.Models.Domain;
 public class SlaMaster : IEntity
 {
     public int Id { get; set; }
-    public int? AutomationID { get; set; }
-    public int? ComplexityID { get; set; }
-    public int? MedalID { get; set; }
+    public int? AutomationId { get; set; }
+    public int? ComplexityId { get; set; }
+    public int? MedalId { get; set; }
     public string? Zcode { get; set; }
     public string? CostCenter { get; set; }
     public DateTime? StartDate { get; set; }

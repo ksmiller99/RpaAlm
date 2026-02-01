@@ -10,8 +10,8 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class VirtualIdentityController : ControllerBase
 {
-    private readonly IVirtualIdentityService _service;
     private readonly ILogger<VirtualIdentityController> _logger;
+    private readonly IVirtualIdentityService _service;
 
     public VirtualIdentityController(
         IVirtualIdentityService service,
@@ -40,7 +40,7 @@ public class VirtualIdentityController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while retrieving records",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -52,13 +52,11 @@ public class VirtualIdentityController : ControllerBase
         {
             var result = await _service.GetByIdAsync(id);
             if (result == null)
-            {
                 return NotFound(new ApiResponse<VirtualIdentityDto>
                 {
                     Success = false,
                     Message = $"VirtualIdentity with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<VirtualIdentityDto>
             {
@@ -68,23 +66,23 @@ public class VirtualIdentityController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving VirtualIdentity with ID {Id}", id);
+            _logger.LogError(ex, $"Error retrieving VirtualIdentity with ID {id}");
             return StatusCode(500, new ApiResponse<VirtualIdentityDto>
             {
                 Success = false,
                 Message = "An error occurred while retrieving the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
 
     [HttpPost]
-    public async Task<ActionResult<ApiResponse<VirtualIdentityDto>>> Create([FromBody] VirtualIdentityCreateRequest request)
+    public async Task<ActionResult<ApiResponse<VirtualIdentityDto>>> Create(
+        [FromBody] VirtualIdentityCreateRequest request)
     {
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<VirtualIdentityDto>
                 {
                     Success = false,
@@ -94,7 +92,6 @@ public class VirtualIdentityController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.CreateAsync(request);
             return CreatedAtAction(
@@ -114,7 +111,7 @@ public class VirtualIdentityController : ControllerBase
             {
                 Success = false,
                 Message = "An error occurred while creating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -125,7 +122,6 @@ public class VirtualIdentityController : ControllerBase
         try
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(new ApiResponse<bool>
                 {
                     Success = false,
@@ -135,17 +131,14 @@ public class VirtualIdentityController : ControllerBase
                         .Select(e => e.ErrorMessage)
                         .ToList()
                 });
-            }
 
             var result = await _service.UpdateAsync(id, request);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"VirtualIdentity with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<bool>
             {
@@ -156,12 +149,12 @@ public class VirtualIdentityController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating VirtualIdentity with ID {Id}", id);
+            _logger.LogError(ex, $"Error updating VirtualIdentity with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while updating the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }
@@ -173,13 +166,11 @@ public class VirtualIdentityController : ControllerBase
         {
             var result = await _service.DeleteAsync(id);
             if (!result)
-            {
                 return NotFound(new ApiResponse<bool>
                 {
                     Success = false,
                     Message = $"VirtualIdentity with ID {id} not found"
                 });
-            }
 
             return Ok(new ApiResponse<bool>
             {
@@ -190,12 +181,12 @@ public class VirtualIdentityController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting VirtualIdentity with ID {Id}", id);
+            _logger.LogError(ex, $"Error deleting VirtualIdentity with ID {id}");
             return StatusCode(500, new ApiResponse<bool>
             {
                 Success = false,
                 Message = "An error occurred while deleting the record",
-                Errors = new List<string> { ex.Message }
+                Errors = [ex.Message]
             });
         }
     }

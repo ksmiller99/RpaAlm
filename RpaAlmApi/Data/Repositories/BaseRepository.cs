@@ -10,13 +10,13 @@ namespace RpaAlmApi.Data.Repositories;
 /// <typeparam name="T">Entity type</typeparam>
 public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntity, new()
 {
-    protected readonly IDbConnectionFactory _connectionFactory;
-    protected readonly string _tableName;
+    protected readonly IDbConnectionFactory ConnectionFactory;
+    protected readonly string TableName;
 
     protected BaseRepository(IDbConnectionFactory connectionFactory, string tableName)
     {
-        _connectionFactory = connectionFactory;
-        _tableName = tableName;
+        ConnectionFactory = connectionFactory;
+        TableName = tableName;
     }
 
     /// <summary>
@@ -26,8 +26,8 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     {
         var entities = new List<T>();
 
-        using var connection = _connectionFactory.CreateConnection();
-        using var command = new SqlCommand($"sp_GetAll{_tableName}", connection)
+        using var connection = ConnectionFactory.CreateConnection();
+        using var command = new SqlCommand($"sp_GetAll{TableName}", connection)
         {
             CommandType = CommandType.StoredProcedure
         };
@@ -48,8 +48,8 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     /// </summary>
     public virtual async Task<T?> GetByIdAsync(int id)
     {
-        using var connection = _connectionFactory.CreateConnection();
-        using var command = new SqlCommand($"sp_GetByID{_tableName}", connection)
+        using var connection = ConnectionFactory.CreateConnection();
+        using var command = new SqlCommand($"sp_GetByID{TableName}", connection)
         {
             CommandType = CommandType.StoredProcedure
         };
@@ -72,8 +72,8 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     /// </summary>
     public virtual async Task<int> CreateAsync(T entity)
     {
-        using var connection = _connectionFactory.CreateConnection();
-        using var command = new SqlCommand($"sp_Insert{_tableName}", connection)
+        using var connection = ConnectionFactory.CreateConnection();
+        using var command = new SqlCommand($"sp_Insert{TableName}", connection)
         {
             CommandType = CommandType.StoredProcedure
         };
@@ -97,8 +97,8 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     /// </summary>
     public virtual async Task<int> UpdateAsync(T entity)
     {
-        using var connection = _connectionFactory.CreateConnection();
-        using var command = new SqlCommand($"sp_Update{_tableName}", connection)
+        using var connection = ConnectionFactory.CreateConnection();
+        using var command = new SqlCommand($"sp_Update{TableName}", connection)
         {
             CommandType = CommandType.StoredProcedure
         };
@@ -115,8 +115,8 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     /// </summary>
     public virtual async Task<int> DeleteAsync(int id)
     {
-        using var connection = _connectionFactory.CreateConnection();
-        using var command = new SqlCommand($"sp_Delete{_tableName}", connection)
+        using var connection = ConnectionFactory.CreateConnection();
+        using var command = new SqlCommand($"sp_Delete{TableName}", connection)
         {
             CommandType = CommandType.StoredProcedure
         };
@@ -145,7 +145,7 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     /// <summary>
     /// Helper method to safely get value from reader
     /// </summary>
-    protected static object GetValueOrDBNull(object? value)
+    protected static object GetValueOrDbNull(object? value)
     {
         return value ?? DBNull.Value;
     }

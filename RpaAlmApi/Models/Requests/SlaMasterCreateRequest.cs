@@ -4,11 +4,11 @@ namespace RpaAlmApi.Models.Requests;
 
 public class SlaMasterCreateRequest
 {
-    public int? AutomationID { get; set; }
+    public int? AutomationId { get; set; }
 
-    public int? ComplexityID { get; set; }
+    public int? ComplexityId { get; set; }
 
-    public int? MedalID { get; set; }
+    public int? MedalId { get; set; }
 
     [StringLength(10)]
     public string? Zcode { get; set; }

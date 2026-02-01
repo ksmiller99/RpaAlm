@@ -14,7 +14,7 @@ public class AutomationEnvironmentTypeRepository : BaseRepository<AutomationEnvi
 
     protected override AutomationEnvironmentType MapFromReader(SqlDataReader reader)
     {
-        return new AutomationEnvironmentType
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Code = GetNullableString(reader, "Code"),
@@ -24,13 +24,13 @@ public class AutomationEnvironmentTypeRepository : BaseRepository<AutomationEnvi
 
     protected override void AddInsertParameters(SqlCommand command, AutomationEnvironmentType entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, AutomationEnvironmentType entity)
     {
-        command.Parameters.AddWithValue("@Code", GetValueOrDBNull(entity.Code));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
+        command.Parameters.AddWithValue("@Code", GetValueOrDbNull(entity.Code));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
     }
 }

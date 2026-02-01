@@ -10,10 +10,12 @@ namespace RpaAlmApi.Controllers;
 [Route("api/[controller]")]
 public class SegmentController : ControllerBase
 {
-    private readonly ISegmentService _service;
     private readonly ILogger<SegmentController> _logger;
+    private readonly ISegmentService _service;
 
-    public SegmentController(ISegmentService service, ILogger<SegmentController> logger)
+    public SegmentController(
+        ISegmentService service,
+        ILogger<SegmentController> logger)
     {
         _service = service;
         _logger = logger;
@@ -22,50 +24,169 @@ public class SegmentController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<ApiResponse<IEnumerable<SegmentDto>>>> GetAll()
     {
-        var segments = await _service.GetAllAsync();
-        return Ok(ApiResponse<IEnumerable<SegmentDto>>.SuccessResponse(segments));
+        try
+        {
+            var result = await _service.GetAllAsync();
+            return Ok(new ApiResponse<IEnumerable<SegmentDto>>
+            {
+                Success = true,
+                Data = result
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving all Segment records");
+            return StatusCode(500, new ApiResponse<IEnumerable<SegmentDto>>
+            {
+                Success = false,
+                Message = "An error occurred while retrieving records",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<ApiResponse<SegmentDto>>> GetById(int id)
     {
-        var segment = await _service.GetByIdAsync(id);
-        if (segment == null)
-            return NotFound(ApiResponse<SegmentDto>.ErrorResponse($"Segment with ID {id} not found"));
-        return Ok(ApiResponse<SegmentDto>.SuccessResponse(segment));
+        try
+        {
+            var result = await _service.GetByIdAsync(id);
+            if (result == null)
+                return NotFound(new ApiResponse<SegmentDto>
+                {
+                    Success = false,
+                    Message = $"Segment with ID {id} not found"
+                });
+
+            return Ok(new ApiResponse<SegmentDto>
+            {
+                Success = true,
+                Data = result
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error retrieving Segment with ID {id}");
+            return StatusCode(500, new ApiResponse<SegmentDto>
+            {
+                Success = false,
+                Message = "An error occurred while retrieving the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpPost]
     public async Task<ActionResult<ApiResponse<SegmentDto>>> Create([FromBody] SegmentCreateRequest request)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ApiResponse<SegmentDto>.ErrorResponse("Validation failed"));
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<SegmentDto>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
 
-        var segment = await _service.CreateAsync(request);
-        return CreatedAtAction(nameof(GetById), new { id = segment.Id },
-            ApiResponse<SegmentDto>.SuccessResponse(segment, "Segment created successfully"));
+            var result = await _service.CreateAsync(request);
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = result.Id },
+                new ApiResponse<SegmentDto>
+                {
+                    Success = true,
+                    Data = result,
+                    Message = "Segment created successfully"
+                });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating Segment");
+            return StatusCode(500, new ApiResponse<SegmentDto>
+            {
+                Success = false,
+                Message = "An error occurred while creating the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpPut("{id}")]
     public async Task<ActionResult<ApiResponse<bool>>> Update(int id, [FromBody] SegmentUpdateRequest request)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ApiResponse<bool>.ErrorResponse("Validation failed"));
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = "Invalid request data",
+                    Errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList()
+                });
 
-        var success = await _service.UpdateAsync(id, request);
-        if (!success)
-            return NotFound(ApiResponse<bool>.ErrorResponse($"Segment with ID {id} not found"));
+            var result = await _service.UpdateAsync(id, request);
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"Segment with ID {id} not found"
+                });
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Segment updated successfully"));
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = "Segment updated successfully"
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error updating Segment with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = "An error occurred while updating the record",
+                Errors = [ex.Message]
+            });
+        }
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<ApiResponse<bool>>> Delete(int id)
     {
-        var success = await _service.DeleteAsync(id);
-        if (!success)
-            return NotFound(ApiResponse<bool>.ErrorResponse($"Segment with ID {id} not found"));
+        try
+        {
+            var result = await _service.DeleteAsync(id);
+            if (!result)
+                return NotFound(new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = $"Segment with ID {id} not found"
+                });
 
-        return Ok(ApiResponse<bool>.SuccessResponse(true, "Segment deleted successfully"));
+            return Ok(new ApiResponse<bool?>
+            {
+                Success = true,
+                Data = null,
+                Message = $"Segment with ID {id} deleted successfully"
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error deleting Segment with ID {id}");
+            return StatusCode(500, new ApiResponse<bool>
+            {
+                Success = false,
+                Message = $"An error occurred while deleting the Segment record with ID {id}",
+                Errors = [ex.Message]
+            });
+        }
     }
 }

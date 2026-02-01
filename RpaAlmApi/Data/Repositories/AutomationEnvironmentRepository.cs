@@ -14,27 +14,27 @@ public class AutomationEnvironmentRepository : BaseRepository<AutomationEnvironm
 
     protected override AutomationEnvironment MapFromReader(SqlDataReader reader)
     {
-        return new AutomationEnvironment
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
-            AutomationID = GetNullableInt(reader, "AutomationID"),
-            AppID = GetNullableString(reader, "AppID"),
-            EnvironmentTypeID = GetNullableInt(reader, "EnvironmentTypeID")
+            AutomationId = GetNullableInt(reader, "AutomationID"),
+            AppId = GetNullableString(reader, "AppID"),
+            EnvironmentTypeId = GetNullableInt(reader, "EnvironmentTypeID")
         };
     }
 
     protected override void AddInsertParameters(SqlCommand command, AutomationEnvironment entity)
     {
-        command.Parameters.AddWithValue("@AutomationID", GetValueOrDBNull(entity.AutomationID));
-        command.Parameters.AddWithValue("@AppID", GetValueOrDBNull(entity.AppID));
-        command.Parameters.AddWithValue("@EnvironmentTypeID", GetValueOrDBNull(entity.EnvironmentTypeID));
+        command.Parameters.AddWithValue("@AutomationID", GetValueOrDbNull(entity.AutomationId));
+        command.Parameters.AddWithValue("@AppID", GetValueOrDbNull(entity.AppId));
+        command.Parameters.AddWithValue("@EnvironmentTypeID", GetValueOrDbNull(entity.EnvironmentTypeId));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, AutomationEnvironment entity)
     {
         command.Parameters.AddWithValue("@ID", entity.Id);
-        command.Parameters.AddWithValue("@AutomationID", GetValueOrDBNull(entity.AutomationID));
-        command.Parameters.AddWithValue("@AppID", GetValueOrDBNull(entity.AppID));
-        command.Parameters.AddWithValue("@EnvironmentTypeID", GetValueOrDBNull(entity.EnvironmentTypeID));
+        command.Parameters.AddWithValue("@AutomationID", GetValueOrDbNull(entity.AutomationId));
+        command.Parameters.AddWithValue("@AppID", GetValueOrDbNull(entity.AppId));
+        command.Parameters.AddWithValue("@EnvironmentTypeID", GetValueOrDbNull(entity.EnvironmentTypeId));
     }
 }

@@ -14,7 +14,7 @@ public class SlaItemTypeRepository : BaseRepository<SlaItemType>, ISlaItemTypeRe
 
     protected override SlaItemType MapFromReader(SqlDataReader reader)
     {
-        return new SlaItemType
+        return new()
         {
             Id = reader.GetInt32(reader.GetOrdinal("ID")),
             Name = GetNullableString(reader, "Name"),
@@ -26,17 +26,17 @@ public class SlaItemTypeRepository : BaseRepository<SlaItemType>, ISlaItemTypeRe
 
     protected override void AddInsertParameters(SqlCommand command, SlaItemType entity)
     {
-        command.Parameters.AddWithValue("@Name", GetValueOrDBNull(entity.Name));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
-        command.Parameters.AddWithValue("@Cost", GetValueOrDBNull(entity.Cost));
-        command.Parameters.AddWithValue("@Disabled", GetValueOrDBNull(entity.Disabled));
+        command.Parameters.AddWithValue("@Name", GetValueOrDbNull(entity.Name));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
+        command.Parameters.AddWithValue("@Cost", GetValueOrDbNull(entity.Cost));
+        command.Parameters.AddWithValue("@Disabled", GetValueOrDbNull(entity.Disabled));
     }
 
     protected override void AddUpdateParameters(SqlCommand command, SlaItemType entity)
     {
-        command.Parameters.AddWithValue("@Name", GetValueOrDBNull(entity.Name));
-        command.Parameters.AddWithValue("@Description", GetValueOrDBNull(entity.Description));
-        command.Parameters.AddWithValue("@Cost", GetValueOrDBNull(entity.Cost));
-        command.Parameters.AddWithValue("@Disabled", GetValueOrDBNull(entity.Disabled));
+        command.Parameters.AddWithValue("@Name", GetValueOrDbNull(entity.Name));
+        command.Parameters.AddWithValue("@Description", GetValueOrDbNull(entity.Description));
+        command.Parameters.AddWithValue("@Cost", GetValueOrDbNull(entity.Cost));
+        command.Parameters.AddWithValue("@Disabled", GetValueOrDbNull(entity.Disabled));
     }
 }

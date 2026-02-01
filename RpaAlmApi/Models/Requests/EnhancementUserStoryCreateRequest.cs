@@ -4,7 +4,7 @@ namespace RpaAlmApi.Models.Requests;
 
 public class EnhancementUserStoryCreateRequest
 {
-    public int? EnhancementID { get; set; }
+    public int? EnhancementId { get; set; }
 
     [StringLength(50)]
     public string? JiraIssue { get; set; }
@@ -17,5 +17,5 @@ public class EnhancementUserStoryCreateRequest
     [StringLength(500)]
     public string? JiraIssueSummary { get; set; }
 
-    public int? StoryPointCostID { get; set; }
+    public int? StoryPointCostId { get; set; }
 }
