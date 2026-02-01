@@ -20,7 +20,7 @@ CREATE OR ALTER PROCEDURE sp_InsertViAssignments
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     BEGIN TRY
         INSERT INTO ViAssignments (
@@ -62,7 +62,7 @@ CREATE OR ALTER PROCEDURE sp_UpdateViAssignments
     @EndDate DATE = NULL
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     BEGIN TRY
         UPDATE ViAssignments
@@ -74,7 +74,6 @@ BEGIN
             EndDate = @EndDate
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -97,7 +96,6 @@ BEGIN
         DELETE FROM ViAssignments
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;

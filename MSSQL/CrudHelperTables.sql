@@ -23,7 +23,7 @@ CREATE OR ALTER PROCEDURE sp_InsertJjedsHelper
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     BEGIN TRY
         INSERT INTO JjedsHelper (WWID, CommonName, Email, JjedsCreated, JjedsLastChanged)
@@ -52,7 +52,7 @@ CREATE OR ALTER PROCEDURE sp_UpdateJjedsHelper
     @JjedsLastChanged DATETIME2
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     BEGIN TRY
         UPDATE JjedsHelper
@@ -63,7 +63,6 @@ BEGIN
             JjedsLastChanged = @JjedsLastChanged
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -86,7 +85,6 @@ BEGIN
         DELETE FROM JjedsHelper
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -138,7 +136,7 @@ CREATE OR ALTER PROCEDURE sp_InsertCmdbHelper
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     BEGIN TRY
         INSERT INTO CmdbHelper (AppID, Name, Zcode, OperationalStatus, CmdbUpdated)
@@ -167,7 +165,7 @@ CREATE OR ALTER PROCEDURE sp_UpdateCmdbHelper
     @CmdbUpdated DATETIME2
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     BEGIN TRY
         UPDATE CmdbHelper
@@ -178,7 +176,6 @@ BEGIN
             CmdbUpdated = @CmdbUpdated
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -201,7 +198,6 @@ BEGIN
         DELETE FROM CmdbHelper
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;

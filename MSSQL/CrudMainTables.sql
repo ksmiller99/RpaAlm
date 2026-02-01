@@ -13,7 +13,7 @@ GO
 -- =============================================
 
 -- Insert Automation
-CREATE PROCEDURE sp_InsertAutomation
+CREATE OR ALTER PROCEDURE sp_InsertAutomation
     @Name NVARCHAR(255),
     @SegmentID INT = NULL,
     @RegionID INT = NULL,
@@ -27,7 +27,7 @@ CREATE PROCEDURE sp_InsertAutomation
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO Automation (Name, SegmentID, RegionID, FunctionID, RpaStatusID, BtoJjedsID, BoJjedsID, FcJjedsID, SseJjedsID, LseJjedsID)
         VALUES (@Name, @SegmentID, @RegionID, @FunctionID, @RpaStatusID, @BtoJjedsID, @BoJjedsID, @FcJjedsID, @SseJjedsID, @LseJjedsID);
@@ -42,7 +42,7 @@ END;
 GO
 
 -- Update Automation
-CREATE PROCEDURE sp_UpdateAutomation
+CREATE OR ALTER PROCEDURE sp_UpdateAutomation
     @ID INT,
     @Name NVARCHAR(255),
     @SegmentID INT = NULL,
@@ -56,7 +56,7 @@ CREATE PROCEDURE sp_UpdateAutomation
     @LseJjedsID INT = NULL
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE Automation
         SET Name = @Name,
@@ -71,7 +71,6 @@ BEGIN
             LseJjedsID = @LseJjedsID
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -80,7 +79,7 @@ END;
 GO
 
 -- Delete Automation
-CREATE PROCEDURE sp_DeleteAutomation
+CREATE OR ALTER PROCEDURE sp_DeleteAutomation
     @ID INT
 AS
 BEGIN
@@ -89,7 +88,6 @@ BEGIN
         DELETE FROM Automation
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -98,10 +96,10 @@ END;
 GO
 
 -- GetAll Automation
-CREATE PROCEDURE sp_GetAllAutomation
+CREATE OR ALTER PROCEDURE sp_GetAllAutomation
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, Name, SegmentID, RegionID, FunctionID, RpaStatusID, BtoJjedsID, BoJjedsID, FcJjedsID, SseJjedsID, LseJjedsID
     FROM Automation
     ORDER BY ID;
@@ -109,11 +107,11 @@ END;
 GO
 
 -- GetByID Automation
-CREATE PROCEDURE sp_GetByIDAutomation
+CREATE OR ALTER PROCEDURE sp_GetByIDAutomation
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, Name, SegmentID, RegionID, FunctionID, RpaStatusID, BtoJjedsID, BoJjedsID, FcJjedsID, SseJjedsID, LseJjedsID
     FROM Automation
     WHERE ID = @ID;
@@ -125,14 +123,14 @@ GO
 -- =============================================
 
 -- Insert AutomationEnvironment
-CREATE PROCEDURE sp_InsertAutomationEnvironment
+CREATE OR ALTER PROCEDURE sp_InsertAutomationEnvironment
     @AutomationID INT,
     @CmdbID INT,
     @EnvironmentTypeID INT = NULL,
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO AutomationEnvironment (AutomationID, CmdbID, EnvironmentTypeID)
         VALUES (@AutomationID, @CmdbID, @EnvironmentTypeID);
@@ -147,14 +145,14 @@ END;
 GO
 
 -- Update AutomationEnvironment
-CREATE PROCEDURE sp_UpdateAutomationEnvironment
+CREATE OR ALTER PROCEDURE sp_UpdateAutomationEnvironment
     @ID INT,
     @AutomationID INT,
     @CmdbID INT,
     @EnvironmentTypeID INT = NULL
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE AutomationEnvironment
         SET AutomationID = @AutomationID,
@@ -162,7 +160,6 @@ BEGIN
             EnvironmentTypeID = @EnvironmentTypeID
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -171,7 +168,7 @@ END;
 GO
 
 -- Delete AutomationEnvironment
-CREATE PROCEDURE sp_DeleteAutomationEnvironment
+CREATE OR ALTER PROCEDURE sp_DeleteAutomationEnvironment
     @ID INT
 AS
 BEGIN
@@ -180,7 +177,6 @@ BEGIN
         DELETE FROM AutomationEnvironment
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -189,10 +185,10 @@ END;
 GO
 
 -- GetAll AutomationEnvironment
-CREATE PROCEDURE sp_GetAllAutomationEnvironment
+CREATE OR ALTER PROCEDURE sp_GetAllAutomationEnvironment
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, AutomationID, CmdbID, EnvironmentTypeID
     FROM AutomationEnvironment
     ORDER BY ID;
@@ -200,11 +196,11 @@ END;
 GO
 
 -- GetByID AutomationEnvironment
-CREATE PROCEDURE sp_GetByIDAutomationEnvironment
+CREATE OR ALTER PROCEDURE sp_GetByIDAutomationEnvironment
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, AutomationID, CmdbID, EnvironmentTypeID
     FROM AutomationEnvironment
     WHERE ID = @ID;
@@ -216,7 +212,7 @@ GO
 -- =============================================
 
 -- Insert AutomationLogEntry
-CREATE PROCEDURE sp_InsertAutomationLogEntry
+CREATE OR ALTER PROCEDURE sp_InsertAutomationLogEntry
     @AutomationID INT,
     @CreatedJjedsID INT,
     @CreatedDate DATE,
@@ -224,7 +220,7 @@ CREATE PROCEDURE sp_InsertAutomationLogEntry
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO AutomationLogEntry (AutomationID, CreatedJjedsID, CreatedDate, Comment)
         VALUES (@AutomationID, @CreatedJjedsID, @CreatedDate, @Comment);
@@ -239,7 +235,7 @@ END;
 GO
 
 -- Update AutomationLogEntry
-CREATE PROCEDURE sp_UpdateAutomationLogEntry
+CREATE OR ALTER PROCEDURE sp_UpdateAutomationLogEntry
     @ID INT,
     @AutomationID INT,
     @CreatedJjedsID INT,
@@ -247,7 +243,7 @@ CREATE PROCEDURE sp_UpdateAutomationLogEntry
     @Comment NVARCHAR(MAX)
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE AutomationLogEntry
         SET AutomationID = @AutomationID,
@@ -256,7 +252,6 @@ BEGIN
             Comment = @Comment
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -265,7 +260,7 @@ END;
 GO
 
 -- Delete AutomationLogEntry
-CREATE PROCEDURE sp_DeleteAutomationLogEntry
+CREATE OR ALTER PROCEDURE sp_DeleteAutomationLogEntry
     @ID INT
 AS
 BEGIN
@@ -274,7 +269,6 @@ BEGIN
         DELETE FROM AutomationLogEntry
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -283,10 +277,10 @@ END;
 GO
 
 -- GetAll AutomationLogEntry
-CREATE PROCEDURE sp_GetAllAutomationLogEntry
+CREATE OR ALTER PROCEDURE sp_GetAllAutomationLogEntry
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, AutomationID, CreatedJjedsID, CreatedDate, Comment
     FROM AutomationLogEntry
     ORDER BY ID;
@@ -294,11 +288,11 @@ END;
 GO
 
 -- GetByID AutomationLogEntry
-CREATE PROCEDURE sp_GetByIDAutomationLogEntry
+CREATE OR ALTER PROCEDURE sp_GetByIDAutomationLogEntry
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, AutomationID, CreatedJjedsID, CreatedDate, Comment
     FROM AutomationLogEntry
     WHERE ID = @ID;
@@ -310,7 +304,7 @@ GO
 -- =============================================
 
 -- Insert EnhancementUserStory
-CREATE PROCEDURE sp_InsertEnhancementUserStory
+CREATE OR ALTER PROCEDURE sp_InsertEnhancementUserStory
     @EnhancementID INT,
     @JiraIssue NVARCHAR(50),
     @JiraIssueDate DATETIME2,
@@ -321,7 +315,7 @@ CREATE PROCEDURE sp_InsertEnhancementUserStory
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO EnhancementUserStory (EnhancementID, JiraIssue, JiraIssueDate, StoryPoints, JiraIssueLink, JiraIssueSummary, JiraIssueCost)
         VALUES (@EnhancementID, @JiraIssue, @JiraIssueDate, @StoryPoints, @JiraIssueLink, @JiraIssueSummary, @JiraIssueCost);
@@ -336,7 +330,7 @@ END;
 GO
 
 -- Update EnhancementUserStory
-CREATE PROCEDURE sp_UpdateEnhancementUserStory
+CREATE OR ALTER PROCEDURE sp_UpdateEnhancementUserStory
     @ID INT,
     @EnhancementID INT,
     @JiraIssue NVARCHAR(50),
@@ -347,7 +341,7 @@ CREATE PROCEDURE sp_UpdateEnhancementUserStory
     @JiraIssueCost DECIMAL(19,4)
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE EnhancementUserStory
         SET EnhancementID = @EnhancementID,
@@ -359,7 +353,6 @@ BEGIN
             JiraIssueCost = @JiraIssueCost
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -368,7 +361,7 @@ END;
 GO
 
 -- Delete EnhancementUserStory
-CREATE PROCEDURE sp_DeleteEnhancementUserStory
+CREATE OR ALTER PROCEDURE sp_DeleteEnhancementUserStory
     @ID INT
 AS
 BEGIN
@@ -377,7 +370,6 @@ BEGIN
         DELETE FROM EnhancementUserStory
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -386,10 +378,10 @@ END;
 GO
 
 -- GetAll EnhancementUserStory
-CREATE PROCEDURE sp_GetAllEnhancementUserStory
+CREATE OR ALTER PROCEDURE sp_GetAllEnhancementUserStory
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, EnhancementID, JiraIssue, JiraIssueDate, StoryPoints, JiraIssueLink, JiraIssueSummary, JiraIssueCost
     FROM EnhancementUserStory
     ORDER BY ID;
@@ -397,11 +389,11 @@ END;
 GO
 
 -- GetByID EnhancementUserStory
-CREATE PROCEDURE sp_GetByIDEnhancementUserStory
+CREATE OR ALTER PROCEDURE sp_GetByIDEnhancementUserStory
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, EnhancementID, JiraIssue, JiraIssueDate, StoryPoints, JiraIssueLink, JiraIssueSummary, JiraIssueCost
     FROM EnhancementUserStory
     WHERE ID = @ID;
@@ -413,7 +405,7 @@ GO
 -- =============================================
 
 -- Insert SlaMaster
-CREATE PROCEDURE sp_InsertSlaMaster
+CREATE OR ALTER PROCEDURE sp_InsertSlaMaster
     @AutomationID INT,
     @ComplexityTypeID INT = NULL,
     @MedalID INT = NULL,
@@ -429,7 +421,7 @@ CREATE PROCEDURE sp_InsertSlaMaster
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO SlaMaster (AutomationID, ComplexityTypeID, MedalID, Zcode, CostCenter, StartDate, EndDate, BtoJjedsId, BoJjedsId, FcJjedsId, SignatureStatus, SignatureStatusDate)
         VALUES (@AutomationID, @ComplexityTypeID, @MedalID, @Zcode, @CostCenter, @StartDate, @EndDate, @BtoJjedsId, @BoJjedsId, @FcJjedsId, @SignatureStatus, @SignatureStatusDate);
@@ -444,7 +436,7 @@ END;
 GO
 
 -- Update SlaMaster
-CREATE PROCEDURE sp_UpdateSlaMaster
+CREATE OR ALTER PROCEDURE sp_UpdateSlaMaster
     @ID INT,
     @AutomationID INT,
     @ComplexityTypeID INT = NULL,
@@ -460,7 +452,7 @@ CREATE PROCEDURE sp_UpdateSlaMaster
     @SignatureStatusDate DATETIME2
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE SlaMaster
         SET AutomationID = @AutomationID,
@@ -477,7 +469,6 @@ BEGIN
             SignatureStatusDate = @SignatureStatusDate
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -486,7 +477,7 @@ END;
 GO
 
 -- Delete SlaMaster
-CREATE PROCEDURE sp_DeleteSlaMaster
+CREATE OR ALTER PROCEDURE sp_DeleteSlaMaster
     @ID INT
 AS
 BEGIN
@@ -495,7 +486,6 @@ BEGIN
         DELETE FROM SlaMaster
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -504,10 +494,10 @@ END;
 GO
 
 -- GetAll SlaMaster
-CREATE PROCEDURE sp_GetAllSlaMaster
+CREATE OR ALTER PROCEDURE sp_GetAllSlaMaster
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, AutomationID, ComplexityTypeID, MedalID, Zcode, CostCenter, StartDate, EndDate, BtoJjedsId, BoJjedsId, FcJjedsId, SignatureStatus, SignatureStatusDate
     FROM SlaMaster
     ORDER BY ID;
@@ -515,11 +505,11 @@ END;
 GO
 
 -- GetByID SlaMaster
-CREATE PROCEDURE sp_GetByIDSlaMaster
+CREATE OR ALTER PROCEDURE sp_GetByIDSlaMaster
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, AutomationID, ComplexityTypeID, MedalID, Zcode, CostCenter, StartDate, EndDate, BtoJjedsId, BoJjedsId, FcJjedsId, SignatureStatus, SignatureStatusDate
     FROM SlaMaster
     WHERE ID = @ID;
@@ -531,7 +521,7 @@ GO
 -- =============================================
 
 -- Insert SlaItem
-CREATE PROCEDURE sp_InsertSlaItem
+CREATE OR ALTER PROCEDURE sp_InsertSlaItem
     @SlaMasterID INT,
     @SlaItemTypeID INT,
     @EnhancementID INT,
@@ -541,7 +531,7 @@ CREATE PROCEDURE sp_InsertSlaItem
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO SlaItem (SlaMasterID, SlaItemTypeID, EnhancementID, Quantity, Cost, Total)
         VALUES (@SlaMasterID, @SlaItemTypeID, @EnhancementID, @Quantity, @Cost, @Total);
@@ -556,7 +546,7 @@ END;
 GO
 
 -- Update SlaItem
-CREATE PROCEDURE sp_UpdateSlaItem
+CREATE OR ALTER PROCEDURE sp_UpdateSlaItem
     @ID INT,
     @SlaMasterID INT,
     @SlaItemTypeID INT,
@@ -566,7 +556,7 @@ CREATE PROCEDURE sp_UpdateSlaItem
     @Total DECIMAL(19,4)
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE SlaItem
         SET SlaMasterID = @SlaMasterID,
@@ -577,7 +567,6 @@ BEGIN
             Total = @Total
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -586,7 +575,7 @@ END;
 GO
 
 -- Delete SlaItem
-CREATE PROCEDURE sp_DeleteSlaItem
+CREATE OR ALTER PROCEDURE sp_DeleteSlaItem
     @ID INT
 AS
 BEGIN
@@ -595,7 +584,6 @@ BEGIN
         DELETE FROM SlaItem
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -604,10 +592,10 @@ END;
 GO
 
 -- GetAll SlaItem
-CREATE PROCEDURE sp_GetAllSlaItem
+CREATE OR ALTER PROCEDURE sp_GetAllSlaItem
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, SlaMasterID, SlaItemTypeID, EnhancementID, Quantity, Cost, Total
     FROM SlaItem
     ORDER BY ID;
@@ -615,11 +603,11 @@ END;
 GO
 
 -- GetByID SlaItem
-CREATE PROCEDURE sp_GetByIDSlaItem
+CREATE OR ALTER PROCEDURE sp_GetByIDSlaItem
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, SlaMasterID, SlaItemTypeID, EnhancementID, Quantity, Cost, Total
     FROM SlaItem
     WHERE ID = @ID;
@@ -631,7 +619,7 @@ GO
 -- =============================================
 
 -- Insert SlaLogEntry
-CREATE PROCEDURE sp_InsertSlaLogEntry
+CREATE OR ALTER PROCEDURE sp_InsertSlaLogEntry
     @SlaMasterID INT,
     @CreatedJjedsID INT,
     @CreatedDate DATE,
@@ -639,7 +627,7 @@ CREATE PROCEDURE sp_InsertSlaLogEntry
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO SlaLogEntry (SlaMasterID, CreatedJjedsID, CreatedDate, Comment)
         VALUES (@SlaMasterID, @CreatedJjedsID, @CreatedDate, @Comment);
@@ -654,7 +642,7 @@ END;
 GO
 
 -- Update SlaLogEntry
-CREATE PROCEDURE sp_UpdateSlaLogEntry
+CREATE OR ALTER PROCEDURE sp_UpdateSlaLogEntry
     @ID INT,
     @SlaMasterID INT,
     @CreatedJjedsID INT,
@@ -662,7 +650,7 @@ CREATE PROCEDURE sp_UpdateSlaLogEntry
     @Comment NVARCHAR(MAX)
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE SlaLogEntry
         SET SlaMasterID = @SlaMasterID,
@@ -671,7 +659,6 @@ BEGIN
             Comment = @Comment
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -680,7 +667,7 @@ END;
 GO
 
 -- Delete SlaLogEntry
-CREATE PROCEDURE sp_DeleteSlaLogEntry
+CREATE OR ALTER PROCEDURE sp_DeleteSlaLogEntry
     @ID INT
 AS
 BEGIN
@@ -689,7 +676,6 @@ BEGIN
         DELETE FROM SlaLogEntry
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -698,10 +684,10 @@ END;
 GO
 
 -- GetAll SlaLogEntry
-CREATE PROCEDURE sp_GetAllSlaLogEntry
+CREATE OR ALTER PROCEDURE sp_GetAllSlaLogEntry
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, SlaMasterID, CreatedJjedsID, CreatedDate, Comment
     FROM SlaLogEntry
     ORDER BY ID;
@@ -709,11 +695,11 @@ END;
 GO
 
 -- GetByID SlaLogEntry
-CREATE PROCEDURE sp_GetByIDSlaLogEntry
+CREATE OR ALTER PROCEDURE sp_GetByIDSlaLogEntry
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, SlaMasterID, CreatedJjedsID, CreatedDate, Comment
     FROM SlaLogEntry
     WHERE ID = @ID;
@@ -725,7 +711,7 @@ GO
 -- =============================================
 
 -- Insert VirtualIdentity
-CREATE PROCEDURE sp_InsertVirtualIdentity
+CREATE OR ALTER PROCEDURE sp_InsertVirtualIdentity
     @JjedsID INT,
     @AdDomainID INT,
     @HostName NVARCHAR(255),
@@ -735,7 +721,7 @@ CREATE PROCEDURE sp_InsertVirtualIdentity
     @NewID INT OUTPUT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         INSERT INTO VirtualIdentity (JjedsID, AdDomainID, HostName, IPv4, Created, Retired)
         VALUES (@JjedsID, @AdDomainID, @HostName, @IPv4, @Created, @Retired);
@@ -750,7 +736,7 @@ END;
 GO
 
 -- Update VirtualIdentity
-CREATE PROCEDURE sp_UpdateVirtualIdentity
+CREATE OR ALTER PROCEDURE sp_UpdateVirtualIdentity
     @ID INT,
     @JjedsID INT,
     @AdDomainID INT,
@@ -760,7 +746,7 @@ CREATE PROCEDURE sp_UpdateVirtualIdentity
     @Retired DATE
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
         UPDATE VirtualIdentity
         SET JjedsID = @JjedsID,
@@ -771,7 +757,6 @@ BEGIN
             Retired = @Retired
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -780,7 +765,7 @@ END;
 GO
 
 -- Delete VirtualIdentity
-CREATE PROCEDURE sp_DeleteVirtualIdentity
+CREATE OR ALTER PROCEDURE sp_DeleteVirtualIdentity
     @ID INT
 AS
 BEGIN
@@ -789,7 +774,6 @@ BEGIN
         DELETE FROM VirtualIdentity
         WHERE ID = @ID;
 
-        SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -798,10 +782,10 @@ END;
 GO
 
 -- GetAll VirtualIdentity
-CREATE PROCEDURE sp_GetAllVirtualIdentity
+CREATE OR ALTER PROCEDURE sp_GetAllVirtualIdentity
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, JjedsID, AdDomainID, HostName, IPv4, Created, Retired
     FROM VirtualIdentity
     ORDER BY ID;
@@ -809,11 +793,11 @@ END;
 GO
 
 -- GetByID VirtualIdentity
-CREATE PROCEDURE sp_GetByIDVirtualIdentity
+CREATE OR ALTER PROCEDURE sp_GetByIDVirtualIdentity
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     SELECT ID, JjedsID, AdDomainID, HostName, IPv4, Created, Retired
     FROM VirtualIdentity
     WHERE ID = @ID;
