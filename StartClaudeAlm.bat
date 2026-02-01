@@ -1,2 +1,2 @@
-cd "C:\Claude\ALM"
+cd "C:\Claude\RpaAlmApi"
 claude.exe

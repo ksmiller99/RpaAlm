@@ -1,0 +1,149 @@
+Changed database context to 'RpaAlmDev'.
+========================================
+Starting Junction Table CRUD Procedure Tests
+Testing ViAssignments (1 table, 5 procedures)
+========================================
+ 
+Creating prerequisite data for foreign keys...
+NewID       RowsAffected
+----------- ------------
+          3            1
+Created JjedsHelper: 3
+NewID       RowsAffected
+----------- ------------
+          3            1
+Created AdDomainType: 3
+NewID       RowsAffected
+----------- ------------
+          3            1
+Created RpaStatusType: 3
+NewID       RowsAffected
+----------- ------------
+          3            1
+Created CmdbHelper: 3
+NewID       RowsAffected
+----------- ------------
+          3            1
+Created AutomationEnvironmentType: 3
+NewID       RowsAffected
+----------- ------------
+          2            1
+Created VirtualIdentity: 2
+NewID       RowsAffected
+----------- ------------
+          2            1
+Created Automation: 2
+NewID       RowsAffected
+----------- ------------
+          2            1
+Created AutomationEnvironment: 2
+Prerequisite data created successfully
+ 
+Testing ViAssignments procedures...
+NewID       RowsAffected
+----------- ------------
+          1            1
+Insert: 1
+ID          VirtualIdentityID AutomationEnvironmentID Percentage  StartDate        EndDate         
+----------- ----------------- ----------------------- ----------- ---------------- ----------------
+          1                 2                       2          50       2026-01-01             NULL
+
+(1 rows affected)
+ID          VirtualIdentityID AutomationEnvironmentID Percentage  StartDate        EndDate         
+----------- ----------------- ----------------------- ----------- ---------------- ----------------
+          1                 2                       2          50       2026-01-01             NULL
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+ID          VirtualIdentityID AutomationEnvironmentID Percentage  StartDate        EndDate         
+----------- ----------------- ----------------------- ----------- ---------------- ----------------
+          1                 2                       2          75       2026-01-01       2026-12-31
+
+(1 rows affected)
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+ID          VirtualIdentityID AutomationEnvironmentID Percentage  StartDate        EndDate         
+----------- ----------------- ----------------------- ----------- ---------------- ----------------
+
+(0 rows affected)
+✓ ViAssignments tests complete
+ 
+Cleaning up prerequisite test data...
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted AutomationEnvironment: 2
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted Automation: 2
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted VirtualIdentity: 2
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted AutomationEnvironmentType: 3
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted CmdbHelper: 3
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted RpaStatusType: 3
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted AdDomainType: 3
+
+(1 rows affected)
+RowsAffected
+------------
+           1
+
+(1 rows affected)
+Deleted JjedsHelper: 3
+Prerequisite data cleanup complete
+ 
+========================================
+All Junction Table Tests Complete!
+1 table tested
+5 stored procedures tested
+========================================
