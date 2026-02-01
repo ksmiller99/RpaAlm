@@ -1,75 +1,59 @@
 -- =============================================
--- CRUD Stored Procedures for Main Entity Tables
--- RpaDataDev Database
+-- CRUD Stored Procedures for Main Tables
+-- =============================================
+-- This file contains 40 stored procedures (5 per table) for 8 main tables
+-- Each table has: Insert, Update, Delete, GetAll, GetByID
 -- =============================================
 
-USE RpaDataDev;
+USE RpaAlmDev;
 GO
 
 -- =============================================
--- Automation CRUD Procedures
+-- Automation Procedures (1/8)
 -- =============================================
 
 -- Insert Automation
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertAutomation
-    @Name NVARCHAR(255) = NULL,
+CREATE PROCEDURE sp_InsertAutomation
+    @Name NVARCHAR(255),
     @SegmentID INT = NULL,
     @RegionID INT = NULL,
     @FunctionID INT = NULL,
-    @StatusID INT = NULL,
-    @BtoWWID NVARCHAR(9) = NULL,
-    @BoWWID NVARCHAR(9) = NULL,
-    @FcWWID NVARCHAR(9) = NULL,
-    @BuildZcode NVARCHAR(50) = NULL,
-    @BuildCostCenter NVARCHAR(50) = NULL,
-    @SseWWID NVARCHAR(9) = NULL,
-    @LseWWID NVARCHAR(9) = NULL,
+    @RpaStatusID INT,
+    @BtoJjedsID INT = NULL,
+    @BoJjedsID INT = NULL,
+    @FcJjedsID INT = NULL,
+    @SseJjedsID INT = NULL,
+    @LseJjedsID INT = NULL,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO Automation (Name, SegmentID, RegionID, FunctionID, StatusID,
-                                BtoWWID, BoWWID, FcWWID, BuildZcode, BuildCostCenter,
-                                SseWWID, LseWWID)
-        VALUES (@Name, @SegmentID, @RegionID, @FunctionID, @StatusID,
-                @BtoWWID, @BoWWID, @FcWWID, @BuildZcode, @BuildCostCenter,
-                @SseWWID, @LseWWID);
+        INSERT INTO Automation (Name, SegmentID, RegionID, FunctionID, RpaStatusID, BtoJjedsID, BoJjedsID, FcJjedsID, SseJjedsID, LseJjedsID)
+        VALUES (@Name, @SegmentID, @RegionID, @FunctionID, @RpaStatusID, @BtoJjedsID, @BoJjedsID, @FcJjedsID, @SseJjedsID, @LseJjedsID);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Update Automation
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateAutomation
+CREATE PROCEDURE sp_UpdateAutomation
     @ID INT,
-    @Name NVARCHAR(255) = NULL,
+    @Name NVARCHAR(255),
     @SegmentID INT = NULL,
     @RegionID INT = NULL,
     @FunctionID INT = NULL,
-    @StatusID INT = NULL,
-    @BtoWWID NVARCHAR(9) = NULL,
-    @BoWWID NVARCHAR(9) = NULL,
-    @FcWWID NVARCHAR(9) = NULL,
-    @BuildZcode NVARCHAR(50) = NULL,
-    @BuildCostCenter NVARCHAR(50) = NULL,
-    @SseWWID NVARCHAR(9) = NULL,
-    @LseWWID NVARCHAR(9) = NULL
+    @RpaStatusID INT,
+    @BtoJjedsID INT = NULL,
+    @BoJjedsID INT = NULL,
+    @FcJjedsID INT = NULL,
+    @SseJjedsID INT = NULL,
+    @LseJjedsID INT = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -79,14 +63,12 @@ BEGIN
             SegmentID = @SegmentID,
             RegionID = @RegionID,
             FunctionID = @FunctionID,
-            StatusID = @StatusID,
-            BtoWWID = @BtoWWID,
-            BoWWID = @BoWWID,
-            FcWWID = @FcWWID,
-            BuildZcode = @BuildZcode,
-            BuildCostCenter = @BuildCostCenter,
-            SseWWID = @SseWWID,
-            LseWWID = @LseWWID
+            RpaStatusID = @RpaStatusID,
+            BtoJjedsID = @BtoJjedsID,
+            BoJjedsID = @BoJjedsID,
+            FcJjedsID = @FcJjedsID,
+            SseJjedsID = @SseJjedsID,
+            LseJjedsID = @LseJjedsID
         WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
@@ -94,131 +76,90 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Delete Automation
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteAutomation
+CREATE PROCEDURE sp_DeleteAutomation
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM Automation WHERE ID = @ID;
+        DELETE FROM Automation
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Get All Automation
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllAutomation
+-- GetAll Automation
+CREATE PROCEDURE sp_GetAllAutomation
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, Name, SegmentID, RegionID, FunctionID, StatusID,
-           BtoWWID, BoWWID, FcWWID, BuildZcode, BuildCostCenter,
-           SseWWID, LseWWID
+    SELECT ID, Name, SegmentID, RegionID, FunctionID, RpaStatusID, BtoJjedsID, BoJjedsID, FcJjedsID, SseJjedsID, LseJjedsID
     FROM Automation
     ORDER BY ID;
-END
+END;
 GO
 
--- Get Automation By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomation
+-- GetByID Automation
+CREATE PROCEDURE sp_GetByIDAutomation
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, Name, SegmentID, RegionID, FunctionID, StatusID,
-           BtoWWID, BoWWID, FcWWID, BuildZcode, BuildCostCenter,
-           SseWWID, LseWWID
+    SELECT ID, Name, SegmentID, RegionID, FunctionID, RpaStatusID, BtoJjedsID, BoJjedsID, FcJjedsID, SseJjedsID, LseJjedsID
     FROM Automation
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- SlaMaster CRUD Procedures
+-- AutomationEnvironment Procedures (2/8)
 -- =============================================
 
--- Insert SlaMaster
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertSlaMaster
-    @AutomationID INT = NULL,
-    @ComplexityID INT = NULL,
-    @MedalID INT = NULL,
-    @Zcode NVARCHAR(50) = NULL,
-    @CostCenter NVARCHAR(50) = NULL,
-    @StartDate DATE = NULL,
-    @EndDate DATE = NULL,
+-- Insert AutomationEnvironment
+CREATE PROCEDURE sp_InsertAutomationEnvironment
+    @AutomationID INT,
+    @CmdbID INT,
+    @EnvironmentTypeID INT = NULL,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO SlaMaster (AutomationID, ComplexityID, MedalID, Zcode,
-                               CostCenter, StartDate, EndDate)
-        VALUES (@AutomationID, @ComplexityID, @MedalID, @Zcode,
-                @CostCenter, @StartDate, @EndDate);
+        INSERT INTO AutomationEnvironment (AutomationID, CmdbID, EnvironmentTypeID)
+        VALUES (@AutomationID, @CmdbID, @EnvironmentTypeID);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Update SlaMaster
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateSlaMaster
+-- Update AutomationEnvironment
+CREATE PROCEDURE sp_UpdateAutomationEnvironment
     @ID INT,
-    @AutomationID INT = NULL,
-    @ComplexityID INT = NULL,
-    @MedalID INT = NULL,
-    @Zcode NVARCHAR(50) = NULL,
-    @CostCenter NVARCHAR(50) = NULL,
-    @StartDate DATE = NULL,
-    @EndDate DATE = NULL
+    @AutomationID INT,
+    @CmdbID INT,
+    @EnvironmentTypeID INT = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        UPDATE SlaMaster
+        UPDATE AutomationEnvironment
         SET AutomationID = @AutomationID,
-            ComplexityID = @ComplexityID,
-            MedalID = @MedalID,
-            Zcode = @Zcode,
-            CostCenter = @CostCenter,
-            StartDate = @StartDate,
-            EndDate = @EndDate
+            CmdbID = @CmdbID,
+            EnvironmentTypeID = @EnvironmentTypeID
         WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
@@ -226,115 +167,93 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Delete SlaMaster
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteSlaMaster
+-- Delete AutomationEnvironment
+CREATE PROCEDURE sp_DeleteAutomationEnvironment
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM SlaMaster WHERE ID = @ID;
+        DELETE FROM AutomationEnvironment
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Get All SlaMaster
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllSlaMaster
+-- GetAll AutomationEnvironment
+CREATE PROCEDURE sp_GetAllAutomationEnvironment
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, AutomationID, ComplexityID, MedalID, Zcode,
-           CostCenter, StartDate, EndDate
-    FROM SlaMaster
+    SELECT ID, AutomationID, CmdbID, EnvironmentTypeID
+    FROM AutomationEnvironment
     ORDER BY ID;
-END
+END;
 GO
 
--- Get SlaMaster By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaMaster
+-- GetByID AutomationEnvironment
+CREATE PROCEDURE sp_GetByIDAutomationEnvironment
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, AutomationID, ComplexityID, MedalID, Zcode,
-           CostCenter, StartDate, EndDate
-    FROM SlaMaster
+    SELECT ID, AutomationID, CmdbID, EnvironmentTypeID
+    FROM AutomationEnvironment
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- SlaItem CRUD Procedures
+-- AutomationLogEntry Procedures (3/8)
 -- =============================================
 
--- Insert SlaItem
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertSlaItem
-    @SlaMasterID INT = NULL,
-    @SlaItemTypeID INT = NULL,
-    @EnhancementID INT = NULL,
+-- Insert AutomationLogEntry
+CREATE PROCEDURE sp_InsertAutomationLogEntry
+    @AutomationID INT,
+    @CreatedJjedsID INT,
+    @CreatedDate DATE,
+    @Comment NVARCHAR(MAX),
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO SlaItem (SlaMasterID, SlaItemTypeID, EnhancementID)
-        VALUES (@SlaMasterID, @SlaItemTypeID, @EnhancementID);
+        INSERT INTO AutomationLogEntry (AutomationID, CreatedJjedsID, CreatedDate, Comment)
+        VALUES (@AutomationID, @CreatedJjedsID, @CreatedDate, @Comment);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Update SlaItem
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateSlaItem
+-- Update AutomationLogEntry
+CREATE PROCEDURE sp_UpdateAutomationLogEntry
     @ID INT,
-    @SlaMasterID INT = NULL,
-    @SlaItemTypeID INT = NULL,
-    @EnhancementID INT = NULL
+    @AutomationID INT,
+    @CreatedJjedsID INT,
+    @CreatedDate DATE,
+    @Comment NVARCHAR(MAX)
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        UPDATE SlaItem
-        SET SlaMasterID = @SlaMasterID,
-            SlaItemTypeID = @SlaItemTypeID,
-            EnhancementID = @EnhancementID
+        UPDATE AutomationLogEntry
+        SET AutomationID = @AutomationID,
+            CreatedJjedsID = @CreatedJjedsID,
+            CreatedDate = @CreatedDate,
+            Comment = @Comment
         WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
@@ -342,113 +261,90 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Delete SlaItem
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteSlaItem
+-- Delete AutomationLogEntry
+CREATE PROCEDURE sp_DeleteAutomationLogEntry
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM SlaItem WHERE ID = @ID;
+        DELETE FROM AutomationLogEntry
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Get All SlaItem
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllSlaItem
+-- GetAll AutomationLogEntry
+CREATE PROCEDURE sp_GetAllAutomationLogEntry
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, SlaMasterID, SlaItemTypeID, EnhancementID
-    FROM SlaItem
+    SELECT ID, AutomationID, CreatedJjedsID, CreatedDate, Comment
+    FROM AutomationLogEntry
     ORDER BY ID;
-END
+END;
 GO
 
--- Get SlaItem By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaItem
+-- GetByID AutomationLogEntry
+CREATE PROCEDURE sp_GetByIDAutomationLogEntry
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, SlaMasterID, SlaItemTypeID, EnhancementID
-    FROM SlaItem
+    SELECT ID, AutomationID, CreatedJjedsID, CreatedDate, Comment
+    FROM AutomationLogEntry
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- EnhancementUserStory CRUD Procedures
+-- EnhancementUserStory Procedures (4/8)
 -- =============================================
 
 -- Insert EnhancementUserStory
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertEnhancementUserStory
-    @EnhancementID INT = NULL,
-    @JiraIssue NVARCHAR(50) = NULL,
-    @StoryPoints INT = NULL,
-    @JiraIssueLink NVARCHAR(500) = NULL,
-    @JiraIssueSummary NVARCHAR(MAX) = NULL,
-    @StoryPointCostID INT = NULL,
+CREATE PROCEDURE sp_InsertEnhancementUserStory
+    @EnhancementID INT,
+    @JiraIssue NVARCHAR(50),
+    @JiraIssueDate DATETIME2,
+    @StoryPoints INT,
+    @JiraIssueLink NVARCHAR(500),
+    @JiraIssueSummary NVARCHAR(MAX),
+    @JiraIssueCost DECIMAL(19,4),
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO EnhancementUserStory (EnhancementID, JiraIssue, StoryPoints,
-                                          JiraIssueLink, JiraIssueSummary, StoryPointCostID)
-        VALUES (@EnhancementID, @JiraIssue, @StoryPoints,
-                @JiraIssueLink, @JiraIssueSummary, @StoryPointCostID);
+        INSERT INTO EnhancementUserStory (EnhancementID, JiraIssue, JiraIssueDate, StoryPoints, JiraIssueLink, JiraIssueSummary, JiraIssueCost)
+        VALUES (@EnhancementID, @JiraIssue, @JiraIssueDate, @StoryPoints, @JiraIssueLink, @JiraIssueSummary, @JiraIssueCost);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Update EnhancementUserStory
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateEnhancementUserStory
+CREATE PROCEDURE sp_UpdateEnhancementUserStory
     @ID INT,
-    @EnhancementID INT = NULL,
-    @JiraIssue NVARCHAR(50) = NULL,
-    @StoryPoints INT = NULL,
-    @JiraIssueLink NVARCHAR(500) = NULL,
-    @JiraIssueSummary NVARCHAR(MAX) = NULL,
-    @StoryPointCostID INT = NULL
+    @EnhancementID INT,
+    @JiraIssue NVARCHAR(50),
+    @JiraIssueDate DATETIME2,
+    @StoryPoints INT,
+    @JiraIssueLink NVARCHAR(500),
+    @JiraIssueSummary NVARCHAR(MAX),
+    @JiraIssueCost DECIMAL(19,4)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -456,10 +352,11 @@ BEGIN
         UPDATE EnhancementUserStory
         SET EnhancementID = @EnhancementID,
             JiraIssue = @JiraIssue,
+            JiraIssueDate = @JiraIssueDate,
             StoryPoints = @StoryPoints,
             JiraIssueLink = @JiraIssueLink,
             JiraIssueSummary = @JiraIssueSummary,
-            StoryPointCostID = @StoryPointCostID
+            JiraIssueCost = @JiraIssueCost
         WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
@@ -467,118 +364,17 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Delete EnhancementUserStory
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteEnhancementUserStory
+CREATE PROCEDURE sp_DeleteEnhancementUserStory
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM EnhancementUserStory WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All EnhancementUserStory
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllEnhancementUserStory
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, EnhancementID, JiraIssue, StoryPoints,
-           JiraIssueLink, JiraIssueSummary, StoryPointCostID
-    FROM EnhancementUserStory
-    ORDER BY ID;
-END
-GO
-
--- Get EnhancementUserStory By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDEnhancementUserStory
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, EnhancementID, JiraIssue, StoryPoints,
-           JiraIssueLink, JiraIssueSummary, StoryPointCostID
-    FROM EnhancementUserStory
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- AutomationLogEntry CRUD Procedures
--- =============================================
-
--- Insert AutomationLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertAutomationLogEntry
-    @AutomationID INT = NULL,
-    @CreatedWWID NVARCHAR(9) = NULL,
-    @CreatedDate DATE = NULL,
-    @Comment NVARCHAR(MAX) = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO AutomationLogEntry (AutomationID, CreatedWWID, CreatedDate, Comment)
-        VALUES (@AutomationID, @CreatedWWID, @CreatedDate, @Comment);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update AutomationLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateAutomationLogEntry
-    @ID INT,
-    @AutomationID INT = NULL,
-    @CreatedWWID NVARCHAR(9) = NULL,
-    @CreatedDate DATE = NULL,
-    @Comment NVARCHAR(MAX) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE AutomationLogEntry
-        SET AutomationID = @AutomationID,
-            CreatedWWID = @CreatedWWID,
-            CreatedDate = @CreatedDate,
-            Comment = @Comment
+        DELETE FROM EnhancementUserStory
         WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
@@ -586,114 +382,291 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Delete AutomationLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteAutomationLogEntry
-    @ID INT
+-- GetAll EnhancementUserStory
+CREATE PROCEDURE sp_GetAllEnhancementUserStory
 AS
 BEGIN
     SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM AutomationLogEntry WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All AutomationLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllAutomationLogEntry
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, AutomationID, CreatedWWID, CreatedDate, Comment
-    FROM AutomationLogEntry
+    SELECT ID, EnhancementID, JiraIssue, JiraIssueDate, StoryPoints, JiraIssueLink, JiraIssueSummary, JiraIssueCost
+    FROM EnhancementUserStory
     ORDER BY ID;
-END
+END;
 GO
 
--- Get AutomationLogEntry By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomationLogEntry
+-- GetByID EnhancementUserStory
+CREATE PROCEDURE sp_GetByIDEnhancementUserStory
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, AutomationID, CreatedWWID, CreatedDate, Comment
-    FROM AutomationLogEntry
+    SELECT ID, EnhancementID, JiraIssue, JiraIssueDate, StoryPoints, JiraIssueLink, JiraIssueSummary, JiraIssueCost
+    FROM EnhancementUserStory
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- SlaLogEntry CRUD Procedures
+-- SlaMaster Procedures (5/8)
 -- =============================================
 
--- Insert SlaLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertSlaLogEntry
-    @SlaMasterID INT = NULL,
-    @CreatedWWID NVARCHAR(9) = NULL,
-    @CreatedDate DATE = NULL,
-    @Comment NVARCHAR(MAX) = NULL,
+-- Insert SlaMaster
+CREATE PROCEDURE sp_InsertSlaMaster
+    @AutomationID INT,
+    @ComplexityTypeID INT = NULL,
+    @MedalID INT = NULL,
+    @Zcode NVARCHAR(50) = NULL,
+    @CostCenter NVARCHAR(50) = NULL,
+    @StartDate DATE,
+    @EndDate DATE,
+    @BtoJjedsId INT,
+    @BoJjedsId INT,
+    @FcJjedsId INT,
+    @SignatureStatus INT,
+    @SignatureStatusDate DATETIME2,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO SlaLogEntry (SlaMasterID, CreatedWWID, CreatedDate, Comment)
-        VALUES (@SlaMasterID, @CreatedWWID, @CreatedDate, @Comment);
+        INSERT INTO SlaMaster (AutomationID, ComplexityTypeID, MedalID, Zcode, CostCenter, StartDate, EndDate, BtoJjedsId, BoJjedsId, FcJjedsId, SignatureStatus, SignatureStatusDate)
+        VALUES (@AutomationID, @ComplexityTypeID, @MedalID, @Zcode, @CostCenter, @StartDate, @EndDate, @BtoJjedsId, @BoJjedsId, @FcJjedsId, @SignatureStatus, @SignatureStatusDate);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
+GO
+
+-- Update SlaMaster
+CREATE PROCEDURE sp_UpdateSlaMaster
+    @ID INT,
+    @AutomationID INT,
+    @ComplexityTypeID INT = NULL,
+    @MedalID INT = NULL,
+    @Zcode NVARCHAR(50) = NULL,
+    @CostCenter NVARCHAR(50) = NULL,
+    @StartDate DATE,
+    @EndDate DATE,
+    @BtoJjedsId INT,
+    @BoJjedsId INT,
+    @FcJjedsId INT,
+    @SignatureStatus INT,
+    @SignatureStatusDate DATETIME2
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE SlaMaster
+        SET AutomationID = @AutomationID,
+            ComplexityTypeID = @ComplexityTypeID,
+            MedalID = @MedalID,
+            Zcode = @Zcode,
+            CostCenter = @CostCenter,
+            StartDate = @StartDate,
+            EndDate = @EndDate,
+            BtoJjedsId = @BtoJjedsId,
+            BoJjedsId = @BoJjedsId,
+            FcJjedsId = @FcJjedsId,
+            SignatureStatus = @SignatureStatus,
+            SignatureStatusDate = @SignatureStatusDate
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete SlaMaster
+CREATE PROCEDURE sp_DeleteSlaMaster
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM SlaMaster
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll SlaMaster
+CREATE PROCEDURE sp_GetAllSlaMaster
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, AutomationID, ComplexityTypeID, MedalID, Zcode, CostCenter, StartDate, EndDate, BtoJjedsId, BoJjedsId, FcJjedsId, SignatureStatus, SignatureStatusDate
+    FROM SlaMaster
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID SlaMaster
+CREATE PROCEDURE sp_GetByIDSlaMaster
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, AutomationID, ComplexityTypeID, MedalID, Zcode, CostCenter, StartDate, EndDate, BtoJjedsId, BoJjedsId, FcJjedsId, SignatureStatus, SignatureStatusDate
+    FROM SlaMaster
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- SlaItem Procedures (6/8)
+-- =============================================
+
+-- Insert SlaItem
+CREATE PROCEDURE sp_InsertSlaItem
+    @SlaMasterID INT,
+    @SlaItemTypeID INT,
+    @EnhancementID INT,
+    @Quantity INT,
+    @Cost DECIMAL(19,4),
+    @Total DECIMAL(19,4),
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO SlaItem (SlaMasterID, SlaItemTypeID, EnhancementID, Quantity, Cost, Total)
+        VALUES (@SlaMasterID, @SlaItemTypeID, @EnhancementID, @Quantity, @Cost, @Total);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update SlaItem
+CREATE PROCEDURE sp_UpdateSlaItem
+    @ID INT,
+    @SlaMasterID INT,
+    @SlaItemTypeID INT,
+    @EnhancementID INT,
+    @Quantity INT,
+    @Cost DECIMAL(19,4),
+    @Total DECIMAL(19,4)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE SlaItem
+        SET SlaMasterID = @SlaMasterID,
+            SlaItemTypeID = @SlaItemTypeID,
+            EnhancementID = @EnhancementID,
+            Quantity = @Quantity,
+            Cost = @Cost,
+            Total = @Total
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete SlaItem
+CREATE PROCEDURE sp_DeleteSlaItem
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM SlaItem
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll SlaItem
+CREATE PROCEDURE sp_GetAllSlaItem
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, SlaMasterID, SlaItemTypeID, EnhancementID, Quantity, Cost, Total
+    FROM SlaItem
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID SlaItem
+CREATE PROCEDURE sp_GetByIDSlaItem
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, SlaMasterID, SlaItemTypeID, EnhancementID, Quantity, Cost, Total
+    FROM SlaItem
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- SlaLogEntry Procedures (7/8)
+-- =============================================
+
+-- Insert SlaLogEntry
+CREATE PROCEDURE sp_InsertSlaLogEntry
+    @SlaMasterID INT,
+    @CreatedJjedsID INT,
+    @CreatedDate DATE,
+    @Comment NVARCHAR(MAX),
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO SlaLogEntry (SlaMasterID, CreatedJjedsID, CreatedDate, Comment)
+        VALUES (@SlaMasterID, @CreatedJjedsID, @CreatedDate, @Comment);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
 GO
 
 -- Update SlaLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateSlaLogEntry
+CREATE PROCEDURE sp_UpdateSlaLogEntry
     @ID INT,
-    @SlaMasterID INT = NULL,
-    @CreatedWWID NVARCHAR(9) = NULL,
-    @CreatedDate DATE = NULL,
-    @Comment NVARCHAR(MAX) = NULL
+    @SlaMasterID INT,
+    @CreatedJjedsID INT,
+    @CreatedDate DATE,
+    @Comment NVARCHAR(MAX)
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
         UPDATE SlaLogEntry
         SET SlaMasterID = @SlaMasterID,
-            CreatedWWID = @CreatedWWID,
+            CreatedJjedsID = @CreatedJjedsID,
             CreatedDate = @CreatedDate,
             Comment = @Comment
         WHERE ID = @ID;
@@ -703,128 +676,97 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Delete SlaLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteSlaLogEntry
+CREATE PROCEDURE sp_DeleteSlaLogEntry
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM SlaLogEntry WHERE ID = @ID;
+        DELETE FROM SlaLogEntry
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Get All SlaLogEntry
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllSlaLogEntry
+-- GetAll SlaLogEntry
+CREATE PROCEDURE sp_GetAllSlaLogEntry
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, SlaMasterID, CreatedWWID, CreatedDate, Comment
+    SELECT ID, SlaMasterID, CreatedJjedsID, CreatedDate, Comment
     FROM SlaLogEntry
     ORDER BY ID;
-END
+END;
 GO
 
--- Get SlaLogEntry By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaLogEntry
+-- GetByID SlaLogEntry
+CREATE PROCEDURE sp_GetByIDSlaLogEntry
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, SlaMasterID, CreatedWWID, CreatedDate, Comment
+    SELECT ID, SlaMasterID, CreatedJjedsID, CreatedDate, Comment
     FROM SlaLogEntry
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- VirtualIdentity CRUD Procedures
+-- VirtualIdentity Procedures (8/8)
 -- =============================================
 
 -- Insert VirtualIdentity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertVirtualIdentity
-    @AccountName NVARCHAR(255) = NULL,
-    @HostName NVARCHAR(255) = NULL,
-    @WWID NVARCHAR(9) = NULL,
-    @IPv4 NCHAR(15) = NULL,
-    @ADDomainID INT = NULL,
-    @Email NVARCHAR(255) = NULL,
-    @Created DATE = NULL,
-    @Retired DATE = NULL,
+CREATE PROCEDURE sp_InsertVirtualIdentity
+    @JjedsID INT,
+    @AdDomainID INT,
+    @HostName NVARCHAR(255),
+    @IPv4 NCHAR(15),
+    @Created DATE,
+    @Retired DATE,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO VirtualIdentity (AccountName, HostName, WWID, IPv4,
-                                      ADDomainID, Email, Created, Retired)
-        VALUES (@AccountName, @HostName, @WWID, @IPv4,
-                @ADDomainID, @Email, @Created, @Retired);
+        INSERT INTO VirtualIdentity (JjedsID, AdDomainID, HostName, IPv4, Created, Retired)
+        VALUES (@JjedsID, @AdDomainID, @HostName, @IPv4, @Created, @Retired);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Update VirtualIdentity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateVirtualIdentity
+CREATE PROCEDURE sp_UpdateVirtualIdentity
     @ID INT,
-    @AccountName NVARCHAR(255) = NULL,
-    @HostName NVARCHAR(255) = NULL,
-    @WWID NVARCHAR(9) = NULL,
-    @IPv4 NCHAR(15) = NULL,
-    @ADDomainID INT = NULL,
-    @Email NVARCHAR(255) = NULL,
-    @Created DATE = NULL,
-    @Retired DATE = NULL
+    @JjedsID INT,
+    @AdDomainID INT,
+    @HostName NVARCHAR(255),
+    @IPv4 NCHAR(15),
+    @Created DATE,
+    @Retired DATE
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
         UPDATE VirtualIdentity
-        SET AccountName = @AccountName,
+        SET JjedsID = @JjedsID,
+            AdDomainID = @AdDomainID,
             HostName = @HostName,
-            WWID = @WWID,
             IPv4 = @IPv4,
-            ADDomainID = @ADDomainID,
-            Email = @Email,
             Created = @Created,
             Retired = @Retired
         WHERE ID = @ID;
@@ -834,115 +776,17 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Delete VirtualIdentity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteVirtualIdentity
+CREATE PROCEDURE sp_DeleteVirtualIdentity
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM VirtualIdentity WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All VirtualIdentity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllVirtualIdentity
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, AccountName, HostName, WWID, IPv4,
-           ADDomainID, Email, Created, Retired
-    FROM VirtualIdentity
-    ORDER BY ID;
-END
-GO
-
--- Get VirtualIdentity By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDVirtualIdentity
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, AccountName, HostName, WWID, IPv4,
-           ADDomainID, Email, Created, Retired
-    FROM VirtualIdentity
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- AutomationEnvironment CRUD Procedures
--- =============================================
-
--- Insert AutomationEnvironment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertAutomationEnvironment
-    @AutomationID INT = NULL,
-    @AppID NVARCHAR(50) = NULL,
-    @EnvironmentTypeID INT = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO AutomationEnvironment (AutomationID, AppID, EnvironmentTypeID)
-        VALUES (@AutomationID, @AppID, @EnvironmentTypeID);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update AutomationEnvironment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateAutomationEnvironment
-    @ID INT,
-    @AutomationID INT = NULL,
-    @AppID NVARCHAR(50) = NULL,
-    @EnvironmentTypeID INT = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE AutomationEnvironment
-        SET AutomationID = @AutomationID,
-            AppID = @AppID,
-            EnvironmentTypeID = @EnvironmentTypeID
+        DELETE FROM VirtualIdentity
         WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
@@ -950,62 +794,28 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Delete AutomationEnvironment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteAutomationEnvironment
-    @ID INT
+-- GetAll VirtualIdentity
+CREATE PROCEDURE sp_GetAllVirtualIdentity
 AS
 BEGIN
     SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM AutomationEnvironment WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All AutomationEnvironment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllAutomationEnvironment
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, AutomationID, AppID, EnvironmentTypeID
-    FROM AutomationEnvironment
+    SELECT ID, JjedsID, AdDomainID, HostName, IPv4, Created, Retired
+    FROM VirtualIdentity
     ORDER BY ID;
-END
+END;
 GO
 
--- Get AutomationEnvironment By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomationEnvironment
+-- GetByID VirtualIdentity
+CREATE PROCEDURE sp_GetByIDVirtualIdentity
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, AutomationID, AppID, EnvironmentTypeID
-    FROM AutomationEnvironment
+    SELECT ID, JjedsID, AdDomainID, HostName, IPv4, Created, Retired
+    FROM VirtualIdentity
     WHERE ID = @ID;
-END
-GO
-
-PRINT 'Main entity table CRUD procedures created successfully (40 procedures).';
+END;
 GO

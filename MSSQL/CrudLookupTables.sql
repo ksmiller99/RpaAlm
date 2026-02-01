@@ -1,281 +1,48 @@
 -- =============================================
--- CRUD Stored Procedures for Lookup/Reference Tables
--- RpaDataDev Database
+-- CRUD Stored Procedures for Lookup Tables
+-- =============================================
+-- This file contains 60 stored procedures (5 per table) for 12 lookup tables
+-- Each table has: Insert, Update, Delete, GetAll, GetByID
 -- =============================================
 
-USE RpaDataDev;
-GO
-
--- =============================================
--- SlaItemType CRUD Procedures
--- =============================================
-
--- Insert SlaItemType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertSlaItemType
-    @Name NVARCHAR(255) = NULL,
-    @Description NVARCHAR(MAX) = NULL,
-    @Cost INT = NULL,
-    @Disabled INT = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO SlaItemType (Name, Description, Cost, Disabled)
-        VALUES (@Name, @Description, @Cost, @Disabled);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update SlaItemType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateSlaItemType
-    @ID INT,
-    @Name NVARCHAR(255) = NULL,
-    @Description NVARCHAR(MAX) = NULL,
-    @Cost INT = NULL,
-    @Disabled INT = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE SlaItemType
-        SET Name = @Name,
-            Description = @Description,
-            Cost = @Cost,
-            Disabled = @Disabled
-        WHERE ID = @ID;
-
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Delete SlaItemType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteSlaItemType
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM SlaItemType WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All SlaItemType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllSlaItemType
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Name, Description, Cost, Disabled
-    FROM SlaItemType
-    ORDER BY ID;
-END
-GO
-
--- Get SlaItemType By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaItemType
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Name, Description, Cost, Disabled
-    FROM SlaItemType
-    WHERE ID = @ID;
-END
+USE RpaAlmDev;
 GO
 
 -- =============================================
--- Enhancement CRUD Procedures
+-- AdDomainType Procedures (1/12)
 -- =============================================
 
--- Insert Enhancement
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertEnhancement
-    @Scope NVARCHAR(255) = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO Enhancement (Scope)
-        VALUES (@Scope);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update Enhancement
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateEnhancement
-    @ID INT,
-    @Scope NVARCHAR(255) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE Enhancement
-        SET Scope = @Scope
-        WHERE ID = @ID;
-
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Delete Enhancement
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteEnhancement
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM Enhancement WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All Enhancement
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllEnhancement
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Scope
-    FROM Enhancement
-    ORDER BY ID;
-END
-GO
-
--- Get Enhancement By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDEnhancement
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Scope
-    FROM Enhancement
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- Complexity CRUD Procedures
--- =============================================
-
--- Insert Complexity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertComplexity
-    @Code NVARCHAR(50) = NULL,
+-- Insert AdDomainType
+CREATE PROCEDURE sp_InsertAdDomainType
+    @Code NVARCHAR(255),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO Complexity (Code, Description)
+        INSERT INTO AdDomainType (Code, Description)
         VALUES (@Code, @Description);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Update Complexity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateComplexity
+-- Update AdDomainType
+CREATE PROCEDURE sp_UpdateAdDomainType
     @ID INT,
-    @Code NVARCHAR(50) = NULL,
+    @Code NVARCHAR(255),
     @Description NVARCHAR(255) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        UPDATE Complexity
+        UPDATE AdDomainType
         SET Code = @Code,
             Description = @Description
         WHERE ID = @ID;
@@ -285,110 +52,17 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Delete Complexity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteComplexity
+-- Delete AdDomainType
+CREATE PROCEDURE sp_DeleteAdDomainType
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM Complexity WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All Complexity
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllComplexity
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Complexity
-    ORDER BY ID;
-END
-GO
-
--- Get Complexity By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDComplexity
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Complexity
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- Medal CRUD Procedures
--- =============================================
-
--- Insert Medal
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertMedal
-    @Name NVARCHAR(255) = NULL,
-    @Description NVARCHAR(MAX) = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO Medal (Name, Description)
-        VALUES (@Name, @Description);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update Medal
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateMedal
-    @ID INT,
-    @Name NVARCHAR(255) = NULL,
-    @Description NVARCHAR(MAX) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE Medal
-        SET Name = @Name,
-            Description = @Description
+        DELETE FROM AdDomainType
         WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
@@ -396,519 +70,39 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Delete Medal
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteMedal
-    @ID INT
+-- GetAll AdDomainType
+CREATE PROCEDURE sp_GetAllAdDomainType
 AS
 BEGIN
     SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM Medal WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All Medal
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllMedal
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Name, Description
-    FROM Medal
+    SELECT ID, Code, Description
+    FROM AdDomainType
     ORDER BY ID;
-END
+END;
 GO
 
--- Get Medal By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDMedal
+-- GetByID AdDomainType
+CREATE PROCEDURE sp_GetByIDAdDomainType
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, Name, Description
-    FROM Medal
+    SELECT ID, Code, Description
+    FROM AdDomainType
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- Function CRUD Procedures
--- =============================================
-
--- Insert Function
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertFunction
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO [Function] (Code, Description)
-        VALUES (@Code, @Description);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update Function
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateFunction
-    @ID INT,
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE [Function]
-        SET Code = @Code,
-            Description = @Description
-        WHERE ID = @ID;
-
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Delete Function
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteFunction
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM [Function] WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All Function
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllFunction
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM [Function]
-    ORDER BY ID;
-END
-GO
-
--- Get Function By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDFunction
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM [Function]
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- Region CRUD Procedures
--- =============================================
-
--- Insert Region
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertRegion
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO Region (Code, Description)
-        VALUES (@Code, @Description);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update Region
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateRegion
-    @ID INT,
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE Region
-        SET Code = @Code,
-            Description = @Description
-        WHERE ID = @ID;
-
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Delete Region
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteRegion
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM Region WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All Region
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllRegion
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Region
-    ORDER BY ID;
-END
-GO
-
--- Get Region By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDRegion
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Region
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- Segment CRUD Procedures
--- =============================================
-
--- Insert Segment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertSegment
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO Segment (Code, Description)
-        VALUES (@Code, @Description);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update Segment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateSegment
-    @ID INT,
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE Segment
-        SET Code = @Code,
-            Description = @Description
-        WHERE ID = @ID;
-
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Delete Segment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteSegment
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM Segment WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All Segment
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllSegment
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Segment
-    ORDER BY ID;
-END
-GO
-
--- Get Segment By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDSegment
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Segment
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- Status CRUD Procedures
--- =============================================
-
--- Insert Status
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertStatus
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL,
-    @NewID INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO Status (Code, Description)
-        VALUES (@Code, @Description);
-
-        SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Update Status
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateStatus
-    @ID INT,
-    @Code NVARCHAR(50) = NULL,
-    @Description NVARCHAR(255) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        UPDATE Status
-        SET Code = @Code,
-            Description = @Description
-        WHERE ID = @ID;
-
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Delete Status
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteStatus
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        DELETE FROM Status WHERE ID = @ID;
-        SELECT @@ROWCOUNT AS RowsAffected;
-    END TRY
-    BEGIN CATCH
-        THROW;
-    END CATCH
-END
-GO
-
--- Get All Status
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllStatus
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Status
-    ORDER BY ID;
-END
-GO
-
--- Get Status By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDStatus
-    @ID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, Code, Description
-    FROM Status
-    WHERE ID = @ID;
-END
-GO
-
--- =============================================
--- AutomationEnvironmentType CRUD Procedures
+-- AutomationEnvironmentType Procedures (2/12)
 -- =============================================
 
 -- Insert AutomationEnvironmentType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertAutomationEnvironmentType
-    @Code NVARCHAR(50) = NULL,
+CREATE PROCEDURE sp_InsertAutomationEnvironmentType
+    @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
 AS
@@ -919,23 +113,18 @@ BEGIN
         VALUES (@Code, @Description);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Update AutomationEnvironmentType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateAutomationEnvironmentType
+CREATE PROCEDURE sp_UpdateAutomationEnvironmentType
     @ID INT,
-    @Code NVARCHAR(50) = NULL,
+    @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
 AS
 BEGIN
@@ -951,53 +140,40 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Delete AutomationEnvironmentType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteAutomationEnvironmentType
+CREATE PROCEDURE sp_DeleteAutomationEnvironmentType
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM AutomationEnvironmentType WHERE ID = @ID;
+        DELETE FROM AutomationEnvironmentType
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Get All AutomationEnvironmentType
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllAutomationEnvironmentType
+-- GetAll AutomationEnvironmentType
+CREATE PROCEDURE sp_GetAllAutomationEnvironmentType
 AS
 BEGIN
     SET NOCOUNT ON;
     SELECT ID, Code, Description
     FROM AutomationEnvironmentType
     ORDER BY ID;
-END
+END;
 GO
 
--- Get AutomationEnvironmentType By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomationEnvironmentType
+-- GetByID AutomationEnvironmentType
+CREATE PROCEDURE sp_GetByIDAutomationEnvironmentType
     @ID INT
 AS
 BEGIN
@@ -1005,55 +181,45 @@ BEGIN
     SELECT ID, Code, Description
     FROM AutomationEnvironmentType
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- ADDomain CRUD Procedures
+-- ComplexityType Procedures (3/12)
 -- =============================================
 
--- Insert ADDomain
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertADDomain
-    @Domain NVARCHAR(255) = NULL,
+-- Insert ComplexityType
+CREATE PROCEDURE sp_InsertComplexityType
+    @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO ADDomain (Domain, Description)
-        VALUES (@Domain, @Description);
+        INSERT INTO ComplexityType (Code, Description)
+        VALUES (@Code, @Description);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Update ADDomain
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateADDomain
+-- Update ComplexityType
+CREATE PROCEDURE sp_UpdateComplexityType
     @ID INT,
-    @Domain NVARCHAR(255) = NULL,
+    @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        UPDATE ADDomain
-        SET Domain = @Domain,
+        UPDATE ComplexityType
+        SET Code = @Code,
             Description = @Description
         WHERE ID = @ID;
 
@@ -1062,109 +228,796 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Delete ADDomain
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteADDomain
+-- Delete ComplexityType
+CREATE PROCEDURE sp_DeleteComplexityType
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM ADDomain WHERE ID = @ID;
+        DELETE FROM ComplexityType
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Get All ADDomain
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllADDomain
+-- GetAll ComplexityType
+CREATE PROCEDURE sp_GetAllComplexityType
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, Domain, Description
-    FROM ADDomain
+    SELECT ID, Code, Description
+    FROM ComplexityType
     ORDER BY ID;
-END
+END;
 GO
 
--- Get ADDomain By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDADDomain
+-- GetByID ComplexityType
+CREATE PROCEDURE sp_GetByIDComplexityType
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, Domain, Description
-    FROM ADDomain
+    SELECT ID, Code, Description
+    FROM ComplexityType
     WHERE ID = @ID;
-END
+END;
 GO
 
 -- =============================================
--- StoryPointCost CRUD Procedures
+-- FunctionType Procedures (4/12)
 -- =============================================
 
--- Insert StoryPointCost
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_InsertStoryPointCost
-    @Points INT = NULL,
-    @MaxHours INT = NULL,
-    @TotalCost INT = NULL,
-    @JnJCostShare INT = NULL,
-    @EffectiveDate DATE = NULL,
+-- Insert FunctionType
+CREATE PROCEDURE sp_InsertFunctionType
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
-        INSERT INTO StoryPointCost (Points, MaxHours, TotalCost, JnJCostShare, EffectiveDate)
-        VALUES (@Points, @MaxHours, @TotalCost, @JnJCostShare, @EffectiveDate);
+        INSERT INTO FunctionType (Code, Description)
+        VALUES (@Code, @Description);
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
+GO
+
+-- Update FunctionType
+CREATE PROCEDURE sp_UpdateFunctionType
+    @ID INT,
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE FunctionType
+        SET Code = @Code,
+            Description = @Description
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete FunctionType
+CREATE PROCEDURE sp_DeleteFunctionType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM FunctionType
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll FunctionType
+CREATE PROCEDURE sp_GetAllFunctionType
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM FunctionType
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID FunctionType
+CREATE PROCEDURE sp_GetByIDFunctionType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM FunctionType
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- MedalType Procedures (5/12)
+-- =============================================
+
+-- Insert MedalType
+CREATE PROCEDURE sp_InsertMedalType
+    @Code NVARCHAR(255),
+    @Description NVARCHAR(MAX) = NULL,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO MedalType (Code, Description)
+        VALUES (@Code, @Description);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update MedalType
+CREATE PROCEDURE sp_UpdateMedalType
+    @ID INT,
+    @Code NVARCHAR(255),
+    @Description NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE MedalType
+        SET Code = @Code,
+            Description = @Description
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete MedalType
+CREATE PROCEDURE sp_DeleteMedalType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM MedalType
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll MedalType
+CREATE PROCEDURE sp_GetAllMedalType
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM MedalType
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID MedalType
+CREATE PROCEDURE sp_GetByIDMedalType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM MedalType
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- RegionType Procedures (6/12)
+-- =============================================
+
+-- Insert RegionType
+CREATE PROCEDURE sp_InsertRegionType
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO RegionType (Code, Description)
+        VALUES (@Code, @Description);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update RegionType
+CREATE PROCEDURE sp_UpdateRegionType
+    @ID INT,
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE RegionType
+        SET Code = @Code,
+            Description = @Description
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete RegionType
+CREATE PROCEDURE sp_DeleteRegionType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM RegionType
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll RegionType
+CREATE PROCEDURE sp_GetAllRegionType
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM RegionType
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID RegionType
+CREATE PROCEDURE sp_GetByIDRegionType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM RegionType
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- SegmentType Procedures (7/12)
+-- =============================================
+
+-- Insert SegmentType
+CREATE PROCEDURE sp_InsertSegmentType
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO SegmentType (Code, Description)
+        VALUES (@Code, @Description);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update SegmentType
+CREATE PROCEDURE sp_UpdateSegmentType
+    @ID INT,
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE SegmentType
+        SET Code = @Code,
+            Description = @Description
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete SegmentType
+CREATE PROCEDURE sp_DeleteSegmentType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM SegmentType
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll SegmentType
+CREATE PROCEDURE sp_GetAllSegmentType
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM SegmentType
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID SegmentType
+CREATE PROCEDURE sp_GetByIDSegmentType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM SegmentType
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- RpaStatusType Procedures (8/12)
+-- =============================================
+
+-- Insert RpaStatusType
+CREATE PROCEDURE sp_InsertRpaStatusType
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO RpaStatusType (Code, Description)
+        VALUES (@Code, @Description);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update RpaStatusType
+CREATE PROCEDURE sp_UpdateRpaStatusType
+    @ID INT,
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE RpaStatusType
+        SET Code = @Code,
+            Description = @Description
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete RpaStatusType
+CREATE PROCEDURE sp_DeleteRpaStatusType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM RpaStatusType
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll RpaStatusType
+CREATE PROCEDURE sp_GetAllRpaStatusType
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM RpaStatusType
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID RpaStatusType
+CREATE PROCEDURE sp_GetByIDRpaStatusType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM RpaStatusType
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- SlaSignatureStatusType Procedures (9/12)
+-- =============================================
+
+-- Insert SlaSignatureStatusType
+CREATE PROCEDURE sp_InsertSlaSignatureStatusType
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO SlaSignatureStatusType (Code, Description)
+        VALUES (@Code, @Description);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update SlaSignatureStatusType
+CREATE PROCEDURE sp_UpdateSlaSignatureStatusType
+    @ID INT,
+    @Code NVARCHAR(50),
+    @Description NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE SlaSignatureStatusType
+        SET Code = @Code,
+            Description = @Description
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete SlaSignatureStatusType
+CREATE PROCEDURE sp_DeleteSlaSignatureStatusType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM SlaSignatureStatusType
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll SlaSignatureStatusType
+CREATE PROCEDURE sp_GetAllSlaSignatureStatusType
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM SlaSignatureStatusType
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID SlaSignatureStatusType
+CREATE PROCEDURE sp_GetByIDSlaSignatureStatusType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Code, Description
+    FROM SlaSignatureStatusType
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- SlaItemType Procedures (10/12)
+-- =============================================
+
+-- Insert SlaItemType
+CREATE PROCEDURE sp_InsertSlaItemType
+    @Name NVARCHAR(255),
+    @Description NVARCHAR(MAX),
+    @Cost DECIMAL(19,4),
+    @EffectiveDate DATE,
+    @Disabled BIT,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO SlaItemType (Name, Description, Cost, EffectiveDate, Disabled)
+        VALUES (@Name, @Description, @Cost, @EffectiveDate, @Disabled);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update SlaItemType
+CREATE PROCEDURE sp_UpdateSlaItemType
+    @ID INT,
+    @Name NVARCHAR(255),
+    @Description NVARCHAR(MAX),
+    @Cost DECIMAL(19,4),
+    @EffectiveDate DATE,
+    @Disabled BIT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE SlaItemType
+        SET Name = @Name,
+            Description = @Description,
+            Cost = @Cost,
+            EffectiveDate = @EffectiveDate,
+            Disabled = @Disabled
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete SlaItemType
+CREATE PROCEDURE sp_DeleteSlaItemType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM SlaItemType
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll SlaItemType
+CREATE PROCEDURE sp_GetAllSlaItemType
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Name, Description, Cost, EffectiveDate, Disabled
+    FROM SlaItemType
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID SlaItemType
+CREATE PROCEDURE sp_GetByIDSlaItemType
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Name, Description, Cost, EffectiveDate, Disabled
+    FROM SlaItemType
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- Enhancement Procedures (11/12)
+-- =============================================
+
+-- Insert Enhancement
+CREATE PROCEDURE sp_InsertEnhancement
+    @Scope NVARCHAR(255) = NULL,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO Enhancement (Scope)
+        VALUES (@Scope);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Update Enhancement
+CREATE PROCEDURE sp_UpdateEnhancement
+    @ID INT,
+    @Scope NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        UPDATE Enhancement
+        SET Scope = @Scope
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Delete Enhancement
+CREATE PROCEDURE sp_DeleteEnhancement
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+    BEGIN TRY
+        DELETE FROM Enhancement
+        WHERE ID = @ID;
+
+        SELECT @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+-- GetAll Enhancement
+CREATE PROCEDURE sp_GetAllEnhancement
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Scope
+    FROM Enhancement
+    ORDER BY ID;
+END;
+GO
+
+-- GetByID Enhancement
+CREATE PROCEDURE sp_GetByIDEnhancement
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT ID, Scope
+    FROM Enhancement
+    WHERE ID = @ID;
+END;
+GO
+
+-- =============================================
+-- StoryPointCost Procedures (12/12)
+-- =============================================
+
+-- Insert StoryPointCost
+CREATE PROCEDURE sp_InsertStoryPointCost
+    @Points INT,
+    @MaxHours INT,
+    @TotalCost DECIMAL(19,4),
+    @JnJCostPercentage INT,
+    @EffectiveDate DATE,
+    @NewID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO StoryPointCost (Points, MaxHours, TotalCost, JnJCostPercentage, EffectiveDate)
+        VALUES (@Points, @MaxHours, @TotalCost, @JnJCostPercentage, @EffectiveDate);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
 GO
 
 -- Update StoryPointCost
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_UpdateStoryPointCost
+CREATE PROCEDURE sp_UpdateStoryPointCost
     @ID INT,
-    @Points INT = NULL,
-    @MaxHours INT = NULL,
-    @TotalCost INT = NULL,
-    @JnJCostShare INT = NULL,
-    @EffectiveDate DATE = NULL
+    @Points INT,
+    @MaxHours INT,
+    @TotalCost DECIMAL(19,4),
+    @JnJCostPercentage INT,
+    @EffectiveDate DATE
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -1173,7 +1026,7 @@ BEGIN
         SET Points = @Points,
             MaxHours = @MaxHours,
             TotalCost = @TotalCost,
-            JnJCostShare = @JnJCostShare,
+            JnJCostPercentage = @JnJCostPercentage,
             EffectiveDate = @EffectiveDate
         WHERE ID = @ID;
 
@@ -1182,62 +1035,46 @@ BEGIN
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
 -- Delete StoryPointCost
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_DeleteStoryPointCost
+CREATE PROCEDURE sp_DeleteStoryPointCost
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
     BEGIN TRY
-        DELETE FROM StoryPointCost WHERE ID = @ID;
+        DELETE FROM StoryPointCost
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
     END CATCH
-END
+END;
 GO
 
--- Get All StoryPointCost
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetAllStoryPointCost
+-- GetAll StoryPointCost
+CREATE PROCEDURE sp_GetAllStoryPointCost
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, Points, MaxHours, TotalCost, JnJCostShare, EffectiveDate
+    SELECT ID, Points, MaxHours, TotalCost, JnJCostPercentage, EffectiveDate
     FROM StoryPointCost
     ORDER BY ID;
-END
+END;
 GO
 
--- Get StoryPointCost By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
-CREATE OR ALTER PROCEDURE sp_GetByIDStoryPointCost
+-- GetByID StoryPointCost
+CREATE PROCEDURE sp_GetByIDStoryPointCost
     @ID INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT ID, Points, MaxHours, TotalCost, JnJCostShare, EffectiveDate
+    SELECT ID, Points, MaxHours, TotalCost, JnJCostPercentage, EffectiveDate
     FROM StoryPointCost
     WHERE ID = @ID;
-END
-GO
-
-PRINT 'Lookup/Reference table CRUD procedures created successfully (55 procedures).';
+END;
 GO

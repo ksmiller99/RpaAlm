@@ -1,39 +1,46 @@
 -- =============================================
--- CRUD Stored Procedures for Junction/Bridge Tables
--- RpaDataDev Database
+-- CRUD Stored Procedures for Junction Tables
+-- ViAssignments: Links Virtual Identities to Automation Environments
 -- =============================================
 
-USE RpaDataDev;
+USE RpaAlmDev;
 GO
 
 -- =============================================
--- ViAssignments CRUD Procedures
+-- sp_InsertViAssignments
+-- Inserts a new VI assignment record
+-- Returns: NewID and RowsAffected
 -- =============================================
-
--- Insert ViAssignments
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
 CREATE OR ALTER PROCEDURE sp_InsertViAssignments
-    @VirtualIdentityID INT = NULL,
-    @AutomationEnvironmentID INT = NULL,
-    @Percentage INT = NULL,
-    @StartDate DATE = NULL,
+    @VirtualIdentityID INT,
+    @AutomationEnvironmentID INT,
+    @Percentage INT,
+    @StartDate DATE,
     @EndDate DATE = NULL,
     @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
+
     BEGIN TRY
-        INSERT INTO ViAssignments (VirtualIdentityID, AutomationEnvironmentID,
-                                    Percentage, StartDate, EndDate)
-        VALUES (@VirtualIdentityID, @AutomationEnvironmentID,
-                @Percentage, @StartDate, @EndDate);
+        INSERT INTO ViAssignments (
+            VirtualIdentityID,
+            AutomationEnvironmentID,
+            Percentage,
+            StartDate,
+            EndDate
+        )
+        VALUES (
+            @VirtualIdentityID,
+            @AutomationEnvironmentID,
+            @Percentage,
+            @StartDate,
+            @EndDate
+        );
 
         SET @NewID = SCOPE_IDENTITY();
-        SELECT @NewID AS ID;
+
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -41,25 +48,26 @@ BEGIN
 END
 GO
 
--- Update ViAssignments
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_UpdateViAssignments
+-- Updates an existing VI assignment record
+-- Returns: RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_UpdateViAssignments
     @ID INT,
-    @VirtualIdentityID INT = NULL,
-    @AutomationEnvironmentID INT = NULL,
-    @Percentage INT = NULL,
-    @StartDate DATE = NULL,
+    @VirtualIdentityID INT,
+    @AutomationEnvironmentID INT,
+    @Percentage INT,
+    @StartDate DATE,
     @EndDate DATE = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
+
     BEGIN TRY
         UPDATE ViAssignments
-        SET VirtualIdentityID = @VirtualIdentityID,
+        SET
+            VirtualIdentityID = @VirtualIdentityID,
             AutomationEnvironmentID = @AutomationEnvironmentID,
             Percentage = @Percentage,
             StartDate = @StartDate,
@@ -74,19 +82,21 @@ BEGIN
 END
 GO
 
--- Delete ViAssignments
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_DeleteViAssignments
+-- Deletes a VI assignment record by ID
+-- Returns: RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_DeleteViAssignments
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
+
     BEGIN TRY
-        DELETE FROM ViAssignments WHERE ID = @ID;
+        DELETE FROM ViAssignments
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
@@ -95,40 +105,43 @@ BEGIN
 END
 GO
 
--- Get All ViAssignments
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_GetAllViAssignments
+-- Retrieves all VI assignment records
+-- Returns: All rows ordered by ID
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_GetAllViAssignments
 AS
 BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, VirtualIdentityID, AutomationEnvironmentID,
-           Percentage, StartDate, EndDate
+    SELECT
+        ID,
+        VirtualIdentityID,
+        AutomationEnvironmentID,
+        Percentage,
+        StartDate,
+        EndDate
     FROM ViAssignments
     ORDER BY ID;
 END
 GO
 
--- Get ViAssignments By ID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_GetByIDViAssignments
+-- Retrieves a single VI assignment record by ID
+-- Returns: Single row matching the ID
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_GetByIDViAssignments
     @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
-    SELECT ID, VirtualIdentityID, AutomationEnvironmentID,
-           Percentage, StartDate, EndDate
+    SELECT
+        ID,
+        VirtualIdentityID,
+        AutomationEnvironmentID,
+        Percentage,
+        StartDate,
+        EndDate
     FROM ViAssignments
     WHERE ID = @ID;
 END
-GO
-
-PRINT 'Junction table CRUD procedures created successfully (5 procedures).';
 GO

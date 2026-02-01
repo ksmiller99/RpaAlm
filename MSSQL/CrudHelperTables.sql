@@ -1,36 +1,36 @@
 -- =============================================
 -- CRUD Stored Procedures for Helper Tables
--- RpaDataDev Database
--- Note: These tables use non-INT primary keys
+-- JjedsHelper and CmdbHelper
 -- =============================================
 
-USE RpaDataDev;
+USE RpaAlmDev;
 GO
 
 -- =============================================
--- JjedsHelper CRUD Procedures (WWID is PK)
+-- JjedsHelper Table Procedures
 -- =============================================
 
--- Insert JjedsHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- sp_InsertJjedsHelper
+-- Inserts a new employee record from JJEDS cache
+-- Returns: NewID and RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_InsertJjedsHelper
     @WWID NVARCHAR(9),
-    @CommonName NVARCHAR(255) = NULL,
-    @Email NVARCHAR(255) = NULL,
-    @JjedsCreated DATE = NULL,
-    @JjedsLastChanged DATE = NULL
+    @CommonName NVARCHAR(255),
+    @Email NVARCHAR(255),
+    @JjedsCreated DATETIME2,
+    @JjedsLastChanged DATETIME2,
+    @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
+
     BEGIN TRY
         INSERT INTO JjedsHelper (WWID, CommonName, Email, JjedsCreated, JjedsLastChanged)
         VALUES (@WWID, @CommonName, @Email, @JjedsCreated, @JjedsLastChanged);
 
-        SELECT @WWID AS WWID, @@ROWCOUNT AS RowsAffected;
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -38,28 +38,30 @@ BEGIN
 END
 GO
 
--- Update JjedsHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_UpdateJjedsHelper
+-- Updates an existing JJEDS employee record
+-- Returns: RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_UpdateJjedsHelper
+    @ID INT,
     @WWID NVARCHAR(9),
-    @CommonName NVARCHAR(255) = NULL,
-    @Email NVARCHAR(255) = NULL,
-    @JjedsCreated DATE = NULL,
-    @JjedsLastChanged DATE = NULL
+    @CommonName NVARCHAR(255),
+    @Email NVARCHAR(255),
+    @JjedsCreated DATETIME2,
+    @JjedsLastChanged DATETIME2
 AS
 BEGIN
     SET NOCOUNT ON;
+
     BEGIN TRY
         UPDATE JjedsHelper
-        SET CommonName = @CommonName,
+        SET WWID = @WWID,
+            CommonName = @CommonName,
             Email = @Email,
             JjedsCreated = @JjedsCreated,
             JjedsLastChanged = @JjedsLastChanged
-        WHERE WWID = @WWID;
+        WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
@@ -69,19 +71,21 @@ BEGIN
 END
 GO
 
--- Delete JjedsHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_DeleteJjedsHelper
+-- Deletes a JJEDS employee record by ID
+-- Returns: RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_DeleteJjedsHelper
-    @WWID NVARCHAR(9)
+    @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
+
     BEGIN TRY
-        DELETE FROM JjedsHelper WHERE WWID = @WWID;
+        DELETE FROM JjedsHelper
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
@@ -90,61 +94,58 @@ BEGIN
 END
 GO
 
--- Get All JjedsHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_GetAllJjedsHelper
+-- Returns all JJEDS employee records ordered by ID
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_GetAllJjedsHelper
 AS
 BEGIN
-    SET NOCOUNT ON;
-    SELECT WWID, CommonName, Email, JjedsCreated, JjedsLastChanged
+    SELECT ID, WWID, CommonName, Email, JjedsCreated, JjedsLastChanged
     FROM JjedsHelper
-    ORDER BY WWID;
+    ORDER BY ID;
 END
 GO
 
--- Get JjedsHelper By WWID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_GetByIDJjedsHelper
+-- Returns a single JJEDS employee record by ID
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_GetByIDJjedsHelper
-    @WWID NVARCHAR(9)
+    @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
-    SELECT WWID, CommonName, Email, JjedsCreated, JjedsLastChanged
+    SELECT ID, WWID, CommonName, Email, JjedsCreated, JjedsLastChanged
     FROM JjedsHelper
-    WHERE WWID = @WWID;
+    WHERE ID = @ID;
 END
 GO
 
 -- =============================================
--- CmdbHelper CRUD Procedures (AppID is PK)
+-- CmdbHelper Table Procedures
 -- =============================================
 
--- Insert CmdbHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- sp_InsertCmdbHelper
+-- Inserts a new CMDB application record
+-- Returns: NewID and RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_InsertCmdbHelper
     @AppID NVARCHAR(50),
-    @Name NVARCHAR(255) = NULL,
-    @Zcode NVARCHAR(50) = NULL
+    @Name NVARCHAR(255),
+    @Zcode NVARCHAR(50),
+    @OperationalStatus NVARCHAR(50),
+    @CmdbUpdated DATETIME2,
+    @NewID INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
-    BEGIN TRY
-        INSERT INTO CmdbHelper (AppID, Name, Zcode)
-        VALUES (@AppID, @Name, @Zcode);
 
-        SELECT @AppID AS AppID, @@ROWCOUNT AS RowsAffected;
+    BEGIN TRY
+        INSERT INTO CmdbHelper (AppID, Name, Zcode, OperationalStatus, CmdbUpdated)
+        VALUES (@AppID, @Name, @Zcode, @OperationalStatus, @CmdbUpdated);
+
+        SET @NewID = SCOPE_IDENTITY();
+        SELECT @NewID AS NewID, @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
         THROW;
@@ -152,24 +153,30 @@ BEGIN
 END
 GO
 
--- Update CmdbHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_UpdateCmdbHelper
+-- Updates an existing CMDB application record
+-- Returns: RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_UpdateCmdbHelper
+    @ID INT,
     @AppID NVARCHAR(50),
-    @Name NVARCHAR(255) = NULL,
-    @Zcode NVARCHAR(50) = NULL
+    @Name NVARCHAR(255),
+    @Zcode NVARCHAR(50),
+    @OperationalStatus NVARCHAR(50),
+    @CmdbUpdated DATETIME2
 AS
 BEGIN
     SET NOCOUNT ON;
+
     BEGIN TRY
         UPDATE CmdbHelper
-        SET Name = @Name,
-            Zcode = @Zcode
-        WHERE AppID = @AppID;
+        SET AppID = @AppID,
+            Name = @Name,
+            Zcode = @Zcode,
+            OperationalStatus = @OperationalStatus,
+            CmdbUpdated = @CmdbUpdated
+        WHERE ID = @ID;
 
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
@@ -179,19 +186,21 @@ BEGIN
 END
 GO
 
--- Delete CmdbHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_DeleteCmdbHelper
+-- Deletes a CMDB application record by ID
+-- Returns: RowsAffected
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_DeleteCmdbHelper
-    @AppID NVARCHAR(50)
+    @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
+
     BEGIN TRY
-        DELETE FROM CmdbHelper WHERE AppID = @AppID;
+        DELETE FROM CmdbHelper
+        WHERE ID = @ID;
+
         SELECT @@ROWCOUNT AS RowsAffected;
     END TRY
     BEGIN CATCH
@@ -200,38 +209,29 @@ BEGIN
 END
 GO
 
--- Get All CmdbHelper
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_GetAllCmdbHelper
+-- Returns all CMDB application records ordered by ID
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_GetAllCmdbHelper
 AS
 BEGIN
-    SET NOCOUNT ON;
-    SELECT AppID, Name, Zcode
+    SELECT ID, AppID, Name, Zcode, OperationalStatus, CmdbUpdated
     FROM CmdbHelper
-    ORDER BY AppID;
+    ORDER BY ID;
 END
 GO
 
--- Get CmdbHelper By AppID
-SET QUOTED_IDENTIFIER ON;
-GO
-SET ANSI_NULLS ON;
-GO
-
+-- =============================================
+-- sp_GetByIDCmdbHelper
+-- Returns a single CMDB application record by ID
+-- =============================================
 CREATE OR ALTER PROCEDURE sp_GetByIDCmdbHelper
-    @AppID NVARCHAR(50)
+    @ID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
-    SELECT AppID, Name, Zcode
+    SELECT ID, AppID, Name, Zcode, OperationalStatus, CmdbUpdated
     FROM CmdbHelper
-    WHERE AppID = @AppID;
+    WHERE ID = @ID;
 END
-GO
-
-PRINT 'Helper table CRUD procedures created successfully (10 procedures).';
 GO
