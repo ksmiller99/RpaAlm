@@ -14,7 +14,7 @@ GO
 -- Inserts a new employee record from JJEDS cache
 -- Returns: NewID and RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_InsertJjedsHelper
+CREATE PROCEDURE sp_InsertJjedsHelper
     @WWID NVARCHAR(9),
     @CommonName NVARCHAR(255),
     @Email NVARCHAR(255),
@@ -43,7 +43,7 @@ GO
 -- Updates an existing JJEDS employee record
 -- Returns: RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_UpdateJjedsHelper
+CREATE PROCEDURE sp_UpdateJjedsHelper
     @ID INT,
     @WWID NVARCHAR(9),
     @CommonName NVARCHAR(255),
@@ -75,7 +75,7 @@ GO
 -- Deletes a JJEDS employee record by ID
 -- Returns: RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_DeleteJjedsHelper
+CREATE PROCEDURE sp_DeleteJjedsHelper
     @ID INT
 AS
 BEGIN
@@ -96,7 +96,7 @@ GO
 -- sp_GetAllJjedsHelper
 -- Returns all JJEDS employee records ordered by ID
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_GetAllJjedsHelper
+CREATE PROCEDURE sp_GetAllJjedsHelper
 AS
 BEGIN
     SELECT ID, WWID, CommonName, Email, JjedsCreated, JjedsLastChanged
@@ -109,7 +109,7 @@ GO
 -- sp_GetByIDJjedsHelper
 -- Returns a single JJEDS employee record by ID
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_GetByIDJjedsHelper
+CREATE PROCEDURE sp_GetByIDJjedsHelper
     @ID INT
 AS
 BEGIN
@@ -127,7 +127,7 @@ GO
 -- Inserts a new CMDB application record
 -- Returns: NewID and RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_InsertCmdbHelper
+CREATE PROCEDURE sp_InsertCmdbHelper
     @AppID NVARCHAR(50),
     @Name NVARCHAR(255),
     @Zcode NVARCHAR(50),
@@ -156,7 +156,7 @@ GO
 -- Updates an existing CMDB application record
 -- Returns: RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_UpdateCmdbHelper
+CREATE PROCEDURE sp_UpdateCmdbHelper
     @ID INT,
     @AppID NVARCHAR(50),
     @Name NVARCHAR(255),
@@ -188,7 +188,7 @@ GO
 -- Deletes a CMDB application record by ID
 -- Returns: RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_DeleteCmdbHelper
+CREATE PROCEDURE sp_DeleteCmdbHelper
     @ID INT
 AS
 BEGIN
@@ -209,7 +209,7 @@ GO
 -- sp_GetAllCmdbHelper
 -- Returns all CMDB application records ordered by ID
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_GetAllCmdbHelper
+CREATE PROCEDURE sp_GetAllCmdbHelper
 AS
 BEGIN
     SELECT ID, AppID, Name, Zcode, OperationalStatus, CmdbUpdated
@@ -222,7 +222,7 @@ GO
 -- sp_GetByIDCmdbHelper
 -- Returns a single CMDB application record by ID
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_GetByIDCmdbHelper
+CREATE PROCEDURE sp_GetByIDCmdbHelper
     @ID INT
 AS
 BEGIN

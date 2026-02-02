@@ -11,7 +11,7 @@ GO
 -- Inserts a new VI assignment record
 -- Returns: NewID and RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_InsertViAssignments
+CREATE PROCEDURE sp_InsertViAssignments
     @VirtualIdentityID INT,
     @AutomationEnvironmentID INT,
     @Percentage INT,
@@ -53,7 +53,7 @@ GO
 -- Updates an existing VI assignment record
 -- Returns: RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_UpdateViAssignments
+CREATE PROCEDURE sp_UpdateViAssignments
     @ID INT,
     @VirtualIdentityID INT,
     @AutomationEnvironmentID INT,
@@ -86,7 +86,7 @@ GO
 -- Deletes a VI assignment record by ID
 -- Returns: RowsAffected
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_DeleteViAssignments
+CREATE PROCEDURE sp_DeleteViAssignments
     @ID INT
 AS
 BEGIN
@@ -108,7 +108,7 @@ GO
 -- Retrieves all VI assignment records
 -- Returns: All rows ordered by ID
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_GetAllViAssignments
+CREATE PROCEDURE sp_GetAllViAssignments
 AS
 BEGIN
     SELECT
@@ -128,7 +128,7 @@ GO
 -- Retrieves a single VI assignment record by ID
 -- Returns: Single row matching the ID
 -- =============================================
-CREATE OR ALTER PROCEDURE sp_GetByIDViAssignments
+CREATE PROCEDURE sp_GetByIDViAssignments
     @ID INT
 AS
 BEGIN
