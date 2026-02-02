@@ -13,7 +13,7 @@ GO
 -- =============================================
 
 -- Insert AdDomainType
-CREATE OR ALTER PROCEDURE sp_InsertAdDomainType
+CREATE PROCEDURE sp_InsertAdDomainType
     @Code NVARCHAR(255),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -34,7 +34,7 @@ END;
 GO
 
 -- Update AdDomainType
-CREATE OR ALTER PROCEDURE sp_UpdateAdDomainType
+CREATE PROCEDURE sp_UpdateAdDomainType
     @ID INT,
     @Code NVARCHAR(255),
     @Description NVARCHAR(255) = NULL
@@ -55,7 +55,7 @@ END;
 GO
 
 -- Delete AdDomainType
-CREATE OR ALTER PROCEDURE sp_DeleteAdDomainType
+CREATE PROCEDURE sp_DeleteAdDomainType
     @ID INT
 AS
 BEGIN
@@ -72,7 +72,7 @@ END;
 GO
 
 -- GetAll AdDomainType
-CREATE OR ALTER PROCEDURE sp_GetAllAdDomainType
+CREATE PROCEDURE sp_GetAllAdDomainType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -83,7 +83,7 @@ END;
 GO
 
 -- GetByID AdDomainType
-CREATE OR ALTER PROCEDURE sp_GetByIDAdDomainType
+CREATE PROCEDURE sp_GetByIDAdDomainType
     @ID INT
 AS
 BEGIN
@@ -99,7 +99,7 @@ GO
 -- =============================================
 
 -- Insert AutomationEnvironmentType
-CREATE OR ALTER PROCEDURE sp_InsertAutomationEnvironmentType
+CREATE PROCEDURE sp_InsertAutomationEnvironmentType
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -120,7 +120,7 @@ END;
 GO
 
 -- Update AutomationEnvironmentType
-CREATE OR ALTER PROCEDURE sp_UpdateAutomationEnvironmentType
+CREATE PROCEDURE sp_UpdateAutomationEnvironmentType
     @ID INT,
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
@@ -141,7 +141,7 @@ END;
 GO
 
 -- Delete AutomationEnvironmentType
-CREATE OR ALTER PROCEDURE sp_DeleteAutomationEnvironmentType
+CREATE PROCEDURE sp_DeleteAutomationEnvironmentType
     @ID INT
 AS
 BEGIN
@@ -158,7 +158,7 @@ END;
 GO
 
 -- GetAll AutomationEnvironmentType
-CREATE OR ALTER PROCEDURE sp_GetAllAutomationEnvironmentType
+CREATE PROCEDURE sp_GetAllAutomationEnvironmentType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -169,7 +169,7 @@ END;
 GO
 
 -- GetByID AutomationEnvironmentType
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomationEnvironmentType
+CREATE PROCEDURE sp_GetByIDAutomationEnvironmentType
     @ID INT
 AS
 BEGIN
@@ -185,7 +185,7 @@ GO
 -- =============================================
 
 -- Insert ComplexityType
-CREATE OR ALTER PROCEDURE sp_InsertComplexityType
+CREATE PROCEDURE sp_InsertComplexityType
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -206,7 +206,7 @@ END;
 GO
 
 -- Update ComplexityType
-CREATE OR ALTER PROCEDURE sp_UpdateComplexityType
+CREATE PROCEDURE sp_UpdateComplexityType
     @ID INT,
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
@@ -227,7 +227,7 @@ END;
 GO
 
 -- Delete ComplexityType
-CREATE OR ALTER PROCEDURE sp_DeleteComplexityType
+CREATE PROCEDURE sp_DeleteComplexityType
     @ID INT
 AS
 BEGIN
@@ -244,7 +244,7 @@ END;
 GO
 
 -- GetAll ComplexityType
-CREATE OR ALTER PROCEDURE sp_GetAllComplexityType
+CREATE PROCEDURE sp_GetAllComplexityType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -255,7 +255,7 @@ END;
 GO
 
 -- GetByID ComplexityType
-CREATE OR ALTER PROCEDURE sp_GetByIDComplexityType
+CREATE PROCEDURE sp_GetByIDComplexityType
     @ID INT
 AS
 BEGIN
@@ -271,7 +271,7 @@ GO
 -- =============================================
 
 -- Insert FunctionType
-CREATE OR ALTER PROCEDURE sp_InsertFunctionType
+CREATE PROCEDURE sp_InsertFunctionType
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -292,7 +292,7 @@ END;
 GO
 
 -- Update FunctionType
-CREATE OR ALTER PROCEDURE sp_UpdateFunctionType
+CREATE PROCEDURE sp_UpdateFunctionType
     @ID INT,
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
@@ -313,7 +313,7 @@ END;
 GO
 
 -- Delete FunctionType
-CREATE OR ALTER PROCEDURE sp_DeleteFunctionType
+CREATE PROCEDURE sp_DeleteFunctionType
     @ID INT
 AS
 BEGIN
@@ -330,7 +330,7 @@ END;
 GO
 
 -- GetAll FunctionType
-CREATE OR ALTER PROCEDURE sp_GetAllFunctionType
+CREATE PROCEDURE sp_GetAllFunctionType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -341,7 +341,7 @@ END;
 GO
 
 -- GetByID FunctionType
-CREATE OR ALTER PROCEDURE sp_GetByIDFunctionType
+CREATE PROCEDURE sp_GetByIDFunctionType
     @ID INT
 AS
 BEGIN
@@ -357,7 +357,7 @@ GO
 -- =============================================
 
 -- Insert MedalType
-CREATE OR ALTER PROCEDURE sp_InsertMedalType
+CREATE PROCEDURE sp_InsertMedalType
     @Code NVARCHAR(255),
     @Description NVARCHAR(MAX) = NULL,
     @NewID INT OUTPUT
@@ -378,7 +378,7 @@ END;
 GO
 
 -- Update MedalType
-CREATE OR ALTER PROCEDURE sp_UpdateMedalType
+CREATE PROCEDURE sp_UpdateMedalType
     @ID INT,
     @Code NVARCHAR(255),
     @Description NVARCHAR(MAX) = NULL
@@ -399,7 +399,7 @@ END;
 GO
 
 -- Delete MedalType
-CREATE OR ALTER PROCEDURE sp_DeleteMedalType
+CREATE PROCEDURE sp_DeleteMedalType
     @ID INT
 AS
 BEGIN
@@ -416,7 +416,7 @@ END;
 GO
 
 -- GetAll MedalType
-CREATE OR ALTER PROCEDURE sp_GetAllMedalType
+CREATE PROCEDURE sp_GetAllMedalType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -427,7 +427,7 @@ END;
 GO
 
 -- GetByID MedalType
-CREATE OR ALTER PROCEDURE sp_GetByIDMedalType
+CREATE PROCEDURE sp_GetByIDMedalType
     @ID INT
 AS
 BEGIN
@@ -443,7 +443,7 @@ GO
 -- =============================================
 
 -- Insert RegionType
-CREATE OR ALTER PROCEDURE sp_InsertRegionType
+CREATE PROCEDURE sp_InsertRegionType
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -464,7 +464,7 @@ END;
 GO
 
 -- Update RegionType
-CREATE OR ALTER PROCEDURE sp_UpdateRegionType
+CREATE PROCEDURE sp_UpdateRegionType
     @ID INT,
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
@@ -485,7 +485,7 @@ END;
 GO
 
 -- Delete RegionType
-CREATE OR ALTER PROCEDURE sp_DeleteRegionType
+CREATE PROCEDURE sp_DeleteRegionType
     @ID INT
 AS
 BEGIN
@@ -502,7 +502,7 @@ END;
 GO
 
 -- GetAll RegionType
-CREATE OR ALTER PROCEDURE sp_GetAllRegionType
+CREATE PROCEDURE sp_GetAllRegionType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -513,7 +513,7 @@ END;
 GO
 
 -- GetByID RegionType
-CREATE OR ALTER PROCEDURE sp_GetByIDRegionType
+CREATE PROCEDURE sp_GetByIDRegionType
     @ID INT
 AS
 BEGIN
@@ -529,7 +529,7 @@ GO
 -- =============================================
 
 -- Insert SegmentType
-CREATE OR ALTER PROCEDURE sp_InsertSegmentType
+CREATE PROCEDURE sp_InsertSegmentType
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -550,7 +550,7 @@ END;
 GO
 
 -- Update SegmentType
-CREATE OR ALTER PROCEDURE sp_UpdateSegmentType
+CREATE PROCEDURE sp_UpdateSegmentType
     @ID INT,
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
@@ -571,7 +571,7 @@ END;
 GO
 
 -- Delete SegmentType
-CREATE OR ALTER PROCEDURE sp_DeleteSegmentType
+CREATE PROCEDURE sp_DeleteSegmentType
     @ID INT
 AS
 BEGIN
@@ -588,7 +588,7 @@ END;
 GO
 
 -- GetAll SegmentType
-CREATE OR ALTER PROCEDURE sp_GetAllSegmentType
+CREATE PROCEDURE sp_GetAllSegmentType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -599,7 +599,7 @@ END;
 GO
 
 -- GetByID SegmentType
-CREATE OR ALTER PROCEDURE sp_GetByIDSegmentType
+CREATE PROCEDURE sp_GetByIDSegmentType
     @ID INT
 AS
 BEGIN
@@ -615,7 +615,7 @@ GO
 -- =============================================
 
 -- Insert RpaStatusType
-CREATE OR ALTER PROCEDURE sp_InsertRpaStatusType
+CREATE PROCEDURE sp_InsertRpaStatusType
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -636,7 +636,7 @@ END;
 GO
 
 -- Update RpaStatusType
-CREATE OR ALTER PROCEDURE sp_UpdateRpaStatusType
+CREATE PROCEDURE sp_UpdateRpaStatusType
     @ID INT,
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
@@ -657,7 +657,7 @@ END;
 GO
 
 -- Delete RpaStatusType
-CREATE OR ALTER PROCEDURE sp_DeleteRpaStatusType
+CREATE PROCEDURE sp_DeleteRpaStatusType
     @ID INT
 AS
 BEGIN
@@ -674,7 +674,7 @@ END;
 GO
 
 -- GetAll RpaStatusType
-CREATE OR ALTER PROCEDURE sp_GetAllRpaStatusType
+CREATE PROCEDURE sp_GetAllRpaStatusType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -685,7 +685,7 @@ END;
 GO
 
 -- GetByID RpaStatusType
-CREATE OR ALTER PROCEDURE sp_GetByIDRpaStatusType
+CREATE PROCEDURE sp_GetByIDRpaStatusType
     @ID INT
 AS
 BEGIN
@@ -701,7 +701,7 @@ GO
 -- =============================================
 
 -- Insert SlaSignatureStatusType
-CREATE OR ALTER PROCEDURE sp_InsertSlaSignatureStatusType
+CREATE PROCEDURE sp_InsertSlaSignatureStatusType
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
@@ -722,7 +722,7 @@ END;
 GO
 
 -- Update SlaSignatureStatusType
-CREATE OR ALTER PROCEDURE sp_UpdateSlaSignatureStatusType
+CREATE PROCEDURE sp_UpdateSlaSignatureStatusType
     @ID INT,
     @Code NVARCHAR(50),
     @Description NVARCHAR(255) = NULL
@@ -743,7 +743,7 @@ END;
 GO
 
 -- Delete SlaSignatureStatusType
-CREATE OR ALTER PROCEDURE sp_DeleteSlaSignatureStatusType
+CREATE PROCEDURE sp_DeleteSlaSignatureStatusType
     @ID INT
 AS
 BEGIN
@@ -760,7 +760,7 @@ END;
 GO
 
 -- GetAll SlaSignatureStatusType
-CREATE OR ALTER PROCEDURE sp_GetAllSlaSignatureStatusType
+CREATE PROCEDURE sp_GetAllSlaSignatureStatusType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -771,7 +771,7 @@ END;
 GO
 
 -- GetByID SlaSignatureStatusType
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaSignatureStatusType
+CREATE PROCEDURE sp_GetByIDSlaSignatureStatusType
     @ID INT
 AS
 BEGIN
@@ -787,7 +787,7 @@ GO
 -- =============================================
 
 -- Insert SlaItemType
-CREATE OR ALTER PROCEDURE sp_InsertSlaItemType
+CREATE PROCEDURE sp_InsertSlaItemType
     @Name NVARCHAR(255),
     @Description NVARCHAR(MAX),
     @Cost DECIMAL(19,4),
@@ -811,7 +811,7 @@ END;
 GO
 
 -- Update SlaItemType
-CREATE OR ALTER PROCEDURE sp_UpdateSlaItemType
+CREATE PROCEDURE sp_UpdateSlaItemType
     @ID INT,
     @Name NVARCHAR(255),
     @Description NVARCHAR(MAX),
@@ -838,7 +838,7 @@ END;
 GO
 
 -- Delete SlaItemType
-CREATE OR ALTER PROCEDURE sp_DeleteSlaItemType
+CREATE PROCEDURE sp_DeleteSlaItemType
     @ID INT
 AS
 BEGIN
@@ -855,7 +855,7 @@ END;
 GO
 
 -- GetAll SlaItemType
-CREATE OR ALTER PROCEDURE sp_GetAllSlaItemType
+CREATE PROCEDURE sp_GetAllSlaItemType
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -866,7 +866,7 @@ END;
 GO
 
 -- GetByID SlaItemType
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaItemType
+CREATE PROCEDURE sp_GetByIDSlaItemType
     @ID INT
 AS
 BEGIN
@@ -882,7 +882,7 @@ GO
 -- =============================================
 
 -- Insert Enhancement
-CREATE OR ALTER PROCEDURE sp_InsertEnhancement
+CREATE PROCEDURE sp_InsertEnhancement
     @Scope NVARCHAR(255) = NULL,
     @NewID INT OUTPUT
 AS
@@ -902,7 +902,7 @@ END;
 GO
 
 -- Update Enhancement
-CREATE OR ALTER PROCEDURE sp_UpdateEnhancement
+CREATE PROCEDURE sp_UpdateEnhancement
     @ID INT,
     @Scope NVARCHAR(255) = NULL
 AS
@@ -921,7 +921,7 @@ END;
 GO
 
 -- Delete Enhancement
-CREATE OR ALTER PROCEDURE sp_DeleteEnhancement
+CREATE PROCEDURE sp_DeleteEnhancement
     @ID INT
 AS
 BEGIN
@@ -938,7 +938,7 @@ END;
 GO
 
 -- GetAll Enhancement
-CREATE OR ALTER PROCEDURE sp_GetAllEnhancement
+CREATE PROCEDURE sp_GetAllEnhancement
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -949,7 +949,7 @@ END;
 GO
 
 -- GetByID Enhancement
-CREATE OR ALTER PROCEDURE sp_GetByIDEnhancement
+CREATE PROCEDURE sp_GetByIDEnhancement
     @ID INT
 AS
 BEGIN
@@ -965,7 +965,7 @@ GO
 -- =============================================
 
 -- Insert StoryPointCost
-CREATE OR ALTER PROCEDURE sp_InsertStoryPointCost
+CREATE PROCEDURE sp_InsertStoryPointCost
     @Points INT,
     @MaxHours INT,
     @TotalCost DECIMAL(19,4),
@@ -989,7 +989,7 @@ END;
 GO
 
 -- Update StoryPointCost
-CREATE OR ALTER PROCEDURE sp_UpdateStoryPointCost
+CREATE PROCEDURE sp_UpdateStoryPointCost
     @ID INT,
     @Points INT,
     @MaxHours INT,
@@ -1016,7 +1016,7 @@ END;
 GO
 
 -- Delete StoryPointCost
-CREATE OR ALTER PROCEDURE sp_DeleteStoryPointCost
+CREATE PROCEDURE sp_DeleteStoryPointCost
     @ID INT
 AS
 BEGIN
@@ -1033,7 +1033,7 @@ END;
 GO
 
 -- GetAll StoryPointCost
-CREATE OR ALTER PROCEDURE sp_GetAllStoryPointCost
+CREATE PROCEDURE sp_GetAllStoryPointCost
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -1044,7 +1044,7 @@ END;
 GO
 
 -- GetByID StoryPointCost
-CREATE OR ALTER PROCEDURE sp_GetByIDStoryPointCost
+CREATE PROCEDURE sp_GetByIDStoryPointCost
     @ID INT
 AS
 BEGIN

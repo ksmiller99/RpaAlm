@@ -13,7 +13,7 @@ GO
 -- =============================================
 
 -- Insert Automation
-CREATE OR ALTER PROCEDURE sp_InsertAutomation
+CREATE PROCEDURE sp_InsertAutomation
     @Name NVARCHAR(255),
     @SegmentID INT = NULL,
     @RegionID INT = NULL,
@@ -42,7 +42,7 @@ END;
 GO
 
 -- Update Automation
-CREATE OR ALTER PROCEDURE sp_UpdateAutomation
+CREATE PROCEDURE sp_UpdateAutomation
     @ID INT,
     @Name NVARCHAR(255),
     @SegmentID INT = NULL,
@@ -79,7 +79,7 @@ END;
 GO
 
 -- Delete Automation
-CREATE OR ALTER PROCEDURE sp_DeleteAutomation
+CREATE PROCEDURE sp_DeleteAutomation
     @ID INT
 AS
 BEGIN
@@ -96,7 +96,7 @@ END;
 GO
 
 -- GetAll Automation
-CREATE OR ALTER PROCEDURE sp_GetAllAutomation
+CREATE PROCEDURE sp_GetAllAutomation
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -107,7 +107,7 @@ END;
 GO
 
 -- GetByID Automation
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomation
+CREATE PROCEDURE sp_GetByIDAutomation
     @ID INT
 AS
 BEGIN
@@ -123,7 +123,7 @@ GO
 -- =============================================
 
 -- Insert AutomationEnvironment
-CREATE OR ALTER PROCEDURE sp_InsertAutomationEnvironment
+CREATE PROCEDURE sp_InsertAutomationEnvironment
     @AutomationID INT,
     @CmdbID INT,
     @EnvironmentTypeID INT = NULL,
@@ -145,7 +145,7 @@ END;
 GO
 
 -- Update AutomationEnvironment
-CREATE OR ALTER PROCEDURE sp_UpdateAutomationEnvironment
+CREATE PROCEDURE sp_UpdateAutomationEnvironment
     @ID INT,
     @AutomationID INT,
     @CmdbID INT,
@@ -168,7 +168,7 @@ END;
 GO
 
 -- Delete AutomationEnvironment
-CREATE OR ALTER PROCEDURE sp_DeleteAutomationEnvironment
+CREATE PROCEDURE sp_DeleteAutomationEnvironment
     @ID INT
 AS
 BEGIN
@@ -185,7 +185,7 @@ END;
 GO
 
 -- GetAll AutomationEnvironment
-CREATE OR ALTER PROCEDURE sp_GetAllAutomationEnvironment
+CREATE PROCEDURE sp_GetAllAutomationEnvironment
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -196,7 +196,7 @@ END;
 GO
 
 -- GetByID AutomationEnvironment
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomationEnvironment
+CREATE PROCEDURE sp_GetByIDAutomationEnvironment
     @ID INT
 AS
 BEGIN
@@ -212,7 +212,7 @@ GO
 -- =============================================
 
 -- Insert AutomationLogEntry
-CREATE OR ALTER PROCEDURE sp_InsertAutomationLogEntry
+CREATE PROCEDURE sp_InsertAutomationLogEntry
     @AutomationID INT,
     @CreatedJjedsID INT,
     @CreatedDate DATE,
@@ -235,7 +235,7 @@ END;
 GO
 
 -- Update AutomationLogEntry
-CREATE OR ALTER PROCEDURE sp_UpdateAutomationLogEntry
+CREATE PROCEDURE sp_UpdateAutomationLogEntry
     @ID INT,
     @AutomationID INT,
     @CreatedJjedsID INT,
@@ -260,7 +260,7 @@ END;
 GO
 
 -- Delete AutomationLogEntry
-CREATE OR ALTER PROCEDURE sp_DeleteAutomationLogEntry
+CREATE PROCEDURE sp_DeleteAutomationLogEntry
     @ID INT
 AS
 BEGIN
@@ -277,7 +277,7 @@ END;
 GO
 
 -- GetAll AutomationLogEntry
-CREATE OR ALTER PROCEDURE sp_GetAllAutomationLogEntry
+CREATE PROCEDURE sp_GetAllAutomationLogEntry
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -288,7 +288,7 @@ END;
 GO
 
 -- GetByID AutomationLogEntry
-CREATE OR ALTER PROCEDURE sp_GetByIDAutomationLogEntry
+CREATE PROCEDURE sp_GetByIDAutomationLogEntry
     @ID INT
 AS
 BEGIN
@@ -304,7 +304,7 @@ GO
 -- =============================================
 
 -- Insert EnhancementUserStory
-CREATE OR ALTER PROCEDURE sp_InsertEnhancementUserStory
+CREATE PROCEDURE sp_InsertEnhancementUserStory
     @EnhancementID INT,
     @JiraIssue NVARCHAR(50),
     @JiraIssueDate DATETIME2,
@@ -330,7 +330,7 @@ END;
 GO
 
 -- Update EnhancementUserStory
-CREATE OR ALTER PROCEDURE sp_UpdateEnhancementUserStory
+CREATE PROCEDURE sp_UpdateEnhancementUserStory
     @ID INT,
     @EnhancementID INT,
     @JiraIssue NVARCHAR(50),
@@ -361,7 +361,7 @@ END;
 GO
 
 -- Delete EnhancementUserStory
-CREATE OR ALTER PROCEDURE sp_DeleteEnhancementUserStory
+CREATE PROCEDURE sp_DeleteEnhancementUserStory
     @ID INT
 AS
 BEGIN
@@ -378,7 +378,7 @@ END;
 GO
 
 -- GetAll EnhancementUserStory
-CREATE OR ALTER PROCEDURE sp_GetAllEnhancementUserStory
+CREATE PROCEDURE sp_GetAllEnhancementUserStory
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -389,7 +389,7 @@ END;
 GO
 
 -- GetByID EnhancementUserStory
-CREATE OR ALTER PROCEDURE sp_GetByIDEnhancementUserStory
+CREATE PROCEDURE sp_GetByIDEnhancementUserStory
     @ID INT
 AS
 BEGIN
@@ -405,7 +405,7 @@ GO
 -- =============================================
 
 -- Insert SlaMaster
-CREATE OR ALTER PROCEDURE sp_InsertSlaMaster
+CREATE PROCEDURE sp_InsertSlaMaster
     @AutomationID INT,
     @ComplexityTypeID INT = NULL,
     @MedalID INT = NULL,
@@ -436,7 +436,7 @@ END;
 GO
 
 -- Update SlaMaster
-CREATE OR ALTER PROCEDURE sp_UpdateSlaMaster
+CREATE PROCEDURE sp_UpdateSlaMaster
     @ID INT,
     @AutomationID INT,
     @ComplexityTypeID INT = NULL,
@@ -477,7 +477,7 @@ END;
 GO
 
 -- Delete SlaMaster
-CREATE OR ALTER PROCEDURE sp_DeleteSlaMaster
+CREATE PROCEDURE sp_DeleteSlaMaster
     @ID INT
 AS
 BEGIN
@@ -494,7 +494,7 @@ END;
 GO
 
 -- GetAll SlaMaster
-CREATE OR ALTER PROCEDURE sp_GetAllSlaMaster
+CREATE PROCEDURE sp_GetAllSlaMaster
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -505,7 +505,7 @@ END;
 GO
 
 -- GetByID SlaMaster
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaMaster
+CREATE PROCEDURE sp_GetByIDSlaMaster
     @ID INT
 AS
 BEGIN
@@ -521,7 +521,7 @@ GO
 -- =============================================
 
 -- Insert SlaItem
-CREATE OR ALTER PROCEDURE sp_InsertSlaItem
+CREATE PROCEDURE sp_InsertSlaItem
     @SlaMasterID INT,
     @SlaItemTypeID INT,
     @EnhancementID INT,
@@ -546,7 +546,7 @@ END;
 GO
 
 -- Update SlaItem
-CREATE OR ALTER PROCEDURE sp_UpdateSlaItem
+CREATE PROCEDURE sp_UpdateSlaItem
     @ID INT,
     @SlaMasterID INT,
     @SlaItemTypeID INT,
@@ -575,7 +575,7 @@ END;
 GO
 
 -- Delete SlaItem
-CREATE OR ALTER PROCEDURE sp_DeleteSlaItem
+CREATE PROCEDURE sp_DeleteSlaItem
     @ID INT
 AS
 BEGIN
@@ -592,7 +592,7 @@ END;
 GO
 
 -- GetAll SlaItem
-CREATE OR ALTER PROCEDURE sp_GetAllSlaItem
+CREATE PROCEDURE sp_GetAllSlaItem
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -603,7 +603,7 @@ END;
 GO
 
 -- GetByID SlaItem
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaItem
+CREATE PROCEDURE sp_GetByIDSlaItem
     @ID INT
 AS
 BEGIN
@@ -619,7 +619,7 @@ GO
 -- =============================================
 
 -- Insert SlaLogEntry
-CREATE OR ALTER PROCEDURE sp_InsertSlaLogEntry
+CREATE PROCEDURE sp_InsertSlaLogEntry
     @SlaMasterID INT,
     @CreatedJjedsID INT,
     @CreatedDate DATE,
@@ -642,7 +642,7 @@ END;
 GO
 
 -- Update SlaLogEntry
-CREATE OR ALTER PROCEDURE sp_UpdateSlaLogEntry
+CREATE PROCEDURE sp_UpdateSlaLogEntry
     @ID INT,
     @SlaMasterID INT,
     @CreatedJjedsID INT,
@@ -667,7 +667,7 @@ END;
 GO
 
 -- Delete SlaLogEntry
-CREATE OR ALTER PROCEDURE sp_DeleteSlaLogEntry
+CREATE PROCEDURE sp_DeleteSlaLogEntry
     @ID INT
 AS
 BEGIN
@@ -684,7 +684,7 @@ END;
 GO
 
 -- GetAll SlaLogEntry
-CREATE OR ALTER PROCEDURE sp_GetAllSlaLogEntry
+CREATE PROCEDURE sp_GetAllSlaLogEntry
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -695,7 +695,7 @@ END;
 GO
 
 -- GetByID SlaLogEntry
-CREATE OR ALTER PROCEDURE sp_GetByIDSlaLogEntry
+CREATE PROCEDURE sp_GetByIDSlaLogEntry
     @ID INT
 AS
 BEGIN
@@ -711,7 +711,7 @@ GO
 -- =============================================
 
 -- Insert VirtualIdentity
-CREATE OR ALTER PROCEDURE sp_InsertVirtualIdentity
+CREATE PROCEDURE sp_InsertVirtualIdentity
     @JjedsID INT,
     @AdDomainID INT,
     @HostName NVARCHAR(255),
@@ -736,7 +736,7 @@ END;
 GO
 
 -- Update VirtualIdentity
-CREATE OR ALTER PROCEDURE sp_UpdateVirtualIdentity
+CREATE PROCEDURE sp_UpdateVirtualIdentity
     @ID INT,
     @JjedsID INT,
     @AdDomainID INT,
@@ -765,7 +765,7 @@ END;
 GO
 
 -- Delete VirtualIdentity
-CREATE OR ALTER PROCEDURE sp_DeleteVirtualIdentity
+CREATE PROCEDURE sp_DeleteVirtualIdentity
     @ID INT
 AS
 BEGIN
@@ -782,7 +782,7 @@ END;
 GO
 
 -- GetAll VirtualIdentity
-CREATE OR ALTER PROCEDURE sp_GetAllVirtualIdentity
+CREATE PROCEDURE sp_GetAllVirtualIdentity
 AS
 BEGIN
     SET NOCOUNT OFF;
@@ -793,7 +793,7 @@ END;
 GO
 
 -- GetByID VirtualIdentity
-CREATE OR ALTER PROCEDURE sp_GetByIDVirtualIdentity
+CREATE PROCEDURE sp_GetByIDVirtualIdentity
     @ID INT
 AS
 BEGIN

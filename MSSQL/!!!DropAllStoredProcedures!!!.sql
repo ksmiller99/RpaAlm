@@ -17,7 +17,14 @@ INNER JOIN sys.schemas AS s ON p.[schema_id] = s.[schema_id]
 WHERE p.is_ms_shipped = 0; -- Exclude system stored procedures
 
 -- Optional: Print the generated script to review before execution
-PRINT @sql;
+DECLARE @size INT = LEN(@sql);
+DECLARE @count INT = 0;
+WHILE @size > 0
+BEGIN
+    PRINT SUBSTRING(@sql,(@count*4000)+1,IIF(@size>4000,4000,@size));
+	SET @size = @size-4000;
+	SET @count = @count+1;
+END
 
 -- Execute the generated script
 -- EXEC sys.sp_executesql @sql;
