@@ -1,6 +1,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using RpaAlmApi.Models.Common;
+using RpaAlmApi.Models.Create;
 using RpaAlmApi.Models.Lookup;
 using RpaAlmApi.Models.Helper;
 using RpaAlmApi.Models.Main;
@@ -11,9 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.UnmappedMemberHandling = System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow;
+});
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() { Title = "RPA ALM API", Version = "v1", Description = "RESTful API for RPA Application Lifecycle Management Database - Note: Do not include 'id' field in POST requests, IDs are auto-generated" });
+    c.SwaggerDoc("v1", new() { Title = "RPA ALM API", Version = "v1", Description = "RESTful API for RPA Application Lifecycle Management Database" });
 });
 
 var connectionString = builder.Configuration.GetConnectionString("RpaAlmDev")
@@ -34,73 +39,73 @@ app.UseSwaggerUI(c =>
 // ============================================================================
 
 // AdDomainType
-MapCrudEndpoints<AdDomainTypeDto>(
+MapCrudEndpoints<AdDomainTypeDto, CreateAdDomainTypeDto>(
     app.MapGroup("/api/addomain").WithTags("AdDomainType"),
     connectionString,
     "AdDomainType");
 
 // AutomationEnvironmentType
-MapCrudEndpoints<AutomationEnvironmentTypeDto>(
+MapCrudEndpoints<AutomationEnvironmentTypeDto, CreateAutomationEnvironmentTypeDto>(
     app.MapGroup("/api/automationenvironmenttype").WithTags("AutomationEnvironmentType"),
     connectionString,
     "AutomationEnvironmentType");
 
 // ComplexityType
-MapCrudEndpoints<ComplexityTypeDto>(
+MapCrudEndpoints<ComplexityTypeDto, CreateComplexityTypeDto>(
     app.MapGroup("/api/complexitytype").WithTags("ComplexityType"),
     connectionString,
     "ComplexityType");
 
 // FunctionType
-MapCrudEndpoints<FunctionTypeDto>(
+MapCrudEndpoints<FunctionTypeDto, CreateFunctionTypeDto>(
     app.MapGroup("/api/functiontype").WithTags("FunctionType"),
     connectionString,
     "FunctionType");
 
 // MedalType
-MapCrudEndpoints<MedalTypeDto>(
+MapCrudEndpoints<MedalTypeDto, CreateMedalTypeDto>(
     app.MapGroup("/api/medaltype").WithTags("MedalType"),
     connectionString,
     "MedalType");
 
 // RegionType
-MapCrudEndpoints<RegionTypeDto>(
+MapCrudEndpoints<RegionTypeDto, CreateRegionTypeDto>(
     app.MapGroup("/api/regiontype").WithTags("RegionType"),
     connectionString,
     "RegionType");
 
 // SegmentType
-MapCrudEndpoints<SegmentTypeDto>(
+MapCrudEndpoints<SegmentTypeDto, CreateSegmentTypeDto>(
     app.MapGroup("/api/segmenttype").WithTags("SegmentType"),
     connectionString,
     "SegmentType");
 
 // RpaStatusType
-MapCrudEndpoints<RpaStatusTypeDto>(
+MapCrudEndpoints<RpaStatusTypeDto, CreateRpaStatusTypeDto>(
     app.MapGroup("/api/rpastatustype").WithTags("RpaStatusType"),
     connectionString,
     "RpaStatusType");
 
 // SlaSignatureStatusType
-MapCrudEndpoints<SlaSignatureStatusTypeDto>(
+MapCrudEndpoints<SlaSignatureStatusTypeDto, CreateSlaSignatureStatusTypeDto>(
     app.MapGroup("/api/slasignaturestatustype").WithTags("SlaSignatureStatusType"),
     connectionString,
     "SlaSignatureStatusType");
 
 // SlaItemType
-MapCrudEndpoints<SlaItemTypeDto>(
+MapCrudEndpoints<SlaItemTypeDto, CreateSlaItemTypeDto>(
     app.MapGroup("/api/slaitemtype").WithTags("SlaItemType"),
     connectionString,
     "SlaItemType");
 
 // Enhancement
-MapCrudEndpoints<EnhancementDto>(
+MapCrudEndpoints<EnhancementDto, CreateEnhancementDto>(
     app.MapGroup("/api/enhancement").WithTags("Enhancement"),
     connectionString,
     "Enhancement");
 
 // StoryPointCost
-MapCrudEndpoints<StoryPointCostDto>(
+MapCrudEndpoints<StoryPointCostDto, CreateStoryPointCostDto>(
     app.MapGroup("/api/storypointcost").WithTags("StoryPointCost"),
     connectionString,
     "StoryPointCost");
@@ -110,13 +115,13 @@ MapCrudEndpoints<StoryPointCostDto>(
 // ============================================================================
 
 // JjedsHelper
-MapCrudEndpoints<JjedsHelperDto>(
+MapCrudEndpoints<JjedsHelperDto, CreateJjedsHelperDto>(
     app.MapGroup("/api/jjedshelper").WithTags("JjedsHelper"),
     connectionString,
     "JjedsHelper");
 
 // CmdbHelper
-MapCrudEndpoints<CmdbHelperDto>(
+MapCrudEndpoints<CmdbHelperDto, CreateCmdbHelperDto>(
     app.MapGroup("/api/cmdbhelper").WithTags("CmdbHelper"),
     connectionString,
     "CmdbHelper");
@@ -126,49 +131,49 @@ MapCrudEndpoints<CmdbHelperDto>(
 // ============================================================================
 
 // Automation
-MapCrudEndpoints<AutomationDto>(
+MapCrudEndpoints<AutomationDto, CreateAutomationDto>(
     app.MapGroup("/api/automation").WithTags("Automation"),
     connectionString,
     "Automation");
 
 // AutomationEnvironment
-MapCrudEndpoints<AutomationEnvironmentDto>(
+MapCrudEndpoints<AutomationEnvironmentDto, CreateAutomationEnvironmentDto>(
     app.MapGroup("/api/automationenvironment").WithTags("AutomationEnvironment"),
     connectionString,
     "AutomationEnvironment");
 
 // AutomationLogEntry
-MapCrudEndpoints<AutomationLogEntryDto>(
+MapCrudEndpoints<AutomationLogEntryDto, CreateAutomationLogEntryDto>(
     app.MapGroup("/api/automationlogentry").WithTags("AutomationLogEntry"),
     connectionString,
     "AutomationLogEntry");
 
 // EnhancementUserStory
-MapCrudEndpoints<EnhancementUserStoryDto>(
+MapCrudEndpoints<EnhancementUserStoryDto, CreateEnhancementUserStoryDto>(
     app.MapGroup("/api/enhancementuserstory").WithTags("EnhancementUserStory"),
     connectionString,
     "EnhancementUserStory");
 
 // SlaMaster
-MapCrudEndpoints<SlaMasterDto>(
+MapCrudEndpoints<SlaMasterDto, CreateSlaMasterDto>(
     app.MapGroup("/api/slamaster").WithTags("SlaMaster"),
     connectionString,
     "SlaMaster");
 
 // SlaItem
-MapCrudEndpoints<SlaItemDto>(
+MapCrudEndpoints<SlaItemDto, CreateSlaItemDto>(
     app.MapGroup("/api/slaitem").WithTags("SlaItem"),
     connectionString,
     "SlaItem");
 
 // SlaLogEntry
-MapCrudEndpoints<SlaLogEntryDto>(
+MapCrudEndpoints<SlaLogEntryDto, CreateSlaLogEntryDto>(
     app.MapGroup("/api/slalogentry").WithTags("SlaLogEntry"),
     connectionString,
     "SlaLogEntry");
 
 // VirtualIdentity
-MapCrudEndpoints<VirtualIdentityDto>(
+MapCrudEndpoints<VirtualIdentityDto, CreateVirtualIdentityDto>(
     app.MapGroup("/api/virtualidentity").WithTags("VirtualIdentity"),
     connectionString,
     "VirtualIdentity");
@@ -178,7 +183,7 @@ MapCrudEndpoints<VirtualIdentityDto>(
 // ============================================================================
 
 // ViAssignments
-MapCrudEndpoints<ViAssignmentsDto>(
+MapCrudEndpoints<ViAssignmentsDto, CreateViAssignmentsDto>(
     app.MapGroup("/api/viassignments").WithTags("ViAssignments"),
     connectionString,
     "ViAssignments");
@@ -189,10 +194,12 @@ app.Run();
 // GENERIC CRUD HELPER METHOD
 // ============================================================================
 
-static RouteGroupBuilder MapCrudEndpoints<T>(
+static RouteGroupBuilder MapCrudEndpoints<TDto, TCreateDto>(
     RouteGroupBuilder group,
     string connectionString,
-    string tableName) where T : class
+    string tableName)
+    where TDto : class
+    where TCreateDto : class
 {
     // GET ALL
     group.MapGet("/", async () =>
@@ -200,7 +207,7 @@ static RouteGroupBuilder MapCrudEndpoints<T>(
         try
         {
             using var connection = new SqlConnection(connectionString);
-            var results = await connection.QueryAsync<T>(
+            var results = await connection.QueryAsync<TDto>(
                 $"sp_GetAll{tableName}",
                 commandType: CommandType.StoredProcedure);
             return Results.Ok(results);
@@ -221,7 +228,7 @@ static RouteGroupBuilder MapCrudEndpoints<T>(
         try
         {
             using var connection = new SqlConnection(connectionString);
-            var result = await connection.QuerySingleOrDefaultAsync<T>(
+            var result = await connection.QuerySingleOrDefaultAsync<TDto>(
                 $"sp_GetByID{tableName}",
                 new { ID = id },
                 commandType: CommandType.StoredProcedure);
@@ -238,37 +245,17 @@ static RouteGroupBuilder MapCrudEndpoints<T>(
     .WithName($"Get{tableName}ByID");
 
     // POST (INSERT)
-    group.MapPost("/", async (T dto) =>
+    group.MapPost("/", async (TCreateDto dto) =>
     {
         try
         {
-            // Validate that ID is not provided (should be auto-generated)
-            var idProperty = typeof(T).GetProperty("ID");
-            if (idProperty != null)
-            {
-                var idValue = idProperty.GetValue(dto);
-                if (idValue != null && !idValue.Equals(0))
-                {
-                    return Results.BadRequest(new
-                    {
-                        type = "https://tools.ietf.org/html/rfc9110#section-15.5.1",
-                        title = "Validation Error",
-                        status = 400,
-                        detail = "ID field should not be provided for POST requests. IDs are auto-generated by the database."
-                    });
-                }
-            }
-
             using var connection = new SqlConnection(connectionString);
 
-            // Create parameters excluding ID property
+            // Create parameters from all properties in Create DTO
             var parameters = new DynamicParameters();
-            foreach (var prop in typeof(T).GetProperties())
+            foreach (var prop in typeof(TCreateDto).GetProperties())
             {
-                if (prop.Name != "ID")
-                {
-                    parameters.Add($"@{prop.Name}", prop.GetValue(dto));
-                }
+                parameters.Add($"@{prop.Name}", prop.GetValue(dto));
             }
             parameters.Add("@NewID", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
@@ -282,7 +269,7 @@ static RouteGroupBuilder MapCrudEndpoints<T>(
                 NewID = parameters.Get<int>("@NewID"),
                 RowsAffected = 1
             };
-            return Results.Created($"/api/{tableName.ToLower()}/{result.NewID}", result);
+            return Results.Ok(result);
         }
         catch (Exception ex)
         {
@@ -295,14 +282,14 @@ static RouteGroupBuilder MapCrudEndpoints<T>(
     .WithName($"Create{tableName}");
 
     // PUT (UPDATE)
-    group.MapPut("/{id}", async (int id, T dto) =>
+    group.MapPut("/{id}", async (int id, TDto dto) =>
     {
         try
         {
             using var connection = new SqlConnection(connectionString);
 
             // Set the ID property on the DTO
-            var idProperty = typeof(T).GetProperty("ID");
+            var idProperty = typeof(TDto).GetProperty("ID");
             if (idProperty != null)
             {
                 idProperty.SetValue(dto, id);

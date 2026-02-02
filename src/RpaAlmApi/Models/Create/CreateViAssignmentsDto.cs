@@ -1,0 +1,10 @@
+namespace RpaAlmApi.Models.Create;
+
+public class CreateViAssignmentsDto
+{
+    public int VirtualIdentityID { get; set; }
+    public int AutomationEnvironmentID { get; set; }
+    public int Percentage { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime? EndDate { get; set; }
+}
